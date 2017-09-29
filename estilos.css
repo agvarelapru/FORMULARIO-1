@@ -12,7 +12,10 @@ body{
    border-radius: 25px;
 }
 hr{
-    background-color: #007BFF;
+   
+    border: 2px solid #007BFF; 
+    border-radius: 300px /2px; 
+    
 }
 h2{
     text-align: center;
@@ -33,12 +36,12 @@ h2{
 .derecha{
     text-align: right;
     width: 50%;
-    float: left;
-  
+    float: right;
+ 
 }
 .izquierda{
     text-align: left;
     width: 50%;
     float: left;
-    
+   
 }

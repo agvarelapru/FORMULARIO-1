@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
 <title>Formulario</title>
 <!-- CSS de Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap.css" rel="stylesheet" media="screen">
 <link href="estilos.css" rel="stylesheet" media="screen">
 
 </head>
@@ -20,25 +20,27 @@
 
 <form class="form-horizontal" role="form" id="form1" name="form1" method="post" action="menu.php">
 <fieldset>
-<legend>Identifiquese:</legend>
-  <div class="form-group">
-    <label for="usuario">Usuario</label>
-    <input  class="form-control" type="text" name="usuario" id="usuario" />
+<h4>Identifiquese:</h4>
+  <div class="input-group">
+   <label class="sr-only" for="usuario">Usuario</label>
+   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input  class="form-control" type="text" name="usuario" id="usr" placeholder="Usuario" pattern="[- A-Za-z0-9]{1,20}"  title="Introduzca solo caracteres A-Z , a-z y numeros de 0 a 9" />
   </div>
-  <div class="form-group">
-    <label for="contraseña">Contraseña</label>
-    <input class="form-control" type="text" name="contraseña" id="contraseña"/>
+  <div class="input-group">
+      <label class="sr-only" for="password">Contraseña</label>
+     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+    <input class="form-control" type="password" name="contraseña" id="pwd" placeholder="Contraseña" pattern="[- A-Za-z0-9]{1,20}"  title="Introduzca solo caracteres A-Z , a-z y numeros de 0 a 9" />
   </div>
 
   <div class="botones">
-  <a href="formulario.html"><div class="izquierda">Recuperar contraseña</div></a>
-  <a href="formulario.html"><div class="derecha">Alta nueva</div></a>
+    <div class="izquierda"><a href="formulario.html">Recuperar contraseña</a></div>
+    <div class="derecha"><a href="formulario.html">Alta nueva</a></div>
 </div>
  
   <input class="btn btn-primary" type="reset" name="limpiar" value="Borrar" />
   <input  class="btn btn-primary" type="submit" name="enviar" id="enviar" value="Validar" />
 
-</fieldset>
+
 </form>
 <hr/>
 <p>Acceso mediante codigo QR , etiquetas NFC, huella dactilar o detector facial</p>
