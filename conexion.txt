@@ -1,0 +1,12 @@
+<?php
+define('DBHOST', 'localhost');
+define('DBUSER', 'root');
+define('DBPASS', '');
+define('DBNAME', 'instituto');
+?>
+
+
+require_once('conexion.php');
+
+$conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
+    die("Problemas con la conexión.");
