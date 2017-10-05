@@ -28,28 +28,33 @@
 
 <div class="form-group">
   <label for="pass">Contraseña</label>
-  <input  class="form-control" type="password" name="pass" id="pass" placeholder="Contraseña" pattern="[ A-Za-z ñÑ]{1,50}"  title="Introduzca contraseña" required/>
+  <input  class="form-control" type="password" name="pass" id="pass" onblur="comprueba()" placeholder="Contraseña" pattern="[ A-Za-z ñÑ]{1,50}"  title="Introduzca contraseña" required/>
+  
 </div>
 <div class="form-group">
   <label for="pass2">Repetir Contraseña</label>
-  <input  class="form-control" type="password" name="pass2" id="pass2" placeholder="Contraseña" pattern="[ A-Za-z ñÑ]{1,50}"  title="Introduzca contraseña"   required/>
+  <input  class="form-control" type="password" name="pass2" id="pass2" onblur="comprueba()" placeholder="Contraseña" pattern="[ A-Za-z ñÑ]{1,50}"  title="Introduzca contraseña"   required/>
 </div>
+<h5 id="error"></h5>
+
 <script  type="text/javascript">
 
 function comprueba(){
 var pass=document.getElementById('pass').value;
 var pass2=document.getElementById('pass2').value
 if(pass!=pass2){
-  alert("Las contraseñas no son iguales");
+  document.getElementById('error').innerHTML="Error";
+}else{
+  document.getElementById('error').innerHTML="Correcto";
 }
 }
 </script>
-<br><br>
+<br>
 
 
   <div class="form-group">
     <label for="nombre">Nombre</label>
-    <input  class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" pattern="[ A-Za-z ñÑ]{1,50}"  title="Introduzca nombre" onclick="comprueba()" oninput="comprueba()" required />
+    <input  class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" pattern="[ A-Za-z ñÑ]{1,50}"  title="Introduzca nombre"  required />
   </div>
   <div class="form-group">
     <label for="apellido1">Apellido 1</label>
@@ -71,7 +76,7 @@ if(pass!=pass2){
   
   
   <input class="btn btn-primary" type="reset" name="limpiar" value="Borrar datos" />
-  <input  class="btn btn-primary" type="submit" name="enviar" id="enviar" value="Enviar datos" onclick="comprueba()"/>
+  <input  class="btn btn-primary" type="submit" name="enviar" id="enviar" value="Enviar datos"/>
   
 
 </form>

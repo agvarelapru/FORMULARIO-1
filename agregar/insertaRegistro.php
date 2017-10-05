@@ -14,7 +14,7 @@ $nick=$nombre=$pass=$apellido1=$apellido2=$email=$fecha_nacimiento="";
 $nickErr=$nombreErr=$passErr=$apellido1Err=$apellido2Err=$emailErr=$fecha_nacimientoErr="";
 
 if($nickErr=="" & $passErr=="" & $nombreErr=="" & $apellido1Err=="" & $apellido2Err=="" & $emailErr=="" & $fecha_nacimientoErr==""){
-	require_once('../conexion.php');
+	require_once('../conexionLocal.php');
 	$conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or die("Problemas con la conexión");
 	$contra=md5($_REQUEST["pass"]);
 
