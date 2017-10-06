@@ -7,11 +7,18 @@
 <!-- CSS de Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="estilos.css" rel="stylesheet" media="screen">
+<script  type="text/javascript">
+
+</script>
+
 
 </head>
 
 
 <body>
+
+
+
 <?php
 
 

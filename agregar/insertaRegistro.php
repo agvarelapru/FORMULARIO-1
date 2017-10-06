@@ -6,8 +6,21 @@
 	<title>Alta nueva</title>
 	<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="../estilos.css" rel="stylesheet" media="screen">
+
+<script  type="text/javascript">
+function tiempo(){
+  
+  setTimeout("redirigir()", 5000);
+  alert("Bienvenido " +$_REQUEST['nombre']);
+}
+function redirigir(){
+  window.location="../index.html";
+}
+</script>
+
+
 </head>
-<body> 
+<body onload="tiempo()"> 
 	
 	<?php
 $nick=$nombre=$pass=$apellido1=$apellido2=$email=$fecha_nacimiento="";
@@ -60,14 +73,16 @@ mysqli_close($conexion);
 
 if($nickErr=="" & $passErr=="" & $nombreErr=="" & $apellido1Err=="" & $apellido2Err=="" & $emailErr=="" & $fecha_nacimientoErr==""){
 echo "<h3 class='envio'> El usuario fue dado de alta correctamente. </h3>";
+echo "<h4 class='envio'> Compruebe su cuenta de correo para confirmar la cuenta. </h4>";
 }else{
-echo "<h3 style=color:red> El Proveedor NO se agrego. </h3>";
+echo "<h3 style=color:red> El Usuario NO se agrego. </h3>";
 }
 ?>
 <br>
 
 </ul>
 </div>
+
 </body>
 </html>
 

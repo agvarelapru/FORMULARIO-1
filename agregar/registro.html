@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
+
 <title>Formulario</title>
 <!-- CSS de Bootstrap -->
 <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -32,8 +33,9 @@
   
 </div>
 <div class="form-group">
-  <label for="pass2">Repetir Contraseña</label>
+  <label for="pass2" id="error">Repetir Contraseña</label>
   <input  class="form-control" type="password" name="pass2" id="pass2" onblur="comprueba()" placeholder="Contraseña" pattern="[ A-Za-z ñÑ]{1,50}"  title="Introduzca contraseña"   required/>
+  <h5 id="error"></h5>
 </div>
 <h5 id="error"></h5>
 
@@ -43,9 +45,9 @@ function comprueba(){
 var pass=document.getElementById('pass').value;
 var pass2=document.getElementById('pass2').value
 if(pass!=pass2){
-  document.getElementById('error').innerHTML="Error";
+  document.getElementById('error').innerHTML="Repetir Contraseña   <IMG SRC='error.png'>";
 }else{
-  document.getElementById('error').innerHTML="Correcto";
+  document.getElementById('error').innerHTML="Repetir Contraseña   <IMG SRC='bien.png'>";
 }
 }
 </script>
@@ -75,8 +77,8 @@ if(pass!=pass2){
  
   
   
-  <input class="btn btn-primary" type="reset" name="limpiar" value="Borrar datos" />
-  <input  class="btn btn-primary" type="submit" name="enviar" id="enviar" value="Enviar datos"/>
+  <input class="btn btn-primary" type="reset" name="limpiar" value="Borrar" />
+  <input  class="btn btn-primary" type="submit" name="enviar" id="enviar" value="Enviar"/>
   
 
 </form>
