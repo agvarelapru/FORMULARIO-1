@@ -8,14 +8,14 @@
 <link href="../estilos.css" rel="stylesheet" media="screen">
 
 <script  type="text/javascript">
-function tiempo(){
+/*function tiempo(){
   
   setTimeout("redirigir()", 5000);
   alert("Bienvenido " +$_REQUEST['nombre']);
 }
 function redirigir(){
   window.location="../index.html";
-}
+}*/
 </script>
 
 

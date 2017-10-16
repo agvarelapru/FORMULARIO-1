@@ -8,22 +8,19 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="estilos.css" rel="stylesheet" media="screen">
 <script  type="text/javascript">
-
+function tiempo(){
+  
+  setTimeout("redirigir()", 5000);
+  alert("Bienvenido " +$_REQUEST['nombre']);
+}
+function redirigir(){
+  window.location="menu.php";
+}
 </script>
 
 
 </head>
-<style>
-
-
-    .navbar-brand{
-
-        border: none;
-        background-color: black;
-    }
-</style>
-
-<body>
+<body onload="tiempo()"> 
 
 
 
@@ -52,7 +49,7 @@ if (empty($_POST["usuario"])) {
     }
   }*/
 
-  require_once('conexion.php');
+  require_once('conexionLocal.php');
   $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
   die("Problemas con la conexión.");
 
@@ -74,43 +71,10 @@ if(($reg['Usuario_clave']==$contra) & $reg['Usuario_bloqueado']==0){
 
 
 
-  <nav class="navbar navbar-inverse">
-
-  <div class="container-fluid">
-    <div class="navbar-header">
-
-    <form role="form" id="form1" name="form1" method="post" action="menu.php">
-    <input  type="hidden" name="usuario" id="usuario"  value="<?php echo $_REQUEST['usuario'] ?>"/>
-    <input  type="hidden" name="pass" id="pass"  value="<?php echo $_REQUEST['pass']?>" />
-    <input  class="navbar-brand" type="submit" name="enviar" id="enviar" value="La Pagina de Angel" />
-   <!-- <a class="navbar-brand" type="submit" name="enviar" id="enviar" href=menu.php>La Pagina de Angel</a>-->
-</form> 
-
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Page 1-1</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Page 2</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span>  Hola <?php echo $reg['Usuario_nick'] ?> </a></li>
-      <li><a href="index.html"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
-    </ul>
-  </div>
-</nav>
-
-
-
-
 
    <div class="container" >   
-<h1>HOLA</h1>
+<h1>BIENVENIDO <?php echo $reg['Usuario_nick'] ?></h1>
+<h4>Redirigiendo a pagina principal</h4>
 <div>
   
  
