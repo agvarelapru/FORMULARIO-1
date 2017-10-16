@@ -52,7 +52,7 @@ if (empty($_POST["usuario"])) {
     }
   }*/
 
-  require_once('conexion.php');
+  require_once('conexionLocal.php');
   $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
   die("Problemas con la conexión.");
 
@@ -111,6 +111,23 @@ if(($reg['Usuario_clave']==$contra) & $reg['Usuario_bloqueado']==0){
 
    <div class="container" >   
 <h1>HOLA</h1>
+<?php
+include 'qr-code/phpqrcode/qrlib.php';
+
+// El nombre del fichero que se generará (una imagen PNG).
+$file = 'jr-qrcode.png'; 
+// La data que llevará.
+$data = 'http://joserobinson.com/'; 
+
+// Y generamos la imagen.
+QRcode::png($data, $file)
+
+?>
+
+<img src="jr-qrcode.png">
+
+
+
 <div>
   
  
