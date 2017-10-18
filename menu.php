@@ -1,3 +1,16 @@
+<?php
+
+
+// Start the session
+session_start();
+
+if(isset($_SESSION["usuario"]) & isset($_SESSION["pass"])){
+  $_REQUEST['usuario']= $_SESSION["usuario"];
+  $contra =md5( $_SESSION["pass"]);
+
+}
+
+?>
 <!doctype html>
 <html lang="es">
 <head>
@@ -24,7 +37,15 @@
 </style>
 
 <body>
+<?php
 
+// Set session variables
+
+$_SESSION["usuario"] = $_REQUEST['usuario'];
+if(!isset($_SESSION["pass"])){
+$_SESSION["pass"] = $_REQUEST['pass'];
+}
+?>
 
 
 <?php
@@ -56,14 +77,19 @@ if (empty($_POST["usuario"])) {
   $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
   die("Problemas con la conexión.");
 
+  
 
+ 
 
 mysqli_set_charset($conexion,"utf8");
 $registros=mysqli_query($conexion,"select Usuario_nick,Usuario_clave,Usuario_bloqueado
                       from usuarios where (Usuario_nick like '$_REQUEST[usuario]' or Usuario_email like '$_REQUEST[usuario]')") or
 die("Problemas en el select:".mysqli_error($conexion));
 $numero=mysqli_affected_rows($conexion);//cuenta el numero de lineas del array
+
+if(!isset($contra)){
 $contra=md5($_REQUEST["pass"]);
+}
 while ($reg = mysqli_fetch_array($registros))
 {
 
@@ -79,11 +105,11 @@ if(($reg['Usuario_clave']==$contra) & $reg['Usuario_bloqueado']==0){
   <div class="container-fluid">
     <div class="navbar-header">
 
-    <form role="form" id="form1" name="form1" method="post" action="menu.php">
-    <input  type="hidden" name="usuario" id="usuario"  value="<?php echo $_REQUEST['usuario'] ?>"/>
-    <input  type="hidden" name="pass" id="pass"  value="<?php echo $_REQUEST['pass']?>" />
-    <input  class="navbar-brand" type="submit" name="enviar" id="enviar" value="La Pagina de Angel" />
-   <!-- <a class="navbar-brand" type="submit" name="enviar" id="enviar" href=menu.php>La Pagina de Angel</a>-->
+   <!--  <form role="form" id="form1" name="form1" method="post" action="menu.php">
+    <input  type="hidden" name="usuario" id="usuario"  value="<?php //echo $_REQUEST['usuario'] ?>"/>
+    <input  type="hidden" name="pass" id="pass"  value="<?php //echo $_REQUEST['pass']?>" />
+    <input  class="navbar-brand" type="submit" name="enviar" id="enviar" value="La Pagina de Angel" />-->
+   <a class="navbar-brand" type="submit" name="enviar" id="enviar" href="#">La Pagina de Angel</a>
 </form> 
 
     </div>
@@ -96,11 +122,11 @@ if(($reg['Usuario_clave']==$contra) & $reg['Usuario_bloqueado']==0){
           <li><a href="#">Page 1-3</a></li>
         </ul>
       </li>
-      <li><a href="#">Page 2</a></li>
+      <li><a href="somos.php">¿Quienes somos?</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span>  Hola <?php echo $reg['Usuario_nick'] ?> </a></li>
-      <li><a href="index.html"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+      <li><a href="salir.php"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
     </ul>
   </div>
 </nav>
@@ -111,21 +137,21 @@ if(($reg['Usuario_clave']==$contra) & $reg['Usuario_bloqueado']==0){
 
    <div class="container" >   
 <h1>HOLA</h1>
+
 <?php
 include 'qr-code/phpqrcode/qrlib.php';
 
 // El nombre del fichero que se generará (una imagen PNG).
 $file = 'jr-qrcode.png'; 
 // La data que llevará.
-$data = 'http://joserobinson.com/'; 
+$data = 'http://agvarelapru.esy.es/FORMULARIO-1/'; 
 
 // Y generamos la imagen.
-QRcode::png($data, $file)
+QRcode::png($data, $file);
 
 ?>
 
 <img src="jr-qrcode.png">
-
 
 
 <div>
