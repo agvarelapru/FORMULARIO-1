@@ -33,7 +33,7 @@ $_SESSION["usuario"];
 $_SESSION["pass"];
 
 if(!empty($_REQUEST["usuario"]) & !empty($_REQUEST["email"]) & !empty($_REQUEST["comentarios"])){
-$para ='agvarelapru@gmail.es';
+$para ='agvarelapru@gmail.com';
 $titulo = 'Comentario pagina del usuario '+$_REQUEST["usuario"];
 $mensaje = $_REQUEST["comentarios"];
 $cabeceras = 'From: info@paginaangel.com' . "\r\n";
