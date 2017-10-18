@@ -38,6 +38,19 @@ if(isset($_SESSION["usuario"]) & isset($_SESSION["pass"])){
 
 <body>
 <?php
+$usuarioErr =$passErr = "";
+$usuario = $pass = "";
+
+
+if(empty($_REQUEST["pass"]) & empty($_REQUEST["usuario"])){
+  echo"<div class='container' > ";
+  echo  "Inserte usuario y contraseña";
+  echo"</div>";
+
+}else{
+    
+  
+
 
 // Set session variables
 
@@ -45,35 +58,31 @@ $_SESSION["usuario"] = $_REQUEST['usuario'];
 if(!isset($_SESSION["pass"])){
 $_SESSION["pass"] = $_REQUEST['pass'];
 }
-?>
 
 
-<?php
 
 
-$usuarioErr =$passErr = "";
-$usuario = $pass =  "";
 /*
-if (empty($_POST["usuario"])) {
+if (empty($_REQUEST["usuario"])) {
     $usuarioErr = "Usuarioobligatorio";
   } else {
-    $usuario = test_input($_POST["usuario"]);  
+    $usuario = test_input($_REQUEST["usuario"]);  
 
-    if (!preg_match("/^[a-zA-Z0-9 -.,\/]*$/",$usuario)) {
+    if (!preg_match("/^[a-zñA-ZÑ0-9 -.,\/]*$/",$usuario)) {
       $usuarioErr = "Solo letras y espacio en blanco";
     }
   }
-  if (empty($_POST["pass"])) {
+  if (empty($_REQUEST["pass"])) {
     $passErr = "contraseña obligatoria";
   } else {
-    $pass = test_input($_POST["pass"]);  
+    $pass = test_input($_REQUEST["pass"]);  
 
-    if (!preg_match("/^[a-zA-Z0-9 -.,\/]*$/",$pass)) {
+    if (!preg_match("/^[a-zñA-ZÑ0-9 -.,\/]*$/",$pass)) {
       $passErr = "Solo letras y espacio en blanco";
     }
   }*/
 
-  require_once('conexionLocal.php');
+  require_once('conexion.php');
   $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
   die("Problemas con la conexión.");
 
@@ -122,7 +131,7 @@ if(($reg['Usuario_clave']==$contra) & $reg['Usuario_bloqueado']==0){
           <li><a href="#">Page 1-3</a></li>
         </ul>
       </li>
-      <li><a href="somos.php">¿Quienes somos?</a></li>
+      <li><a href="somos.php">Contacte con nosotros</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span>  Hola <?php echo $reg['Usuario_nick'] ?> </a></li>
@@ -180,7 +189,8 @@ echo"<div class='container' > ";
       echo  "No existe el usuario";
       echo"</div>";
     }
-   
+  
+  } 
 ?>
 
 </body>
