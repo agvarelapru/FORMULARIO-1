@@ -19,7 +19,10 @@ if(isset($_SESSION["usuario"]) & isset($_SESSION["pass"])){
 <title>Formulario</title>
 <!-- CSS de Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="jquery/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 <link href="estilos.css" rel="stylesheet" media="screen">
+
 <script  type="text/javascript">
 
 </script>
@@ -55,7 +58,7 @@ if(empty($_REQUEST["pass"]) & empty($_REQUEST["usuario"])){
 // Set session variables
 
 $_SESSION["usuario"] = $_REQUEST['usuario'];
-if(!isset($_SESSION["pass"])){
+if(empty($_SESSION["pass"])){
 $_SESSION["pass"] = $_REQUEST['pass'];
 }
 
@@ -82,7 +85,7 @@ if (empty($_REQUEST["usuario"])) {
     }
   }*/
 
-  require_once('conexion.php');
+  require_once('conexionLocal.php');
   $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
   die("Problemas con la conexión.");
 
@@ -96,8 +99,9 @@ $registros=mysqli_query($conexion,"select Usuario_nick,Usuario_clave,Usuario_blo
 die("Problemas en el select:".mysqli_error($conexion));
 $numero=mysqli_affected_rows($conexion);//cuenta el numero de lineas del array
 
-if(!isset($contra)){
+if(empty($contra)){
 $contra=md5($_REQUEST["pass"]);
+
 }
 while ($reg = mysqli_fetch_array($registros))
 {
@@ -111,14 +115,21 @@ if(($reg['Usuario_clave']==$contra) & $reg['Usuario_bloqueado']==0){
 
   <nav class="navbar navbar-inverse">
 
-  <div class="container-fluid">
+  <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Desplegar navegación</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">La Pagina de Angel</a>
+    </div>
+
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
     <div class="navbar-header">
 
-   <!--  <form role="form" id="form1" name="form1" method="post" action="menu.php">
-    <input  type="hidden" name="usuario" id="usuario"  value="<?php //echo $_REQUEST['usuario'] ?>"/>
-    <input  type="hidden" name="pass" id="pass"  value="<?php //echo $_REQUEST['pass']?>" />
-    <input  class="navbar-brand" type="submit" name="enviar" id="enviar" value="La Pagina de Angel" />-->
-   <a class="navbar-brand" type="submit" name="enviar" id="enviar" href="#">La Pagina de Angel</a>
+
 </form> 
 
     </div>
@@ -131,7 +142,13 @@ if(($reg['Usuario_clave']==$contra) & $reg['Usuario_bloqueado']==0){
           <li><a href="#">Page 1-3</a></li>
         </ul>
       </li>
-      <li><a href="somos.php">Contacte con nosotros</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contacto <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+           <li><a href="somos.php">Contacte con nosotros</a></li>
+          <li><a href="estamos.php">Donde estamos</a></li>
+          
+        </ul>
+    </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span>  Hola <?php echo $reg['Usuario_nick'] ?> </a></li>
@@ -180,6 +197,10 @@ echo"<div class='container' > ";
         echo"<div class='container' > ";
                 echo  "La contraseña no es correcta";
                 echo"</div>";
+                session_start();//Reanudamos sesion
+                session_unset();
+                session_destroy();//Literalmente la destruimos
+                
               }
      
     }
@@ -188,6 +209,10 @@ echo"<div class='container' > ";
       echo"<div class='container' > ";
       echo  "No existe el usuario";
       echo"</div>";
+      session_start();//Reanudamos sesion
+      session_unset();
+      session_destroy();//Literalmente la destruimos
+      
     }
   
   } 

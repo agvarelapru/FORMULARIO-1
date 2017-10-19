@@ -10,7 +10,9 @@ session_start();
 	<meta charset="UTF-8">
 	
 	<title>Contacto</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <script src="jquery/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 <link href="estilos.css" rel="stylesheet" media="screen">
 
 
@@ -34,7 +36,7 @@ $_SESSION["pass"];
 
 if(!empty($_REQUEST["usuario"]) & !empty($_REQUEST["email"]) & !empty($_REQUEST["comentarios"])){
 $para ='agvarelapru@gmail.com';
-$titulo = 'Comentario pagina del usuario '+$_REQUEST["usuario"];
+$titulo = 'Comentario pagina del usuario '.$_REQUEST["usuario"];
 $mensaje = $_REQUEST["comentarios"];
 $cabeceras = 'From: info@paginaangel.com' . "\r\n";
 
@@ -44,22 +46,33 @@ mail($para,$titulo,$mensaje,$cabeceras);
     
     <nav class="navbar navbar-inverse">
 
-  <div class="container-fluid">
     <div class="navbar-header">
-   <a class="navbar-brand" type="submit" name="enviar" id="enviar" href="">La Pagina de Angel</a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Desplegar navegación</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">La Pagina de Angel</a>
+    </div>
+
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <div class="navbar-header">
+   
 </form> 
 
     </div>
     <ul class="nav navbar-nav" style="position=fixed">
-      <li class="active"><a href="menu.php">Home</a></li>
+      <li ><a href="menu.php">Inicio</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Page 1-1</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
+        <li ><a href="somos.php">Contacte con nosotros</a></li>
+        <li class="active"><a href="estamos.php">Donde estamos</a></li>
+        
         </ul>
       </li>
-      <li><a href="somos.php">Contacte con nosotros</a></li>
+      <li class="active"><a href="somos.php">Contacte con nosotros</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span>  Hola <?php echo $_SESSION["usuario"] ?> </a></li>

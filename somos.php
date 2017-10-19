@@ -10,9 +10,16 @@ session_start();
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
 <title>Formulario</title>
-<!-- CSS de Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="estilos.css" rel="stylesheet" media="screen">
+<!-- CSS de Bootstrap
+<link href="css/bootstrap.css" rel="stylesheet" media="screen">
+<link href="js/bootstrap.js" rel="stylesheet" media="screen"> -->
+
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="jquery/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <link href="estilos.css" rel="stylesheet" media="screen">
+
 <script  type="text/javascript">
 
 </script>
@@ -39,21 +46,30 @@ $_SESSION["usuario"];
 $_SESSION["pass"];
 
 ?>
+
  <nav class="navbar navbar-inverse">
 
-  <div class="container-fluid">
+ <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Desplegar navegación</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">La Pagina de Angel</a>
+    </div>
+
+
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
     <div class="navbar-header">
 
-   <!--  <form role="form" id="form1" name="form1" method="post" action="menu.php">
-    <input  type="hidden" name="usuario" id="usuario"  value="<?php //echo $_REQUEST['usuario'] ?>"/>
-    <input  type="hidden" name="pass" id="pass"  value="<?php //echo $_REQUEST['pass']?>" />
-    <input  class="navbar-brand" type="submit" name="enviar" id="enviar" value="La Pagina de Angel" />-->
-   <a class="navbar-brand" type="submit" name="enviar" id="enviar" href="">La Pagina de Angel</a>
+   
 </form> 
 
     </div>
     <ul class="nav navbar-nav" style="position=fixed">
-      <li class="active"><a href="menu.php">Home</a></li>
+      <li><a href="menu.php">Home</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Page 1-1</a></li>
@@ -61,7 +77,15 @@ $_SESSION["pass"];
           <li><a href="#">Page 1-3</a></li>
         </ul>
       </li>
-      <li><a href="somos.php">Contacte con nosotros</a></li>
+      
+
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="somos.php">Contacto <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+          <li class="active"><a href="somos.php">Contacte con nosotros</a></li>
+          <li><a href="estamos.php">Donde estamos</a></li>
+          
+        </ul>
+    </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span>  Hola <?php echo $_SESSION["usuario"] ?> </a></li>
@@ -69,6 +93,87 @@ $_SESSION["pass"];
     </ul>
   </div>
 </nav>
+
+
+
+
+
+
+
+
+<!--
+  <nav class="navbar navbar-inverse" role="navigation">
+    <!-- El logotipo y el icono que despliega el menú se agrupan
+         para mostrarlos mejor en los dispositivos móviles
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Desplegar navegación</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Logotipo</a>
+    </div>
+  
+    <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+         otro elemento que se pueda ocultar al minimizar la barra 
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Enlace #1</a></li>
+        <li><a href="#">Enlace #2</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Menú #1 <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Acción #1</a></li>
+            <li><a href="#">Acción #2</a></li>
+            <li><a href="#">Acción #3</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Acción #4</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Acción #5</a></li>
+          </ul>
+        </li>
+      </ul>
+  
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Buscar">
+        </div>
+        <button type="submit" class="btn btn-default">Enviar</button>
+      </form>
+  
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Enlace #3</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Menú #2 <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Acción #1</a></li>
+            <li><a href="#">Acción #2</a></li>
+            <li><a href="#">Acción #3</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Acción #4</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  -->
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="container" >   
 <h3>Contacte con nosotros</h3>
@@ -83,8 +188,7 @@ $_SESSION["pass"];
   </div>
   <div class="form-group">
    <label  for="comentario">Comentario:</label>
-  <!-- <input  class="form-control" type="textarea" name="comentario" id="comentario" style="height:200px" placeholder="Escriba aqui su comentario"   title="Introduzca solo caracteres A-Z , a-z y numeros de 0 a 9"/>-->
-    
+  
   <textarea class="form-control" name="comentarios" rows="5" cols="30" placeholder="Escriba aqui su comentario"   title="Introduzca solo caracteres A-Z , a-z y numeros de 0 a 9"></textarea>
   </div>
 
@@ -129,7 +233,7 @@ Calle Ramon y cajal, 1. Trebujena. C.P. 11560. (CADIZ).
 </td>
 
 <td>
-Fijo: 956395619---- Movil: 605000000.
+Fijo: 956395619 ---- Movil: 605000000.
 </td>
 </tr>
 <tr >
