@@ -5,6 +5,8 @@
 	
 	<title>Alta nueva</title>
 	<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<script src="../jquery/jquery.min.js"></script>
+      <script src="../js/bootstrap.min.js"></script>
 <link href="../estilos.css" rel="stylesheet" media="screen">
 
 <script  type="text/javascript">
@@ -27,7 +29,7 @@ $nick=$nombre=$pass=$apellido1=$apellido2=$email=$fecha_nacimiento="";
 $nickErr=$nombreErr=$passErr=$apellido1Err=$apellido2Err=$emailErr=$fecha_nacimientoErr="";
 
 if($nickErr=="" & $passErr=="" & $nombreErr=="" & $apellido1Err=="" & $apellido2Err=="" & $emailErr=="" & $fecha_nacimientoErr==""){
-	require_once('../conexionLocal.php');
+	require_once('../conexion.php');
 	$conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or die("Problemas con la conexión");
 	$contra=md5($_REQUEST["pass"]);
 
@@ -36,13 +38,24 @@ if($nickErr=="" & $passErr=="" & $nombreErr=="" & $apellido1Err=="" & $apellido2
                        ('$_REQUEST[nick]','$contra','$_REQUEST[nombre]','$_REQUEST[apellido1]','$_REQUEST[apellido2]','$_REQUEST[email]','$_REQUEST[fecha_nacimiento]','1','0')")
   or die("Problemas en el select".mysqli_error($conexion));
 
+
+  $registros=mysqli_query($conexion,"select Usuario_id
+  from usuarios where Usuario_nick like '$_REQUEST[nick]' ") or
+die("Problemas en el select:".mysqli_error($conexion));
+
+$id="";
+while ($id = mysqli_fetch_array($registros))
+{
+$id=$id['Usuario_id'];
+
 $para = $_REQUEST["email"];
-$titulo = 'Bienvenido a nuestra pagina';
-$mensaje = 'Hola has sido uno de los afortunados de acceder anuestra paguina';
-$cabeceras = 'From: webmaster@formulario1.com' . "\r\n";
+$titulo = 'Bienvenido a nuestra pagina '.$_REQUEST['nick'];
+$mensaje ='Hola gracias por acceder a nuestra paguina pulse el link que esta acontinuacion para confirmar el alta. ' ."\r\n";
+$mensaje .='http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?id='.$id;
+$cabeceras = 'From: info@lapaginadeangel.com' . "\r\n";
 
 mail($para,$titulo,$mensaje,$cabeceras);
-
+}
 
 
 mysqli_close($conexion);

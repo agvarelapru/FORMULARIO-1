@@ -197,59 +197,10 @@ $_SESSION["pass"];
   <input  class="btn btn-primary" type="submit" name="enviar" id="enviar" value="Enviar" />
 </form>
 </div>
-<div class="container" >   
-<h3>Ven a visitarnos</h3>
-
-<div id="map" style="width:100%;height:500px"></div>
-
-<script>
-function myMap() {
-  var mapCanvas = document.getElementById("map");
-  var myCenter = new google.maps.LatLng(36.87096819550552,-6.1767686158418655); 
-  var mapOptions = {center: myCenter, zoom: 15};
-  var map = new google.maps.Map(mapCanvas,mapOptions);
-  var marker = new google.maps.Marker({
-    position: myCenter,
-    animation: google.maps.Animation.BOUNCE
-  });
-  marker.setMap(map);
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRVATQuo5Z7O4IL8tbjoOAzhdKAEpTM3g&callback=myMap"></script>
-<br><br>
-<table>
-  <tr >
-    <td>
-    <b>Direccion:</b>
-</td>
-
-<td>
-Calle Ramon y cajal, 1. Trebujena. C.P. 11560. (CADIZ).
-</td>
-</tr>
-<tr >
-    <td>
-    <b>Telefonos:</b>
-</td>
-
-<td>
-Fijo: 956395619 ---- Movil: 605000000.
-</td>
-</tr>
-<tr >
-    <td>
-    <b>E-mail:</b>
-</td>
-
-<td>
-info@paginadeangel.es.
-</td>
-</tr>
-
-</table>
 
 
-</div>
+
+
 <br><br>
 <?php
 }
