@@ -11,10 +11,10 @@
 /*function tiempo(){
   
   setTimeout("redirigir()", 5000);
-  alert("Bienvenido " +$_REQUEST['nombre']);
+  alert("Bienvenido " +$_POST['usuario']+" en breve se le redirijira a la pagina principal");
 }
 function redirigir(){
-  window.location="../index.html";
+  window.location="../menu.php";
 }*/
 </script>
 
