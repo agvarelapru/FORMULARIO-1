@@ -70,10 +70,29 @@ while ($id = mysqli_fetch_array($registros))
 
 $para = $_REQUEST["email"];
 $titulo = 'Bienvenido a nuestra pagina '.$_REQUEST['nick'];
-$mensaje ='Hola gracias por acceder a nuestra paguina pulse el link que esta acontinuacion para confirmar el alta. ' ."\r\n";
-$mensaje .='http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra." "."\r\n";
-$mensaje .=$file;
-$cabeceras = 'From: info@lapaginadeangel.com' . "\r\n";
+$mensaje='<html>'.
+'<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><title>Confiramacion de registroL</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script></head>'.
+'<body><div class="container" Style="background-color: lightgray;margin-top:20px;padding-top: 10px;padding-bottom: 10px;padding-right: 5%;padding-left: 5%;width: 80%;border-radius: 25px;"><h2 style="text-align: center;font-weight: BOLD;">Confirmacion de registro</h2><hr Style="border: 2px solid #007BFF; border-radius: 300px /2px;">'.
+'<h4 style="text-align: center;">Hola gracias por acceder a nuestra paguina pulse el boton que esta acontinuacion para confirmar el alta<h4> '.
+'<form  action="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra.'"  method="post"> 
+<input type="hidden" name="qr"/>
+<button class="btn btn-primary" Style="margin-bottom: 5px;
+margin-left: 30%;
+width: 40%;
+background-color: solid #007BFF;
+text-align: center;
+padding: 3px 0;" type="submit">Confirmar registro</button></form>'.
+'<hr Style="border: 2px solid #007BFF; border-radius: 300px /2px;">'.
+'<h4 style="text-align: center;">Una vez confirmada la cuenta puedes acceder con el siguiente codigo QR<h4>'.
+'<img src="/public_html/FORMULARIO-1/agregar/'.$file.'alt="Codigo QR"">'.
+'</div></body>'.
+'</html>';
+$cabeceras = 'MIME-Version: 1.0' . "\r\n";
+$cabeceras .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+$cabeceras .= 'From: info@lapaginadeangel.com';
+//$mensaje .='http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra." "."\r\n";
+//$mensaje .=$file;
+//$cabeceras = 'From: info@lapaginadeangel.com' . "\r\n";
 
 mail($para,$titulo,$mensaje,$cabeceras);
 }

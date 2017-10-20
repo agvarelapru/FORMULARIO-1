@@ -48,12 +48,12 @@ mysqli_close($conexion);
 
 
 
-<ul>
-<h2 Style="text-align:center">CONFIRMACION DE ALTA</h2>
+
+<h2>CONFIRMACION DE ALTA</h2>
 <hr/>
 <br>
 <h3 Style="text-align:center">Bienvenido a nuestra pagina</h3>
-<h4 Style="text-align:center">En breve se le redirigira a la pantalla principal</h4>
+<h4 Style="text-align:center" >En breve se le redirigira a la pantalla principal</h4>
 <br>
 <hr/>
 
