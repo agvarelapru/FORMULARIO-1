@@ -89,6 +89,26 @@ if (empty($_REQUEST["usuario"])) {
   $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
   die("Problemas con la conexión.");
 
+
+
+if(!empty($_GET['usuario']) & !empty($_GET['pass'])){
+
+  mysqli_set_charset($conexion,"utf8");
+  $registros=mysqli_query($conexion,"select Usuario_nick,Usuario_clave,Usuario_bloqueado
+                        from usuarios where (Usuario_nick like '$_GET[usuario]' or Usuario_email like '$_GET[usuario]')") or
+  die("Problemas en el select:".mysqli_error($conexion));
+  $numero=mysqli_affected_rows($conexion);//cuenta el numero de lineas del array
+
+
+  if(empty($contra)){
+    $contra=$_GET["pass"];
+    
+    }
+  
+
+
+
+}else{
   
 
  
@@ -101,6 +121,8 @@ $numero=mysqli_affected_rows($conexion);//cuenta el numero de lineas del array
 
 if(empty($contra)){
 $contra=md5($_REQUEST["pass"]);
+
+}
 
 }
 while ($reg = mysqli_fetch_array($registros))

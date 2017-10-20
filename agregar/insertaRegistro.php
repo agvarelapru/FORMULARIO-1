@@ -28,10 +28,27 @@ function redirigir(){
 $nick=$nombre=$pass=$apellido1=$apellido2=$email=$fecha_nacimiento="";
 $nickErr=$nombreErr=$passErr=$apellido1Err=$apellido2Err=$emailErr=$fecha_nacimientoErr="";
 
+$contra=md5($_REQUEST["pass"]);
+$nick=$_REQUEST['nick'];
+
+include '../qr-code/phpqrcode/qrlib.php';
+
+// El nombre del fichero que se generará (una imagen PNG).
+$file ='qr_'.$_REQUEST['nick'].'.png'; 
+// La data que llevará.
+$data = 'http://www.agvarelapru.esy.es/FORMULARIO-1/menu.php?nick='.$nick.'&pass='.$contra; 
+
+// Y generamos la imagen.
+QRcode::png($data, $file);
+
+
+
+
+
 if($nickErr=="" & $passErr=="" & $nombreErr=="" & $apellido1Err=="" & $apellido2Err=="" & $emailErr=="" & $fecha_nacimientoErr==""){
-	require_once('../conexion.php');
+	require_once('../conexionLocal.php');
 	$conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or die("Problemas con la conexión");
-	$contra=md5($_REQUEST["pass"]);
+	
 
 
 	mysqli_query($conexion,"insert into usuarios(Usuario_nick,Usuario_clave,Usuario_nombre,Usuario_apellido1,Usuario_apellido2,Usuario_email,Usuario_fecha_nacimiento,Usuario_bloqueado,Usuario_numero_intentos) values 
@@ -46,13 +63,14 @@ die("Problemas en el select:".mysqli_error($conexion));
 $id="";
 while ($id = mysqli_fetch_array($registros))
 {
-$nick=$_REQUEST['nick'];
+
 
 
 $para = $_REQUEST["email"];
 $titulo = 'Bienvenido a nuestra pagina '.$_REQUEST['nick'];
 $mensaje ='Hola gracias por acceder a nuestra paguina pulse el link que esta acontinuacion para confirmar el alta. ' ."\r\n";
-$mensaje .='http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra;
+$mensaje .='http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra." "."\r\n";
+$mensaje .=$file;
 $cabeceras = 'From: info@lapaginadeangel.com' . "\r\n";
 
 mail($para,$titulo,$mensaje,$cabeceras);
@@ -79,11 +97,13 @@ mysqli_close($conexion);
 <li style="border-bottom:1px solid #007BFF"><label for="fecha_nacimiento" >Fecha de Nacimiento:</label><?php echo $fecha_nacimiento = $_POST['fecha_nacimiento'];?><br><span class="error"><?php echo $fecha_nacimientoErr;?></span></li>
 
 
+
+
+<?php echo "<img src='qr_".$_REQUEST['nick'].".png'>";?>
 <br>
-
-
-
 <?php 
+
+
 
 if($nickErr=="" & $passErr=="" & $nombreErr=="" & $apellido1Err=="" & $apellido2Err=="" & $emailErr=="" & $fecha_nacimientoErr==""){
 echo "<h3 class='envio'> El usuario fue dado de alta correctamente. </h3>";

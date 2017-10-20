@@ -26,7 +26,7 @@ function redirigir(){
 	
   <?php
 
-	require_once('../conexionLocal.php');
+	require_once('../conexion.php');
 	$conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or die("Problemas con la conexión");
   
 $nick= $_GET['nick'];
