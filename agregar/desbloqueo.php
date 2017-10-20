@@ -5,8 +5,8 @@
 	
 	<title>Desbloqueo de usuario</title>
 	<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <script src="../jquery/jquery.min.js"></script>
-      <script src="../js/bootstrap.min.js"></script>
+    <script src="../jquery/jquery.min.js" rel="stylesheet" media="screen"></script>
+      <script src="../js/bootstrap.min.js" rel="stylesheet" media="screen"></script>
     <link href="../estilos.css" rel="stylesheet" media="screen">
 
 <script  type="text/javascript">
@@ -26,15 +26,15 @@ function redirigir(){
 	
   <?php
 
-	require_once('../conexion.php');
+	require_once('../conexionLocal.php');
 	$conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or die("Problemas con la conexión");
   
-$id= $_GET['id'];
-
+$nick= $_GET['nick'];
+$pass= $_GET['pass'];
 
 
   mysqli_query($conexion, "update usuarios
-  set Usuario_bloqueado = '0' where Usuario_id = '$id'") or
+  set Usuario_bloqueado = '0' where Usuario_nick = '$nick' and  Usuario_clave = '$pass'") or
 die("Problemas en el select:".mysqli_error($conexion));
 
 

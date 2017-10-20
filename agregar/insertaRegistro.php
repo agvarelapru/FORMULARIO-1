@@ -46,12 +46,13 @@ die("Problemas en el select:".mysqli_error($conexion));
 $id="";
 while ($id = mysqli_fetch_array($registros))
 {
-$id=$id['Usuario_id'];
+$nick=$_REQUEST['nick'];
+
 
 $para = $_REQUEST["email"];
 $titulo = 'Bienvenido a nuestra pagina '.$_REQUEST['nick'];
 $mensaje ='Hola gracias por acceder a nuestra paguina pulse el link que esta acontinuacion para confirmar el alta. ' ."\r\n";
-$mensaje .='http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?id='.$id;
+$mensaje .='http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra;
 $cabeceras = 'From: info@lapaginadeangel.com' . "\r\n";
 
 mail($para,$titulo,$mensaje,$cabeceras);
