@@ -36,7 +36,7 @@ include '../qr-code/phpqrcode/qrlib.php';
 // El nombre del fichero que se generará (una imagen PNG).
 $file ='qr_'.$_REQUEST['nick'].'.png'; 
 // La data que llevará.
-$data = 'http://www.agvarelapru.esy.es/FORMULARIO-1/menu.php?nick='.$nick.'&pass='.$contra; 
+$data = 'http://www.agvarelapru.esy.es/FORMULARIO-1/menu.php?usuario='.$nick.'&pass='.$contra; 
 
 // Y generamos la imagen.
 QRcode::png($data, $file);
@@ -45,8 +45,10 @@ QRcode::png($data, $file);
 
 
 
+
+
 if($nickErr=="" & $passErr=="" & $nombreErr=="" & $apellido1Err=="" & $apellido2Err=="" & $emailErr=="" & $fecha_nacimientoErr==""){
-	require_once('../conexionLocal.php');
+	require_once('../conexion.php');
 	$conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or die("Problemas con la conexión");
 	
 
