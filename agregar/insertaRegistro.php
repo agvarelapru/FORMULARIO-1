@@ -58,39 +58,25 @@ if($nickErr=="" & $passErr=="" & $nombreErr=="" & $apellido1Err=="" & $apellido2
   or die("Problemas en el select".mysqli_error($conexion));
 
 
-  $registros=mysqli_query($conexion,"select Usuario_id
-  from usuarios where Usuario_nick like '$_REQUEST[nick]' ") or
-die("Problemas en el select:".mysqli_error($conexion));
-
-$id="";
-while ($id = mysqli_fetch_array($registros))
-{
 
 
 
 $para = $_REQUEST["email"];
 $titulo = 'Bienvenido a nuestra pagina '.$_REQUEST['nick'];
 $mensaje='<html>'.
-'<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><title>Confiramacion de registroL</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script></head>'.
+'<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Confiramacion de registroL</title>
+<link rel="stylesheet" href="http://www.agvarelapru.esy.es/FORMULARIO-1/css/bootstrap.min.css">
+<script src="http://www.agvarelapru.esy.es/FORMULARIO-1/jquery/jquery.min.js"></script>
+<script src="http://www.agvarelapru.esy.es/FORMULARIO-1/js/bootstrap.min.js"></script>
+<script src="http://www.agvarelapru.esy.es/FORMULARIO-1/estilos.css"></script></head>'.
 '<body><div class="container" Style="background-color: lightgray;margin-top:20px;padding-top: 10px;padding-bottom: 10px;padding-right: 5%;padding-left: 5%;width: 80%;border-radius: 25px;"><h2 style="text-align: center;font-weight: BOLD;">Confirmacion de registro</h2><hr Style="border: 2px solid #007BFF; border-radius: 300px /2px;">'.
 '<h4 style="text-align: center;">Hola gracias por acceder a nuestra paguina pulse el boton que esta a continuacion para confirmar el alta<h4> '.
-'<form  action="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra.'"  method="post"> 
-<input type="hidden" name="qr"/>
-<button class="btn btn-primary" Style="margin-bottom: 5px;
-margin-left: 30%;
-width: 40%;
-background-color: solid #007BFF;
-text-align: center;
-padding: 3px 0;" type="submit">Confirmar registro</button></form>'.
+'<a href="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra.'" class="btn btn-primary">Confirmar registro</a>'.
 '<hr Style="border: 2px solid #007BFF; border-radius: 300px /2px;">'.
 '<h4 style="text-align: center;">Una vez confirmada la cuenta puedes acceder con el siguiente codigo QR<h4>'.
-'<img src="/public_html/FORMULARIO-1/agregar/'.$file.'" alt="Codigo QR">'.
+'<img src="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/'.$file.'" alt="Codigo QR">'.
 '</div></body>'.
 '</html>';
 $cabeceras = 'MIME-Version: 1.0' . "\r\n";
@@ -99,9 +85,75 @@ $cabeceras .= 'From: info@lapaginadeangel.com';
 //$mensaje .='http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra." "."\r\n";
 //$mensaje .=$file;
 //$cabeceras = 'From: info@lapaginadeangel.com' . "\r\n";
+/*
+'<form  action="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra.'"  method="post"> 
+	<input type="hidden" name="qr"/>
+	<button class="btn btn-primary" Style="margin-bottom: 5px;
+	margin-left: 30%;
+	width: 40%;
+	background-color: solid #007BFF;
+	text-align: center;
+	padding: 3px 0;" type="submit">Confirmar registro</button></form>'.
+
+*/
 
 mail($para,$titulo,$mensaje,$cabeceras);
+
+
+/*
+// include phpmailer class
+require_once '../PHPMailer/_lib/class.phpmailer.php';
+// creates object
+$mail = new PHPMailer(true); 
+
+
+$full_name  =$nick;
+$email      = strip_tags($_REQUEST['email']);
+$subject    = "Sending HTML eMail using PHPMailer.";
+$text_message    = "Hello $full_name, <br /><br /> This is HTML eMail Sent using PHPMailer. isn't it cool to send HTML email rather than plain text, it helps to improve your email marketing.";  
+
+$mensaje='<html>'.
+'<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Confiramacion de registroL</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://www.agvarelapru.esy.es/FORMULARIO-1/estilos.css"></script></head>'.
+'<body><div class="container" Style="background-color: lightgray;margin-top:20px;padding-top: 10px;padding-bottom: 10px;padding-right: 5%;padding-left: 5%;width: 80%;border-radius: 25px;"><h2 style="text-align: center;font-weight: BOLD;">Confirmacion de registro</h2><hr Style="border: 2px solid #007BFF; border-radius: 300px /2px;">'.
+'<h4 style="text-align: center;">Hola gracias por acceder a nuestra paguina pulse el boton que esta a continuacion para confirmar el alta<h4> '.
+'<a href="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra.'" class="btn btn-primary">Confirmar registro</a>'.
+'<hr Style="border: 2px solid #007BFF; border-radius: 300px /2px;">'.
+'<h4 style="text-align: center;">Una vez confirmada la cuenta puedes acceder con el siguiente codigo QR<h4>'.
+'<img src="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/'.$file.'" alt="Codigo QR">'.
+'</div></body>'.
+'</html>';
+
+
+
+try
+{
+ $mail->IsSMTP(); 
+ $mail->isHTML(true);
+ $mail->SMTPDebug  = 0;                     
+ $mail->SMTPAuth   = true;                  
+ $mail->SMTPSecure = "ssl";                 
+ $mail->Host       = "smtp.gmail.com";      
+ $mail->Port       = 465;             
+ $mail->AddAddress($email);
+ $mail->Username   ="agvarelapru@gmail.com";  
+					  $mail->Password   ="24del5del05";            
+					 // $mail->SetFrom('agvarelapru@gmail.com','Pagina de angel');
+					  $mail->AddReplyTo("agvarelapru@gmail.com","Pagina de angel");
+ $mail->Subject    = $subject;
+ $mail->Body    = $mensaje;
+ $mail->AltBody    = $mensaje;
 }
+ catch(phpmailerException $ex)
+ {
+  $msg = "<div class='alert alert-warning'>".$ex->errorMessage()."</div>";
+ }
+*/
 
 
 mysqli_close($conexion);
