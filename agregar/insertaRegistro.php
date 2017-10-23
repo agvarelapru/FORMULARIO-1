@@ -63,7 +63,70 @@ if($nickErr=="" & $passErr=="" & $nombreErr=="" & $apellido1Err=="" & $apellido2
 
 $para = $_REQUEST["email"];
 $titulo = 'Bienvenido a nuestra pagina '.$_REQUEST['nick'];
-$mensaje='<html>'.
+$mensaje=
+
+'<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Confiramacion de registroL</title>
+    <link rel="stylesheet" href="http://www.agvarelapru.esy.es/FORMULARIO-1/css/bootstrap.min.css">
+    <script src="http://www.agvarelapru.esy.es/FORMULARIO-1/jquery/jquery.min.js"></script>
+    <script src="http://www.agvarelapru.esy.es/FORMULARIO-1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://www.agvarelapru.esy.es/FORMULARIO-1/estilos.css">
+</head>
+
+<body>
+        <nav class="navbar navbar-inverse">  
+                <a class="navbar-brand" href="http://www.agvarelapru.esy.es/FORMULARIO-1/">La Pagina de Angel</a>
+          </nav>
+
+        <div class="container" Style="width: 80%; margin-left:10%">
+      
+               
+                        
+                          
+        
+                <h2>Confirmacion de registro</h2>
+                <hr>
+                <h4 Style="text-align:center">Hola gracias por acceder a nuestra paguina pulse el boton que esta a continuacion para confirmar el alta</h4>
+                
+                       <a class="btn btn-primary" Style="margin-left: 30%;" href="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra.'" >Confirmar registro</a>
+                        <hr>
+                        <h4 Style="text-align:center">Una vez confirmada la cuenta puedes acceder con el siguiente codigo QR:</h4>
+                      <div class="qr">
+                            <nav class="navbar navbar-inverse">  
+                                    <a class="navbar-brand" href="http://www.agvarelapru.esy.es/FORMULARIO-1/">La Pagina de Angel</a>
+                              </nav>
+                            <h4>Usuario:'.$nick.'</h4>
+                                <img src="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/'.$file.'" alt="Codigo QR">
+                            </div>
+
+
+                           
+    </div>
+    <div Style="width:90%; margin-left:5%">
+    <hr Style="border-radius: 0px /0px;">
+    <p Style="text-align:justify; color:rgb(94, 91, 91); "> Este correo electrónico contiene información confidencial. Cualquier reproducción, distribución o divulgación de su contenido están estrictamente prohibidos.Si no eres el destinatario indicado en el mismo y recibes este correo electrónico, te ruego me lo notifiques de inmediato a la dirección agvarelapru@gmail.com y destruyas el mensaje recibido sin obtener copia del mismo, ni distribuirlo, ni revelar su contenido. Angel Varela Pruaño no se hace responsable del mal uso de esta información.
+      </p> 
+       
+      
+    <p Style="text-align:justify; color:rgb(94, 91, 91);" >  Information in this message is confidential and may be legally privileged. It is intended solely for the person to whom it is addressed. If you are not the intended recipient, please notify the sender agvarelapru@gmail.com and please delete the message from your system immediately.
+      </p>
+    </div>
+
+</body>
+
+</html>';
+
+
+
+
+
+
+
+/*'<html>'.
 '<head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Confiramacion de registroL</title>
@@ -78,7 +141,7 @@ $mensaje='<html>'.
 '<h4 style="text-align: center;">Una vez confirmada la cuenta puedes acceder con el siguiente codigo QR<h4>'.
 '<img src="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/'.$file.'" alt="Codigo QR">'.
 '</div></body>'.
-'</html>';
+'</html>';*/
 $cabeceras = 'MIME-Version: 1.0' . "\r\n";
 $cabeceras .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 $cabeceras .= 'From: info@lapaginadeangel.com';

@@ -46,6 +46,16 @@ h2{
     float: left;
    
 }
+
+.qr{
+    width: 40%;
+    height:300px; 
+    border:2px solid #007BFF;
+    margin-left: 30%;
+    text-align: center;
+    }
+    
+
 @media screen and (max-width: 725px) {
     .container{
         margin-top:0px;
@@ -78,7 +88,6 @@ h2{
         border: none;
         background-color: black;
     }
-
 
 
 
