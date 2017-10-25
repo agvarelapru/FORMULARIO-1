@@ -70,37 +70,113 @@ $mensaje=
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Confiramacion de registroL</title>
-    <link rel="stylesheet" href="http://www.agvarelapru.esy.es/FORMULARIO-1/css/bootstrap.min.css">
-    <script src="http://www.agvarelapru.esy.es/FORMULARIO-1/jquery/jquery.min.js"></script>
-    <script src="http://www.agvarelapru.esy.es/FORMULARIO-1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="http://www.agvarelapru.esy.es/FORMULARIO-1/estilos.css">
+    <title>Confiramacion de registro</title>
+    
 </head>
+<style>
+
+body{
+    background-image: url("http://www.agvarelapru.esy.es/FORMULARIO-1/fondo.jpg");
+   font-family: Arial;
+}
+.container{
+    background-color: lightgray;
+    margin-top:20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 5%;
+    padding-left: 5%;
+   width: 80%;
+   border-radius: 25px;
+  margin-left:5%;
+  margin-right:5%;
+}
+hr{
+   
+    border: 2px solid #007BFF; 
+    border-radius: 300px /2px; 
+    
+}
+h2{
+    text-align: center;
+    font-weight: BOLD;
+}
+
+.qr{
+    width: 40%;
+    height:300px; 
+    border:2px solid #007BFF;
+    margin-left: 29%;
+    text-align: center;
+    }
+    
+    .boton {
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 35%;
+    cursor: pointer;
+    width: 30%;
+   padding-top: 5px;
+   padding-bottom: 5px;
+    margin-right: 35%;
+}
+.boton:hover {
+    background-color: #429CFD;
+   
+}
+@media screen and (max-width: 725px) {
+    .container{
+        margin-top:0px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 5%;
+        padding-left: 5%;
+        margin-top:0px;
+       border-radius: 0px;
+       width: 90%;
+       margin-left: 0%;
+       margin-right: 0%;
+    }
+
+    .boton {
+   
+   width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 7px 0%;
+}
+.qr{
+    width: 80%;
+    height:300px; 
+    border:2px solid #007BFF;
+    margin-left: 10%;
+    text-align: center;
+    }  
+}
+
+</style>
 
 <body>
-        <nav class="navbar navbar-inverse">  
-                <a class="navbar-brand" href="http://www.agvarelapru.esy.es/FORMULARIO-1/">La Pagina de Angel</a>
-          </nav>
+     
 
-        <div class="container" Style="width: 80%; margin-left:10%">
-      
-               
-                        
-                          
+        <div class="container">
         
-                <h2>Confirmacion de registro</h2>
+                <h2 style="text-align: center;font-weight: BOLD;">Confirmacion de registro</h2>
                 <hr>
-                <h4 Style="text-align:center">Hola gracias por acceder a nuestra paguina pulse el boton que esta a continuacion para confirmar el alta</h4>
+                <h4 Style="text-align:center">Hola gracias por acceder a nuestra paguina pulse el boton que esta a continuacion para confirmar el alta.</h4>
                 
-                       <a class="btn btn-primary" Style="margin-left: 30%;" href="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra.'" >Confirmar registro</a>
+                       <a class="boton"  href="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra.'" >Confirmar registro</a>
                         <hr>
                         <h4 Style="text-align:center">Una vez confirmada la cuenta puedes acceder con el siguiente codigo QR:</h4>
                       <div class="qr">
-                            <nav class="navbar navbar-inverse">  
-                                    <a class="navbar-brand" href="http://www.agvarelapru.esy.es/FORMULARIO-1/">La Pagina de Angel</a>
-                              </nav>
+                            
                             <h4>Usuario:'.$nick.'</h4>
-                                <img src="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/'.$file.'" alt="Codigo QR">
+                               <div Style="width:80%; height:200px;margin-left:10%;"> <img src="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/'.$file.'" alt="Codigo QR"></div>
                             </div>
 
 

@@ -1,0 +1,130 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Confiramacion de registro</title>
+    
+</head>
+<style>
+
+body{
+    background-image: url("http://www.agvarelapru.esy.es/FORMULARIO-1/fondo.jpg");
+   font-family: Arial;
+}
+.container{
+    background-color: lightgray;
+    margin-top:20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 5%;
+    padding-left: 5%;
+   width: 80%;
+   border-radius: 25px;
+  margin-left:5%;
+  margin-right:5%;
+}
+hr{
+   
+    border: 2px solid #007BFF; 
+    border-radius: 300px /2px; 
+    
+}
+h2{
+    text-align: center;
+    font-weight: BOLD;
+}
+
+.qr{
+    width: 40%;
+    height:300px; 
+    border:2px solid #007BFF;
+    margin-left: 29%;
+    text-align: center;
+    }
+    
+    .boton {
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 35%;
+    cursor: pointer;
+    width: 30%;
+   padding-top: 5px;
+   padding-bottom: 5px;
+    margin-right: 35%;
+}
+.boton:hover {
+    background-color: #429CFD;
+   
+}
+@media screen and (max-width: 725px) {
+    .container{
+        margin-top:0px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 5%;
+        padding-left: 5%;
+        margin-top:0px;
+       border-radius: 0px;
+       width: 90%;
+       margin-left: 0%;
+       margin-right: 0%;
+    }
+
+    .boton {
+   
+   width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 7px 0%;
+}
+.qr{
+    width: 80%;
+    height:300px; 
+    border:2px solid #007BFF;
+    margin-left: 10%;
+    text-align: center;
+    }  
+}
+
+</style>
+
+<body>
+     
+
+        <div class="container">
+        
+                <h2 style="text-align: center;font-weight: BOLD;">Confirmacion de registro</h2>
+                <hr>
+                <h4 Style="text-align:center">Hola gracias por acceder a nuestra paguina pulse el boton que esta a continuacion para confirmar el alta.</h4>
+                
+                       <a class="boton"  href="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra.'" >Confirmar registro</a>
+                        <hr>
+                        <h4 Style="text-align:center">Una vez confirmada la cuenta puedes acceder con el siguiente codigo QR:</h4>
+                      <div class="qr">
+                            
+                            <h4>Usuario:'.$nick.'</h4>
+                               <div Style="width:80%; height:200px;margin-left:10%;"> <img src="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/'.$file.'" alt="Codigo QR"></div>
+                            </div>
+
+
+                           
+    </div>
+    <div Style="width:90%; margin-left:5%">
+    <hr Style="border-radius: 0px /0px;">
+    <p Style="text-align:justify; color:rgb(94, 91, 91); "> Este correo electrónico contiene información confidencial. Cualquier reproducción, distribución o divulgación de su contenido están estrictamente prohibidos.Si no eres el destinatario indicado en el mismo y recibes este correo electrónico, te ruego me lo notifiques de inmediato a la dirección agvarelapru@gmail.com y destruyas el mensaje recibido sin obtener copia del mismo, ni distribuirlo, ni revelar su contenido. Angel Varela Pruaño no se hace responsable del mal uso de esta información.
+      </p> 
+       
+      
+    <p Style="text-align:justify; color:rgb(94, 91, 91);" >  Information in this message is confidential and may be legally privileged. It is intended solely for the person to whom it is addressed. If you are not the intended recipient, please notify the sender agvarelapru@gmail.com and please delete the message from your system immediately.
+      </p>
+    </div>
+
+</body>
+
+</html>
