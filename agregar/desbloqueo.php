@@ -4,10 +4,10 @@
 	<meta charset="UTF-8">
 	
 	<title>Desbloqueo de usuario</title>
-	<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <script src="../jquery/jquery.min.js" rel="stylesheet" media="screen"></script>
-      <script src="../js/bootstrap.min.js" rel="stylesheet" media="screen"></script>
-    <link href="../estilos.css" rel="stylesheet" media="screen">
+	<link href="../biblioteca/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="../biblioteca/jquery/jquery.min.js" rel="stylesheet" media="screen"></script>
+      <script src="../biblioteca/js/bootstrap.min.js" rel="stylesheet" media="screen"></script>
+    <link href="../biblioteca/estilos.css" rel="stylesheet" media="screen">
 
 <script  type="text/javascript">
 function tiempo(){
@@ -26,7 +26,7 @@ function redirigir(){
 	
   <?php
 
-	require_once('../conexion.php');
+	require_once('../biblioteca/conexion.php');
 	$conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or die("Problemas con la conexión");
   
 $nick= $_GET['nick'];

@@ -12,10 +12,10 @@ session_start();
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
 <title>Logeo</title>
 <!-- CSS de Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<script src="jquery/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-<link href="estilos.css" rel="stylesheet" media="screen">
+<link href="biblioteca/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="biblioteca/jquery/jquery.min.js"></script>
+  <script src="biblioteca/js/bootstrap.min.js"></script>
+<link href="biblioteca/estilos.css" rel="stylesheet" media="screen">
 
 <script  type="text/javascript">
 
@@ -80,7 +80,7 @@ if (empty($_REQUEST["usuario"])) {
     }
   }*/
 
-  require_once('conexionLocal.php');
+  require_once('biblioteca/conexionLocal.php');
   $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
   die("Problemas con la conexión.");
 

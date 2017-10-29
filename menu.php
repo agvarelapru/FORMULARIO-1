@@ -13,10 +13,10 @@ session_start();
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
 <title>Formulario</title>
 <!-- CSS de Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<script src="jquery/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-<link href="estilos.css" rel="stylesheet" media="screen">
+<link href="biblioteca/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="biblioteca/jquery/jquery.min.js"></script>
+  <script src="biblioteca/js/bootstrap.min.js"></script>
+<link href="biblioteca/estilos.css" rel="stylesheet" media="screen">
 
 <script  type="text/javascript">
 
@@ -54,7 +54,7 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
 
 
 
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
 
   <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -106,7 +106,7 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
 <h1>HOLA</h1>
 
 <?php
-include 'qr-code/phpqrcode/qrlib.php';
+include 'biblioteca/qr-code/phpqrcode/qrlib.php';
 
 // El nombre del fichero que se generará (una imagen PNG).
 $file = 'jr-qrcode.png'; 

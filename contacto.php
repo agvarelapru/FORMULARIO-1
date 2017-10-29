@@ -10,10 +10,10 @@ session_start();
 	<meta charset="UTF-8">
 	
 	<title>Contacto</title>
-  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-  <script src="jquery/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-<link href="estilos.css" rel="stylesheet" media="screen">
+  <link href="biblioteca/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <script src="biblioteca/jquery/jquery.min.js"></script>
+  <script src="biblioteca/js/bootstrap.min.js"></script>
+<link href="biblioteca/estilos.css" rel="stylesheet" media="screen">
 
 
 
@@ -44,7 +44,7 @@ mail($para,$titulo,$mensaje,$cabeceras);
 	
     ?>
     
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
 
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse"

@@ -6,13 +6,24 @@
 
 <title>Formulario</title>
 <!-- CSS de Bootstrap -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="../estilos.css" rel="stylesheet" media="screen">
+<link href="../biblioteca/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="../biblioteca/jquery/jquery.min.js"></script>
+<script src="../biblioteca/js/bootstrap.min.js"></script>
+<link href="../biblioteca/estilos.css" rel="stylesheet" media="screen">
 
 </head>
 
 
 <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">       
+         <div class="navbar-header">             
+              <a class="navbar-brand" href="#">La Pagina de Angel</a>
+            </div>
+        </nav>
+
+
+
+
 <div class="container" >
 <h2>ALTA NUEVO USUARIO</h2>
 
@@ -45,9 +56,9 @@ function comprueba(){
 var pass=document.getElementById('pass').value;
 var pass2=document.getElementById('pass2').value
 if(pass!=pass2){
-  document.getElementById('error').innerHTML="Repetir Contraseña   <IMG SRC='error.png'>";
+  document.getElementById('error').innerHTML="Repetir Contraseña   <IMG SRC='../imagenes/error.png'>";
 }else{
-  document.getElementById('error').innerHTML="Repetir Contraseña   <IMG SRC='bien.png'>";
+  document.getElementById('error').innerHTML="Repetir Contraseña   <IMG SRC='../imagenes/bien.png'>";
 }
 }
 </script>

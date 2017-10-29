@@ -15,10 +15,10 @@ session_start();
 <link href="js/bootstrap.js" rel="stylesheet" media="screen"> -->
 
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
-  <script src="jquery/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <link href="estilos.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="biblioteca/css/bootstrap.min.css">
+  <script src="biblioteca/jquery/jquery.min.js"></script>
+  <script src="biblioteca/js/bootstrap.min.js"></script>
+  <link href="biblioteca/estilos.css" rel="stylesheet" media="screen">
 
 <script  type="text/javascript">
 
@@ -47,7 +47,7 @@ $_SESSION["pass"];
 
 ?>
 
- <nav class="navbar navbar-inverse">
+ <nav class="navbar navbar-inverse navbar-fixed-top">
 
  <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -89,7 +89,7 @@ $_SESSION["pass"];
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span>  Hola <?php echo $_SESSION["usuario"] ?> </a></li>
-      <li><a href="salir.php"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+      <li ><a href="salir.php"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
     </ul>
   </div>
 </nav>

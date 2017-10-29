@@ -1,9 +1,9 @@
 body{
-   background-image: url("fondo.jpg");
+   background-image: url("../imagenes/fondo.jpg");
 }
 .container{
     background-color: lightgray;
-    margin-top:20px;
+    margin-top:75px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 5%;
@@ -54,12 +54,13 @@ h2{
     margin-left: 30%;
     text-align: center;
     }
-    
-
+    .navbar-right{
+      margin-right:0%;
+    }
 @media screen and (max-width: 725px) {
     .container{
-        margin-top:0px;
-        padding-top: 10px;
+        margin-top:50px;
+        padding-top: 50px;
         padding-bottom: 10px;
         padding-right: 10%;
         padding-left: 10%;

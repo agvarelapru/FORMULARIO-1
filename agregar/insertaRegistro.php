@@ -4,26 +4,30 @@
 	<meta charset="UTF-8">
 	
 	<title>Alta nueva</title>
-	<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<script src="../jquery/jquery.min.js"></script>
-      <script src="../js/bootstrap.min.js"></script>
-<link href="../estilos.css" rel="stylesheet" media="screen">
+	<link href="../biblioteca/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<script src="../biblioteca/jquery/jquery.min.js"></script>
+      <script src="../biblioteca/js/bootstrap.min.js"></script>
+<link href="../biblioteca/estilos.css" rel="stylesheet" media="screen">
 
-<script  type="text/javascript">
-/*function tiempo(){
-  
-  setTimeout("redirigir()", 5000);
-  alert("Bienvenido " +$_POST['usuario']+" en breve se le redirijira a la pagina principal");
-}
-function redirigir(){
-  window.location="../menu.php";
-}*/
-</script>
 
 
 </head>
-<body onload="tiempo()"> 
-	
+<body> 
+  
+<nav class="navbar navbar-inverse navbar-fixed-top">
+        
+         <div class="navbar-header">
+              
+              <a class="navbar-brand" href="#">La Pagina de Angel</a>
+            </div>
+     
+    
+        </nav>
+
+
+
+
+
 	<?php
 $nick=$nombre=$pass=$apellido1=$apellido2=$email=$fecha_nacimiento="";
 $nickErr=$nombreErr=$passErr=$apellido1Err=$apellido2Err=$emailErr=$fecha_nacimientoErr="";
@@ -31,7 +35,7 @@ $nickErr=$nombreErr=$passErr=$apellido1Err=$apellido2Err=$emailErr=$fecha_nacimi
 $contra=md5($_REQUEST["pass"]);
 $nick=$_REQUEST['nick'];
 
-include '../qr-code/phpqrcode/qrlib.php';
+include '../biblioteca/qr-code/phpqrcode/qrlib.php';
 
 // El nombre del fichero que se generará (una imagen PNG).
 $file ='qr_'.$_REQUEST['nick'].'.png'; 
@@ -48,7 +52,7 @@ QRcode::png($data, $file);
 
 
 if($nickErr=="" & $passErr=="" & $nombreErr=="" & $apellido1Err=="" & $apellido2Err=="" & $emailErr=="" & $fecha_nacimientoErr==""){
-	require_once('../conexion.php');
+	require_once('../biblioteca/conexion.php');
 	$conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or die("Problemas con la conexión");
 	
 
@@ -156,7 +160,7 @@ mail($para,$titulo,$mensaje,$cabeceras);
 
 /*
 // include phpmailer class
-require_once '../PHPMailer/_lib/class.phpmailer.php';
+require_once '../biblioteca/PHPMailer/_lib/class.phpmailer.php';
 // creates object
 $mail = new PHPMailer(true); 
 
