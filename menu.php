@@ -17,7 +17,7 @@ session_start();
 <script src="biblioteca/jquery/jquery.min.js"></script>
   <script src="biblioteca/js/bootstrap.min.js"></script>
 <link href="biblioteca/estilos.css" rel="stylesheet" media="screen">
-
+<link href="biblioteca/estiloJS.js" rel="stylesheet" media="screen">
 <script  type="text/javascript">
 
 </script>
