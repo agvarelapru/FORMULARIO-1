@@ -15,10 +15,10 @@ session_start();
 <link href="js/bootstrap.js" rel="stylesheet" media="screen"> -->
 
 
-<link rel="stylesheet" href="biblioteca/css/bootstrap.min.css">
-  <script src="biblioteca/jquery/jquery.min.js"></script>
-  <script src="biblioteca/js/bootstrap.min.js"></script>
-  <link href="biblioteca/estilos.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="../biblioteca/css/bootstrap.min.css">
+  <script src="../biblioteca/jquery/jquery.min.js"></script>
+  <script src="../biblioteca/js/bootstrap.min.js"></script>
+  <link href="../biblioteca/estilos.css" rel="stylesheet" media="screen">
 
 <script  type="text/javascript">
 
@@ -69,7 +69,7 @@ $_SESSION["pass"];
 
     </div>
     <ul class="nav navbar-nav" style="position=fixed">
-      <li><a href="menu.php">Home</a></li>
+      <li><a href="w_menu.php">Home</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Page 1-1</a></li>
@@ -81,15 +81,15 @@ $_SESSION["pass"];
 
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="somos.php">Contacto <span class="caret"></span></a>
       <ul class="dropdown-menu">
-          <li ><a href="somos.php">Contacte con nosotros</a></li>
-          <li class="active"><a href="estamos.php">Donde estamos</a></li>
+          <li ><a href="w_somos.php">Contacte con nosotros</a></li>
+          <li class="active"><a href="w_estamos.php">Donde estamos</a></li>
           
         </ul>
     </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span>  Hola <?php echo $_SESSION["usuario"] ?> </a></li>
-      <li ><a href="salir.php"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+      <li ><a href="../salir.php"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
     </ul>
   </div>
 </nav>

@@ -84,7 +84,9 @@ if (empty($_REQUEST["usuario"])) {
   $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
   die("Problemas con la conexión.");
 
-
+$admin="admin";
+$work="work";
+$user="user";
 
 if(!empty($_GET['usuario']) & !empty($_GET['pass'])){
 
@@ -116,9 +118,7 @@ $numero=mysqli_affected_rows($conexion);//cuenta el numero de lineas del array
 
 $contra=md5($_REQUEST["pass"]);
 
-$admin="admin";
-$work="work";
-$user="user";
+ 
 
 
 }
@@ -128,15 +128,15 @@ while ($reg = mysqli_fetch_array($registros))
 if($reg['Usuario_clave']==$contra & $reg['Usuario_bloqueado']==0 & $reg['Usuario_perfil']==$admin){
  
     
-    header('Location: menu.php');
+    header('Location: administrador/menu.php');
     
 }else if ($reg['Usuario_clave']==$contra & $reg['Usuario_bloqueado']==0 & $reg['Usuario_perfil']==$work){
     
-        header('Location: w_menu.php');
+        header('Location: work/w_menu.php');
     
     }else if ($reg['Usuario_clave']==$contra & $reg['Usuario_bloqueado']==0 & $reg['Usuario_perfil']==$user){
         
-        header('Location: u_menu.php');  
+        header('Location: user/u_menu.php');  
 
 }else if ($reg['Usuario_bloqueado']==1){
 echo"<div class='container' > ";
@@ -146,7 +146,7 @@ echo"<div class='container' > ";
         echo"<div class='container' > ";
                 echo  "La contraseña no es correcta";
                 echo"</div>";
-                session_start();//Reanudamos sesion
+               
                 session_unset();
                 session_destroy();//Literalmente la destruimos
                 
@@ -158,7 +158,7 @@ echo"<div class='container' > ";
       echo"<div class='container' > ";
       echo  "No existe el usuario";
       echo"</div>";
-      session_start();//Reanudamos sesion
+      
       session_unset();
       session_destroy();//Literalmente la destruimos
       
