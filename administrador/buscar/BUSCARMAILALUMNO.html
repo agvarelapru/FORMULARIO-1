@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>HTML5 Contact Form</title>
+	
+    <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk
+/html5.js"></script>
+        <![endif]-->
+</head>
+<style>
+body{
+background-image: url("dead2.jpg");
+
+}
+.contact_form h2 {
+    background: none repeat scroll 0 0 darkslategrey;
+    border-radius: 20px;
+    color: white;
+    display: block;
+    font-family: BankGothic Md BT;
+    font-size: 25px;
+    padding: 2px;
+    text-shadow: 0px 0px 0px #CCCCCC;
+    width: 500px;
+    text-align: center;
+}
+
+.contact_form {
+    width:540px;
+    list-style-type:none;
+	margin:0px;
+	padding:0px;
+    background-color: darkgrey;
+    margin:auto;
+}
+.contact_form li{
+	padding:12px; 
+	
+	position:relative;
+}
+
+.contact_form label {
+    color: black;
+    display: inline-block;
+    float: left;
+    font-family: BankGothic Md BT;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 3px;
+    margin-bottom: 15px;
+    
+    padding: 3px;
+    width: 400px;
+}
+
+.contact_form input {
+	height:20px; 
+	width:50px; 
+	padding:5px 8px;
+    margin-left:5px;
+}
+.contact_form textarea {
+	padding:8px; 
+	width:500px;
+    margin-left:2%;
+}
+/*.contact_form button {
+	margin-left:110px;
+}*/
+
+.contact_form input, .contact_form textarea { 
+	border:1px solid #555; 
+	box-shadow: 0px 0px 3px dimgrey, 0 10px 15px darkgrey inset;
+	border-radius:25px;
+	color: black;
+	font-size: 12px;
+	padding-right:30px;
+	-moz-transition: padding .25s; 
+	-webkit-transition: padding .25s; 
+	-o-transition: padding .25s;
+	transition: padding .25s;
+    width: 50%;
+    
+}
+.contact_form input:Hover, .contact_form textarea:Hover {
+	background: lightsteelblue; 
+    border-bottom:3px solid black;
+	
+	box-shadow: 0 0 3px #aaa; 
+	padding-right:80px;
+
+}
+
+
+
+.contact_form input:required:valid, .contact_form textarea:required:valid {
+	box-shadow: 0 0 5px #5cd053;
+	border-color: #28921f;
+}
+.contact_form input:focus:invalid, .contact_form textarea:focus:invalid {
+	box-shadow: 0 0 5px #d45252;
+	border-color: #b03535
+}
+
+.boton {
+     width: 25%;
+    height: 40px;  
+   padding: 7px 7px;
+   font-family: BankGothic Md BT;
+   font-weight: bold;
+   line-height: 1;
+   color: #444;
+   border: none;
+   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85);
+   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#bbb));
+   background-image: -moz-linear-gradient(0% 100% 90deg, #BBBBBB, #FFFFFF);
+   background-color: #fff;
+   border: 1px solid #f1f1f1;
+   border-radius: 25px;
+   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+     margin:15px 37.5%;
+ -moz-transition: width 2s, heigth 2s, transform 1s, font-size 1s, opacity 1s; 
+	-webkit-transition: width, 2s heigth 2s, transform 1s, font-size 1s, opacity 1s; 
+	-o-transition: width 2s, heigth 2s, transform 1s, font-size 1s, opacity 1s;
+	transition:width 2s, heigth 2s, transform 1s, font-size 1s, opacity 1s;
+
+    
+}
+
+.boton:hover {
+	opacity:.80;
+	cursor: pointer; 
+	color: darkred;
+    -ms-transform: scale(1.5,1.5); /* IE 9 */
+    -webkit-transform: scale(1.5,1.5); /* Safari */
+    transform: scale(1.5,1.5); /* Standard syntax */
+   
+    /*font-size: 1.5em;*/
+   
+    
+}
+.boton:active {
+	border: 1px solid #222;
+	box-shadow: 0 0 10px 5px #444 inset; 
+}
+fieldset{
+    border:6px solid darkred;
+background:darkslategrey;
+}
+legend{
+font-weight:bold;
+color:white;
+font-family: BankGothic Md BT;
+ 
+}
+
+
+</style>
+<body>
+<form class="contact_form"  action="buscarMailAlumno.php" method="post">
+<fieldset>    
+<legend>Buscar Mail:</legend>
+<label for="nombre" style="color:white">Ingrese el mail del alumno a consultar:</label>
+<input type="text" name="mail">
+<br>
+</fieldset>
+
+<button class="boton" type="submit" >BUSCAR</button>
+
+</form>
+</body>
+</html>
