@@ -114,9 +114,12 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
 
 
 
+
    <div class="container" >
 <h2>Buscar Usuario</h2>
 <hr>
+
+
 <form class="form-horizontal"  action="buscarUsuarios.php" method="post">
 
 

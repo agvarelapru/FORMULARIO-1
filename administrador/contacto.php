@@ -40,6 +40,7 @@ if(!empty($_REQUEST["usuario"]) & !empty($_REQUEST["email"]) & !empty($_REQUEST[
 	$conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or die("Problemas con la conexión");
 
 
+
     mysqli_query($conexion,"insert into contacto(usuario,email,pregunta,latitud,longitud) values
                        ('$_REQUEST[usuario]','$_REQUEST[email]','$_REQUEST[comentarios]','$_REQUEST[latitud]','$_REQUEST[longitud]')")
   or die("Problemas en el select".mysqli_error($conexion));
