@@ -10,7 +10,7 @@ session_start();
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Formulario</title>
 <!-- CSS de Bootstrap -->
 <link href="../../biblioteca/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -50,9 +50,9 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
   echo"</div>";
 
 }else{
-    
 
-  ?> 
+
+  ?>
 
 
 
@@ -79,7 +79,7 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
 
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="menu.php">Home</a></li>
+      <li ><a href="menu.php">Home</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Page 1-1</a></li>
@@ -91,12 +91,12 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
       <ul class="dropdown-menu">
            <li><a href="somos.php">Contacte con nosotros</a></li>
           <li><a href="estamos.php">Donde estamos</a></li>
-          
+
         </ul>
     </li>
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
       <ul class="dropdown-menu">
-           <li><a href="gestion/buscar.php">Buscar</a></li>
+           <li class="active"><a href="gestion/buscar.php">Buscar</a></li>
            <li><a href="gestion/agregar.php">Agregar</a></li>
           <li><a href="gestion/editar.php">Editar</a></li>
           <li><a href="gestion/borrar.php">Borrar</a></li>
@@ -114,9 +114,9 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
 
 
 
-   <div class="container" >   
-<h2>Buscar Usuario</h2> 
-<hr>  
+   <div class="container" >
+<h2>Buscar Usuario</h2>
+<hr>
 <form class="form-horizontal"  action="buscarUsuarios.php" method="post">
 
 
@@ -124,17 +124,25 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
 <label for="nombre" >Ingrese el nombre del usuario:</label>
 <input  class="form-control" type="text" name="nombre"/>
     </div>
-  <div class="form-group">  
+  <div class="form-group">
 <label for="apellido1" >Ingrese el apellido 1 del usuario:</label>
 <input  class="form-control" type="text" name="apellido1"/>
     </div>
-    <div class="form-group"> 
+    <div class="form-group">
 <label for="apellid2" >Ingrese apellido 2 del usuario:</label>
 <input  class="form-control" type="text" name="apellido2"/>
     </div>
-    <div class="form-group"> 
+    <div class="form-group">
 <label for="email" >Ingrese Email del usuario:</label>
 <input  class="form-control" type="email" name="email"/>
+    </div>
+    <div class="form-group">
+    <label for="fechaAlta" >Ingrese la fecha de alta de los usuarios:</label>
+    <input  class="form-control" type="date" name="fechaAlta"/>
+    </div>
+    <div class="form-group">
+    <label for="bloqueado" >Indique si esta bloqueado el usuarios:</label>
+    <input  class="form-control" type="date" name="fechaAlta"/>
     </div>
 <br>
 
