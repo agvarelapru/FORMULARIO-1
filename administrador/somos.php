@@ -19,6 +19,7 @@ session_start();
   <script src="../biblioteca/jquery/jquery.min.js"></script>
   <script src="../biblioteca/js/bootstrap.min.js"></script>
   <link href="../biblioteca/estilos.css" rel="stylesheet" media="screen">
+  <script type="text/javaScript" charset="utf-8" async defer src="localizacion.js"></script>
 
 <script  type="text/javascript">
 
@@ -27,10 +28,10 @@ session_start();
 
 </head>
 <style>
-
+ 
 </style>
 
-<body>
+<body onload="getLocation()">
 <?php
 
 if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
@@ -65,7 +66,7 @@ $_SESSION["pass"];
     <div class="navbar-header">
 
    
-</form> 
+
 
     </div>
     <ul class="nav navbar-nav" style="position=fixed">
@@ -199,8 +200,10 @@ $_SESSION["pass"];
   
   <textarea class="form-control" name="comentarios" rows="5" cols="30" placeholder="Escriba aqui su comentario"   title="Introduzca solo caracteres A-Z , a-z y numeros de 0 a 9"></textarea>
   </div>
-
- 
+    
+   <input type="hidden" name="latitud" id="latitud"/>
+   <input type="hidden" name="longitud" id="longitud"/>
+   
   <input class="btn btn-primary" type="reset" name="limpiar" value="Borrar" />
   <input  class="btn btn-primary" type="submit" name="enviar" id="enviar" value="Enviar" />
 </form>
