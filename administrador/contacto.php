@@ -35,13 +35,19 @@ $_SESSION["usuario"];
 $_SESSION["pass"];
 
 if(!empty($_REQUEST["usuario"]) & !empty($_REQUEST["email"]) & !empty($_REQUEST["comentarios"])){
-$para ='agvarelapru@gmail.com';
-$titulo = 'Comentario pagina del usuario '.$_REQUEST["usuario"];
-$mensaje = $_REQUEST["comentarios"];
-$cabeceras = 'From: info@paginaangel.com' . "\r\n";
 
-mail($para,$titulo,$mensaje,$cabeceras);
+   require_once('../biblioteca/conexionLocal.php');
+	$conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or die("Problemas con la conexión");
 	
+    
+    mysqli_query($conexion,"insert into contacto(usuario,email,pregunta,latitud,longitud) values 
+                       ('$_REQUEST[usuario]','$_REQUEST[email]','$_REQUEST[comentarios]','$_REQUEST[latitud]','$_REQUEST[longitud]')")
+  or die("Problemas en el select".mysqli_error($conexion));
+	
+    
+    
+    
+    
     ?>
     
     <nav class="navbar navbar-inverse navbar-fixed-top">
