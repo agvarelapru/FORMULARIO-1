@@ -8,7 +8,7 @@ session_start();
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Formulario</title>
 <!-- CSS de Bootstrap
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -28,7 +28,7 @@ session_start();
 
 </head>
 <style>
- 
+
 </style>
 
 <body onload="getLocation()">
@@ -65,7 +65,7 @@ $_SESSION["pass"];
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <div class="navbar-header">
 
-   
+
 
 
     </div>
@@ -78,21 +78,20 @@ $_SESSION["pass"];
           <li><a href="#">Page 1-3</a></li>
         </ul>
       </li>
-      
+
 
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="somos.php">Contacto <span class="caret"></span></a>
       <ul class="dropdown-menu">
           <li class="active"><a href="somos.php">Contacte con nosotros</a></li>
           <li><a href="estamos.php">Donde estamos</a></li>
-          
+
         </ul>
     </li>
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
       <ul class="dropdown-menu">
-           <li><a href="gestion/buscar.php">Buscar</a></li>
-           <li><a href="gestion/agregar.php">Agregar</a></li>
-          <li><a href="gestion/editar.php">Editar</a></li>
-          <li><a href="gestion/borrar.php">Borrar</a></li>
+        <li><a href="../buscar/buscar.php">Buscar usuario</a></li>
+        <li><a href="../../agregar/registro.html">Agregar usuario</a></li>
+       <li ><a href="preguntas/buscarP.php">Preguntas</a></li>
         </ul>
     </li>
     </ul>
@@ -124,9 +123,9 @@ $_SESSION["pass"];
       </button>
       <a class="navbar-brand" href="#">Logotipo</a>
     </div>
-  
+
     <!-- Agrupar los enlaces de navegación, los formularios y cualquier
-         otro elemento que se pueda ocultar al minimizar la barra 
+         otro elemento que se pueda ocultar al minimizar la barra
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Enlace #1</a></li>
@@ -146,14 +145,14 @@ $_SESSION["pass"];
           </ul>
         </li>
       </ul>
-  
+
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Buscar">
         </div>
         <button type="submit" class="btn btn-default">Enviar</button>
       </form>
-  
+
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Enlace #3</a></li>
         <li class="dropdown">
@@ -184,7 +183,7 @@ $_SESSION["pass"];
 
 
 
-<div class="container" >   
+<div class="container" >
 <h3>Contacte con nosotros</h3>
 <form class="form-horizontal" role="form" id="form1" name="form1" method="post" action="contacto.php">
 <div class="form-group">
@@ -197,13 +196,13 @@ $_SESSION["pass"];
   </div>
   <div class="form-group">
    <label  for="comentario">Comentario:</label>
-  
+
   <textarea class="form-control" name="comentarios" rows="5" cols="30" placeholder="Escriba aqui su comentario"   title="Introduzca solo caracteres A-Z , a-z y numeros de 0 a 9"></textarea>
   </div>
-    
+
    <input type="hidden" name="latitud" id="latitud"/>
    <input type="hidden" name="longitud" id="longitud"/>
-   
+
   <input class="btn btn-primary" type="reset" name="limpiar" value="Borrar" />
   <input  class="btn btn-primary" type="submit" name="enviar" id="enviar" value="Enviar" />
 </form>

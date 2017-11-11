@@ -1,255 +1,130 @@
-<html>
-<head>
-<title>Formulario</title>
-<html lang="es">
+<?php
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width" charset="UTF-8" />
-<link href="../../biblioteca/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<script src="../../biblioteca/jquery/jquery.min.js"></script>
+// Start the session
+session_start();
+
+?>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Formulario</title>
+<!-- CSS de Bootstrap
+<link href="css/bootstrap.css" rel="stylesheet" media="screen">
+<link href="js/bootstrap.js" rel="stylesheet" media="screen"> -->
+
+
+<link rel="stylesheet" href="../../biblioteca/css/bootstrap.min.css">
+  <script src="../../biblioteca/jquery/jquery.min.js"></script>
   <script src="../../biblioteca/js/bootstrap.min.js"></script>
-<link href="../../biblioteca/estilos.css" rel="stylesheet" media="screen">
+  <link href="../../biblioteca/estilos.css" rel="stylesheet" media="screen">
+
+
+<script  type="text/javascript">
+
+</script>
+
+
 </head>
 <style>
-   @font-face {
-    font-family: optimus;
-    src: url(../fuente/Optimus.otf);
+.container{
+    background-color: white;
+    margin-top:50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 5%;
+    padding-left: 5%;
+   width: 80%;
+   border-radius: 0px;
 }
-body{
-    margin:auto;
-   background-color: darkgrey;
+@media screen and (max-width: 725px) {
+    .container{
+        margin-top:50px;
+        padding-top: 60px;
+        padding-bottom: 10px;
+        padding-right: 5%;
+        padding-left: 5%;
+        margin-top:0px;
+       border-radius: 0px;
+       width: 100%;
 
-
+    }
 }
-header{
-width: 97%;
-height:110px;
-   border:3px solid red;
-    background-color: #000099;
+</style>
 
-    MARGIN:1%;
-    color:white;
-}
-h2 {
-    font-family: optimus;
-    text-align:center;
-
-}
-h3{
-    font-weight: bold;
-    font-size:1.1em;
-}
-#proveedores{
-background-color: #000099;
-
-    border-collapse: collapse;
-    margin-left:8.5%;
-     margin-top:20px;
-    color:white;
-    width: 80%;
-    height:260PX;
-    padding: 10px;
-font-family:optimus;
-/*margin:auto;*/
-border:3px solid red;
-}
-hr{
-    color:red;
-}
-.error {
-    width:40%;
-    height:150px;
-    list-style-type:none;
-	margin:0px;
-	padding:0px;
-    background-color: darkgrey;
-    margin:auto;
-
-}
-fieldset{
-    border:6px solid red;
-background:#000099;
-color:white;
-font-family: optimus;
-}
-legend{
-font-weight:bold;
-color:white;
-font-family: optimus;
-
-}
-.boton {
-
-    height: 30px;
-   padding: 7px 7px;
-   font-family: optimus;
-   font-weight: bold;
-   line-height: 1;
-   color: #000099;
-   border: none;
-   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85);
-   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#bbb));
-   background-image: -moz-linear-gradient(0% 100% 90deg, #BBBBBB, #FFFFFF);
-   background-color: #fff;
-   border: 1px solid #f1f1f1;
-   border-radius: 5px 25px 10px 20px;
-   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    margin:15px 33%;
-
- -moz-transition: width 2s, heigth 2s, transform 1s, font-size 1s, opacity 1s;
-	-webkit-transition: width, 2s heigth 2s, transform 1s, font-size 1s, opacity 1s;
-	-o-transition: width 2s, heigth 2s, transform 1s, font-size 1s, opacity 1s;
-	transition:width 2s, heigth 2s, transform 1s, font-size 1s, opacity 1s;
-
-
-}
-
-.boton:hover {
-	opacity:.80;
-	cursor: pointer;
-	color: red;
-    -ms-transform: scale(1.5,1.5); /* IE 9 */
-    -webkit-transform: scale(1.5,1.5); /* Safari */
-    transform: scale(1.5,1.5); /* Standard syntax */
-
-    /*font-size: 1.5em;*/
-
-
-}
-.boton:active {
-	border: 1px solid #222;
-	box-shadow: 0 0 10px 5px #444 inset;
-}
-.boton2 {
-    width:25%;
-    height: 30px;
-   padding: 7px 7px;
-   font-family: optimus;
-   font-weight: bold;
-   line-height: 1;
-   color: #000099;
-   border: none;
-   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85);
-   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#bbb));
-   background-image: -moz-linear-gradient(0% 100% 90deg, #BBBBBB, #FFFFFF);
-   background-color: #fff;
-   border: 1px solid #f1f1f1;
-   border-radius: 5px 10px 15px 25px;
-   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    margin:15px 37.5%;
-
- -moz-transition: width 2s, heigth 2s, transform 1s, font-size 1s, opacity 1s;
-	-webkit-transition: width, 2s heigth 2s, transform 1s, font-size 1s, opacity 1s;
-	-o-transition: width 2s, heigth 2s, transform 1s, font-size 1s, opacity 1s;
-	transition:width 2s, heigth 2s, transform 1s, font-size 1s, opacity 1s;
-
-
-}
-
-.boton2:hover {
-	opacity:.80;
-	cursor: pointer;
-	color: red;
-    -ms-transform: scale(1.5,1.5); /* IE 9 */
-    -webkit-transform: scale(1.5,1.5); /* Safari */
-    transform: scale(1.5,1.5); /* Standard syntax */
-
-    /*font-size: 1.5em;*/
-
-
-}
-.boton2:active {
-	border: 1px solid #222;
-	box-shadow: 0 0 10px 5px #444 inset;
-}
-.separacion{
-
-    margin-right:4%;
-    float:left;
-
-}
-.botonera{
-   width: 33%;
-    float:left;
-    /*margin-left:33%;*/
-}
-select{
-     width: 62%;
-     font-family:optimus;
-}
-
-@media screen and (max-width: 375px) {
-    header{
-width: 97%;
-    MARGIN:0%;
-}
-
-h2 {
-    font-size:1.3em;
-}
-#proveedores{
-    margin-left:0%;
-     margin-top:10px;
-    width: 91%;
-    height:600PX;
-    padding: 10px;
-}
-.separacion{
-
-    margin-right:5%;
-    float:none;
-
-}
-.botonera{
-   width: 33%;
-    float:left;
-  margin:0px 0%;
-  padding: 0px 0%;
-}
-.boton {
-    width:90%;
-    height: 30px;
-   padding: 7px 5px;
-    margin:15px 5%;
-    font-size:0.8em;
-
-}
-.boton:hover {
-	opacity:.90;
-    -ms-transform: scale(1.2,1.2); /* IE 9 */
-    -webkit-transform: scale(1.2,1.2); /* Safari */
-    transform: scale(1.2,1.2); /* Standard syntax */
-}
-.boton2 {
-    width:50%;
-    height: 30px;
-   padding: 7px 5px;
-    margin:15px 25%;
-    font-size:0.8em;
-
-}
-.boton2:hover {
-	opacity:.90;
-    -ms-transform: scale(1.2,1.2); /* IE 9 */
-    -webkit-transform: scale(1.2,1.2); /* Safari */
-    transform: scale(1.2,1.2); /* Standard syntax */
-}
-.error {
-    width:100%;
-    height:180px;
-	margin:0px;
-	padding:0px;
-    background-color: darkgrey;
-}
-
-}
-
-    </style>
 <body>
-<header>
-    </br>
-  <H2> LISTADO DE PROVEEDORES</H2>
-    </header>
+<?php
+
+if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
+  echo"<div class='container' > ";
+  echo  "Inserte usuario y contraseña";
+  echo"</div>";
+
+}else{
+
+
+// Set session variables
+$_SESSION["usuario"];
+$_SESSION["pass"];
+
+?>
+
+ <nav class="navbar navbar-inverse navbar-fixed-top">
+
+ <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Desplegar navegación</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">La Pagina de Angel</a>
+    </div>
+
+
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <div class="navbar-header">
+
+
+
+
+    </div>
+    <ul class="nav navbar-nav" style="position=fixed">
+      <li><a href="../../menu.php">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Page 1-1</a></li>
+          <li><a href="#">Page 1-2</a></li>
+          <li><a href="#">Page 1-3</a></li>
+        </ul>
+      </li>
+
+
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="../somos.php">Contacto <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+          <li><a href="../somos.php">Contacte con nosotros</a></li>
+          <li><a href="../estamos.php">Donde estamos</a></li>
+
+        </ul>
+    </li>
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="../buscar/buscar.php">Buscar usuario</a></li>
+        <li><a href="../../agregar/registro.html">Agregar usuario</a></li>
+       <li class="active"><a href="preguntas/buscarP.php">Preguntas</a></li>
+        </ul>
+    </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span>  Administrador <?php echo $_SESSION["usuario"] ?> </a></li>
+      <li><a href="../../salir.php"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class='container'>
 
 <?php
 require_once('../../biblioteca/conexionLocal.php');
@@ -301,22 +176,7 @@ $registros=mysqli_query($conexion,"select codigoDuda, usuario, resuelta, fechaPr
 $cant=0;
 while ($reg = mysqli_fetch_array($registros))
 {
-/*
-   mysqli_set_charset($conexion,"utf8");
-$consulta_mysql2=mysqli_query($conexion,"select *
-                        from provincias") or
-  die("Problemas en el select:".mysqli_error($conexion));
 
- while($reg2=mysqli_fetch_array($consulta_mysql2)){
-        if($reg['provincia']==$reg2["Codigo_provincia"]){
-
-     $provincia=$reg2;
-    break;
-        }  else{
- $provincia=null;
-        }
-}
-*/
 $resuelta="";
 if($reg['resuelta']==1){
 $resuelta=" SI ";
@@ -324,53 +184,54 @@ $resuelta=" SI ";
   $resuelta=" NO ";
 
 }
+$codigo=$reg['codigoDuda'];
 
-
-?>
-
+/*
 <div class="list-group">
-  <a href="#" class="list-group-item active">
-    <h4 class="list-group-item-heading" style="float:left;"><?php echo "Codigo Pregunta: ".$reg['codigoDuda']?> </h4>
+  <a href="mostrarP.php?codigoDuda='<?php.$codigo ?>'" class="list-group-item active">"
+    <h4 class="list-group-item-heading" style="float:left;"><?php echo "Codigo: ".$reg['codigoDuda']?> </h4>
 <h4 class="list-group-item-heading" style="float:right;"><?php echo "Resuelta: ".$resuelta?> </h4><br><br>
     <p class="list-group-item-text"><?php echo "Usuario: ".$reg['usuario'];?></p>
     <p class="list-group-item-text"><?php echo "Fecha Pregunta: ".$reg['fechaPregunta']?></p>
 
   </a>
 </div>
-
-
-
-
-<?php
-
-  /*
-  echo "<h3> Codigo Pregunta: ".$reg['codigoDuda'] ;
-  echo "<div class=separacion>Usuario: ".$reg['usuario']."</div>";
-  echo "<div class=separacion>Fecha Pregunta: ".$reg['fechaPregunta']."</div>";
-  echo "<div class=separacion>Resuelta: ".$reg['resuelta'];
-
 */
 
+echo "<div class='list-group'>";
+  echo "<a href='mostrarP.php?codigoDuda=".$codigo."' class='list-group-item active'>";
+  echo "<h4 class='list-group-item-heading' style='float:left;'> Codigo: ".$reg['codigoDuda']."</h4>";
+echo "<h4 class='list-group-item-heading' style='float:right;'> Resuelta: ".$resuelta."</h4><br><br>";
+echo    "<p class='list-group-item-text'>Usuario: ".$reg['usuario']."</p>";
+  echo  "<p class='list-group-item-text'>Fecha Pregunta: ".$reg['fechaPregunta']."</p>";
+
+  echo "</a>";
+echo "</div>";
 
 
 
-echo"</div>";
+
+
+
+
+
 $cant++;
 }
-
-
-if($cant==0){
- echo "<div class=error>";
-echo "<fieldset>";
-echo"<legend>Error:</legend>";
-echo "<p> No existe proveedor con dichos datos</p>";
-  echo "</fieldset>";
-
 ?>
-<a href="BUSCARPROVEEDOR.php"><button class="boton2">VOLVER</button></a>
+
+</div>
 <?php
+if($cant==0){
+ echo "<div class=container>";
+
+
+echo "<p> No hay preguntas</p>";
+
 echo "</div>";}
 mysqli_close($conexion);
+
+}
 ?>
+
 </body>
 </html>
