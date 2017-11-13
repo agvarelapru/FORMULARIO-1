@@ -42,7 +42,8 @@ session_start();
 <?php
 $usuarioErr =$passErr = "";
 $usuario = $pass = "";
-
+$codigoDuda=$fechaPregunta=$usuario=$pregunta=$respuesta=$atendidoPor=$fechaRespuesta="";
+$codigoDudaErr=$fechaPreguntaErr=$usuarioErr=$preguntaErr=$respuestaErr=$atendidoPorErr=$fechaRespuestaErr="";
 
 if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
   echo"<div class='container' > ";
@@ -51,9 +52,10 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
 
 }else{
 
+$fecha_actual = date("Y-m-d");
+$usuarioSistema=$_SESSION['usuario'];
 
-
-
+if($codigoDudaErr=="" & $fechaPreguntaErr=="" & $usuarioErr=="" & $preguntaErr=="" & $respuestaErr=="" & $atendidoPor =="" & $fechaRespuesta==""){
   require_once('../../biblioteca/conexionLocal.php');
 
   $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
@@ -61,22 +63,17 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
     mysqli_set_charset($conexion,"utf8");
 
 
-    $registros=mysqli_query($conexion,"select codigoDuda, usuario,email,pregunta, resuelta, fechaPregunta,latitud, longitud, atendidoPor, fechaResolucion, respuesta  from contacto
-    where codigoDuda=".$_GET['codigoDuda']) or
-      die("Problemas en el select:".mysqli_error($conexion));
+      mysqli_query($conexion, "update contacto
+                                set resuelta=1,atendidoPor='$usuarioSistema',fechaResolucion='$fecha_actual',respuesta='$_POST[respuesta]'
+                              where codigoDuda='$_POST[codigoDuda]'") or
+        die("Problemas en el select:".mysqli_error($conexion));
 
-    $cant=0;
-    while ($reg = mysqli_fetch_array($registros))
-    {
 
-    $resuelta="";
-    if($reg['resuelta']==1){
-    $resuelta=" SI ";
-    }else{
-      $resuelta=" NO ";
+      $fechaactual = getdate();
 
-    }
-    $codigo=$reg['codigoDuda'];
+      mysqli_close($conexion);
+      }
+
 
 
 
@@ -134,75 +131,40 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
 
 
 
-<div class="container" >
-<h3 style="float:left;">Codigo: <?php echo $_GET["codigoDuda"] ?></h3>
-<h3 style="float:right;">Resuelta: <?php echo $resuelta ?></h3><br><br><br>
-<h5>Fecha: <?php echo $reg["fechaPregunta"] ?></h5>
-
-<form class="form-horizontal" role="form" id="form1" name="form1" method="post" action="respuesta.php">
-    <input type="hidden"   name="codigoDuda" id="codigoDuda" value=<?php echo $reg['codigoDuda']?>>
-    <input type="hidden"   name="fechaPregunta" id="fechaPregunta" value=<?php echo $reg['fechaPregunta']?>>
+<div class="container">
 <div class="form-group">
-   <label for="usuario">Usuario:</label>
-    <input  class="form-control" type="text"  disabled name="usuario" id="usuario"  value=<?php echo $reg['usuario']?>>
-  </div>
-  <div class="form-group">
-      <label for="email">Correo electronico:</label>
-    <input class="form-control" type="email" name="email" disabled id="email" value=<?php echo $reg['email']?> />
-  </div>
-  <div class="form-group">
-   <label  for="comentario">Comentario:</label>
 
-  <textarea class="form-control" name="pregunta" rows="5" cols="30" disabled> <?php echo $reg['pregunta']?></textarea>
-  </div>
-  <div class="form-group">
-   <label  for="comentario">Respuesta:</label>
-  <textarea class="form-control" name="respuesta" rows="5" cols="30" placeholder="Escriba aqui su respuesta"   title="Introduzca solo caracteres A-Z , a-z y numeros de 0 a 9"><?php echo $reg['respuesta']?></textarea>
-  </div>
-<h5>Atendido por: <?php echo $reg["atendidoPor"] ?></h5>
-<h5>Fecha respuesta: <?php echo $reg["fechaResolucion"] ?></h5><br>
 
-<h4>Situacion de usuario:</h4>
-<div id="map" style="width:100%;height:500px"></div>
 
-<script>
-function myMap() {
-  var latitud=<?php echo $reg['latitud']?>;
-  var longitud=<?php echo $reg['longitud']?>;
+<ul>
+<h2 class="envio">RESPUESTA</h2>
+<hr />
+<li style="border-bottom:1px solid #007BFF"><label for="codigoDuda" >Codigo:</label> <?php echo $codigoDuda = $_POST['codigoDuda'];?> <br><span class="error"><?php echo $codigoDudaErr;?></span></li>
+<li style="border-bottom:1px solid #007BFF"><label for="fechaPregunta" >Fecha Pregunta:</label> <?php echo $fechaPregunta = $_POST['fechaPregunta'];?> <br><span class="error"><?php echo $fechaPreguntaErr;?></span></li>
+<li style="border-bottom:1px solid #007BFF"><label for="respuesta" >Respuesta:</label> <?php echo $respuesta = $_POST['respuesta'];?><br><span class="error"><?php echo $respuestaErr;?></span></li>
+<li style="border-bottom:1px solid #007BFF"><label for="respondidoPor" >Respondido por:</label> <?php echo $atendidoPor = $_SESSION['usuario'];?><br><span class="error"><?php echo $atendidoPorErr;?></span></li>
+<li style="border-bottom:1px solid #007BFF"><label for="fechaRespuesta" >Fecha Respuesta:</label><?php echo " $fechaactual[mday] - $fechaactual[mon] - $fechaactual[year]";  ?><br><span class="error"><?php echo $fechaRespuestaErr;?></span></li>
 
-  var mapCanvas = document.getElementById("map");
-  var myCenter = new google.maps.LatLng(latitud,longitud);
-  var mapOptions = {center: myCenter, zoom: 15};
-  var map = new google.maps.Map(mapCanvas,mapOptions);
-  var marker = new google.maps.Marker({
-    position: myCenter,
-  //  animation: google.maps.Animation.BOUNCE
-  });
-  marker.setMap(map);
+
+<?php
+
+
+
+if($codigoDudaErr=="" & $fechaPreguntaErr=="" & $usuarioErr=="" & $preguntaErr=="" & $respuestaErr==""){
+echo "<h3 class='envio'> Larespuesta fue enviada correctamente. </h3>";
+
+}else{
+echo "<h3 style=color:red> La respuesta NO se envio. </h3>";
 }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRVATQuo5Z7O4IL8tbjoOAzhdKAEpTM3g&callback=myMap"></script>
-<br><br>
+?>
+<br>
 
-
-
-
-
-
-
-  <input class="btn btn-primary" type="reset" name="limpiar" value="Borrar" />
-  <input  class="btn btn-primary" type="submit" name="enviar" id="enviar" value="Enviar" />
-</form>
+</ul>
 </div>
 
+</div>
+<?php } ?>
 
 
-    <?php
-  $cant++;
-  }
-
-  }
-
-      ?>
 </body>
 </html>

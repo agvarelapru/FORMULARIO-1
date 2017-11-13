@@ -153,16 +153,38 @@ $where="";
     $where.=" usuario LIKE '%".$_POST['usuario']."%' ";
   }
   if($_POST['email']!=""){
-    $where.=" email LIKE '%".$_POST['email']."%' ";
+    if($where==""){
+        $where.=" email LIKE '%".$_POST['email']."%' ";
+    }else{
+      $where.=" and email LIKE '%".$_POST['email']."%' ";
+    }
+
   }
   if($_POST['fechaPregunta']!=""){
-    $where.=" fechaPregunta= ".$_POST['fechaPregunta']." ";
+    if($where==""){
+        $where.="  fechaPregunta= ".$_POST['fechaPregunta']." ";
+    }else{
+      $where.="  and fechaPregunta= ".$_POST['fechaPregunta']." ";
+    }
+
   }
 
 if(isset($_POST['resuelta'])){
+  if($where==""){
     $where.=" resuelta = 1 ";
+  }else{
+    $where.=" and resuelta = 1 ";
+  }
+
 }else if(empty($_POST['resuelta'])){
+  if($where==""){
     $where.=" resuelta = 0 ";
+  }else{
+      $where.=" and resuelta = 0 ";
+  }
+
+
+
 }
 
 /*
