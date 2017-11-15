@@ -82,7 +82,7 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
 
     </div>
     <ul class="nav navbar-nav">
-      <li ><a href="menu.php">Home</a></li>
+      <li ><a href="../menu.php">Home</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Page 1-1</a></li>

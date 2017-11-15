@@ -9,7 +9,7 @@ session_start();
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Logeo</title>
 <!-- CSS de Bootstrap -->
 <link href="biblioteca/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -43,12 +43,12 @@ if(empty($_REQUEST["pass"]) & empty($_REQUEST["usuario"])){
   echo"<div class='container' > ";
   echo  "Inserte usuario y contraseña";
   echo"</div>";
-  session_start();//Reanudamos sesion
+  
   session_unset();
   session_destroy();//Literalmente la destruimos
 }else{
-    
-  
+
+
 
 
 // Set session variables
@@ -64,7 +64,7 @@ $_SESSION["pass"] = $_REQUEST['pass'];
 if (empty($_REQUEST["usuario"])) {
     $usuarioErr = "Usuarioobligatorio";
   } else {
-    $usuario = test_input($_REQUEST["usuario"]);  
+    $usuario = test_input($_REQUEST["usuario"]);
 
     if (!preg_match("/^[a-zñA-ZÑ0-9 -.,\/]*$/",$usuario)) {
       $usuarioErr = "Solo letras y espacio en blanco";
@@ -73,7 +73,7 @@ if (empty($_REQUEST["usuario"])) {
   if (empty($_REQUEST["pass"])) {
     $passErr = "contraseña obligatoria";
   } else {
-    $pass = test_input($_REQUEST["pass"]);  
+    $pass = test_input($_REQUEST["pass"]);
 
     if (!preg_match("/^[a-zñA-ZÑ0-9 -.,\/]*$/",$pass)) {
       $passErr = "Solo letras y espacio en blanco";
@@ -97,17 +97,17 @@ if(!empty($_GET['usuario']) & !empty($_GET['pass'])){
   $numero=mysqli_affected_rows($conexion);//cuenta el numero de lineas del array
 
 
-  
+
     $contra=$_GET["pass"];
-    
-    
-  
+
+
+
 
 
 
 }else{
-  
- 
+
+
 
 mysqli_set_charset($conexion,"utf8");
 $registros=mysqli_query($conexion,"select Usuario_nick,Usuario_clave,Usuario_bloqueado,Usuario_perfil
@@ -118,25 +118,25 @@ $numero=mysqli_affected_rows($conexion);//cuenta el numero de lineas del array
 
 $contra=md5($_REQUEST["pass"]);
 
- 
+
 
 
 }
 while ($reg = mysqli_fetch_array($registros))
 {
-    
+
 if($reg['Usuario_clave']==$contra & $reg['Usuario_bloqueado']==0 & $reg['Usuario_perfil']==$admin){
- 
-    
+
+
     header('Location: administrador/menu.php');
-    
+
 }else if ($reg['Usuario_clave']==$contra & $reg['Usuario_bloqueado']==0 & $reg['Usuario_perfil']==$work){
-    
+
         header('Location: work/w_menu.php');
-    
+
     }else if ($reg['Usuario_clave']==$contra & $reg['Usuario_bloqueado']==0 & $reg['Usuario_perfil']==$user){
-        
-        header('Location: user/u_menu.php');  
+
+        header('Location: user/u_menu.php');
 
 }else if ($reg['Usuario_bloqueado']==1){
 echo"<div class='container' > ";
@@ -146,25 +146,25 @@ echo"<div class='container' > ";
         echo"<div class='container' > ";
                 echo  "La contraseña no es correcta";
                 echo"</div>";
-               
+
                 session_unset();
                 session_destroy();//Literalmente la destruimos
-                
+
               }
-     
+
     }
-    
+
     if($numero==0){
       echo"<div class='container' > ";
       echo  "No existe el usuario";
       echo"</div>";
-      
+
       session_unset();
       session_destroy();//Literalmente la destruimos
-      
+
     }
-  
-  } 
+
+  }
 ?>
 
 </body>

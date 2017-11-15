@@ -92,7 +92,7 @@ $_SESSION["pass"];
 
     </div>
     <ul class="nav navbar-nav" style="position=fixed">
-      <li><a href="../../menu.php">Home</a></li>
+      <li><a href="../menu.php">Home</a></li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#">Page 1-1</a></li>
@@ -148,35 +148,43 @@ if(isset($_POST['resuelta'])){
 }else if(empty($_POST['resuelta'])){
     $where[]="resuelta = 0 ";
 }*/
+
+if(isset($_REQUEST['email']) & isset($_REQUEST['fechaPregunta']) & isset($_REQUEST['resuelta'])){
+  $_SESSION["email"] = $_REQUEST['email'];
+  $_SESSION["fechaPregunta"] = $_REQUEST['fechaPregunta'];
+  $_SESSION["resuelta"] = $_REQUEST['resuelta'];
+}
+
+
 $where="";
-  if($_POST['usuario']!=""){
-    $where.=" usuario LIKE '%".$_POST['usuario']."%' ";
+  if($_SESSION['usuario']!=""){
+    $where.=" usuario LIKE '%".$_SESSION['usuario']."%' ";
   }
-  if($_POST['email']!=""){
+  if($_SESSION['email']!=""){
     if($where==""){
-        $where.=" email LIKE '%".$_POST['email']."%' ";
+        $where.=" email LIKE '%".$_SESSION['email']."%' ";
     }else{
-      $where.=" and email LIKE '%".$_POST['email']."%' ";
+      $where.=" and email LIKE '%".$_SESSION['email']."%' ";
     }
 
   }
-  if($_POST['fechaPregunta']!=""){
+  if($_SESSION['fechaPregunta']!=""){
     if($where==""){
-        $where.="  fechaPregunta= ".$_POST['fechaPregunta']." ";
+        $where.="  fechaPregunta= ".$_SESSION['fechaPregunta']." ";
     }else{
-      $where.="  and fechaPregunta= ".$_POST['fechaPregunta']." ";
+      $where.="  and fechaPregunta= ".$_SESSION['fechaPregunta']." ";
     }
 
   }
 
-if(isset($_POST['resuelta'])){
+if(isset($_SESSION['resuelta'])){
   if($where==""){
     $where.=" resuelta = 1 ";
   }else{
     $where.=" and resuelta = 1 ";
   }
 
-}else if(empty($_POST['resuelta'])){
+}else if(empty($_SESSION['resuelta'])){
   if($where==""){
     $where.=" resuelta = 0 ";
   }else{
@@ -192,7 +200,33 @@ $registros=mysqli_query($conexion,"select codigoDuda, usuario, resuelta, fechaPr
   die("Problemas en el select:".mysqli_error($conexion));
 
 */
-$registros=mysqli_query($conexion,"select codigoDuda, usuario, resuelta, fechaPregunta  from contacto where ".$where." order by fechaPregunta") or
+
+$consulta_contactos = "SELECT * FROM contacto where resuelta=1";
+$rs_contactos = mysqli_query($conexion, $consulta_contactos);
+$num_total_registros = mysqli_num_rows($rs_contactos);
+
+//Limito la busqueda
+$TAMANO_PAGINA = 2;
+
+//examino la página a mostrar y el inicio del registro a mostrar
+if(isset($_GET["pagina"])){
+  $pagina = $_GET["pagina"];
+}else{
+  $inicio = 0;
+  $pagina = 1;
+}
+
+if (!$pagina) {
+   $inicio = 0;
+   $pagina = 1;
+}
+else {
+   $inicio = ($pagina - 1) * $TAMANO_PAGINA;
+}
+//calculo el total de páginas
+$total_paginas = ceil($num_total_registros / $TAMANO_PAGINA);
+
+$registros=mysqli_query($conexion,"select codigoDuda, usuario, resuelta, fechaPregunta  from contacto where ".$where." order by fechaPregunta  DESC LIMIT ".$inicio."," . $TAMANO_PAGINA) or
   die("Problemas en el select:".mysqli_error($conexion));
 
 $cant=0;
@@ -239,6 +273,34 @@ echo "</div>";
 
 $cant++;
 }
+$self="preguntas.php";
+if ($total_paginas > 1) {
+   if ($pagina != 1)
+      echo '<a href="'.$self.'?pagina='.($pagina-1).'"><img src="images/izq.gif" border="0"></a>';
+      ?><ul class="pagination"><?php
+
+      for ($i=1;$i<=$total_paginas;$i++) {
+         if ($pagina == $i){
+            //si muestro el índice de la página actual, no coloco enlace
+          ?>  <li><a href="#"><?php echo $pagina; ?></a></li><?php
+
+        }else{
+            //si el índice no corresponde con la página mostrada actualmente,
+            //coloco el enlace para ir a esa página
+          ?><li><?php  echo '  <a href="'.$self.'?pagina='.$i.'">'.$i.'</a>  ';?></li><?php
+      }
+    }
+      ?></ul><?php
+
+      if ($pagina != $total_paginas)
+      ?><ul class="pager"><?php
+    //<li class="previous"><a href="#">Previous</a></li>
+    ?><li class="next"><?php   echo '<a href="'.$self.'?pagina='.($pagina+1).'"><img src="images/der.gif" border="0"></a>'  ?> </li><?php
+         //echo '<a href="'.$self.'?pagina='.($pagina+1).'"><img src="images/der.gif" border="0"></a>';
+?></ul><?php
+}
+
+
 ?>
 
 </div>
