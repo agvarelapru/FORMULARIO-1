@@ -119,7 +119,7 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
    <div class="container" >
 <h2>Buscar Preguntas</h2>
 <hr>
-<form class="form-horizontal"  action="preguntas.php" method="post">
+<form class="form-horizontal"  action="paso.php" method="post">
 
 
 <div class="form-group">
@@ -136,7 +136,7 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
       </div>
       <div class="form-group">
   <label for="resuelta" >Indique si esta resuelta:</label>
-  <input  class="form-control" type="checkbox" name="resuelta" />
+  <input  class="form-control" type="checkbox" name="resuelta" id="resuelta"/>
       </div>
 
 <br>

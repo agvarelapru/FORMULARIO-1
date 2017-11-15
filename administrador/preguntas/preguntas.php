@@ -113,7 +113,7 @@ $_SESSION["pass"];
       <ul class="dropdown-menu">
         <li><a href="../buscar/buscar.php">Buscar usuario</a></li>
         <li><a href="../../agregar/registro.html">Agregar usuario</a></li>
-       <li class="active"><a href="preguntas/buscarP.php">Preguntas</a></li>
+       <li class="active"><a href="buscarP.php">Preguntas</a></li>
         </ul>
     </li>
     </ul>
@@ -148,17 +148,20 @@ if(isset($_POST['resuelta'])){
 }else if(empty($_POST['resuelta'])){
     $where[]="resuelta = 0 ";
 }*/
-
-if(isset($_REQUEST['email']) & isset($_REQUEST['fechaPregunta']) & isset($_REQUEST['resuelta'])){
+/*
+if(isset($_REQUEST['email']) || isset($_REQUEST['fechaPregunta']) || isset($_REQUEST['resuelta'])){
   $_SESSION["email"] = $_REQUEST['email'];
   $_SESSION["fechaPregunta"] = $_REQUEST['fechaPregunta'];
   $_SESSION["resuelta"] = $_REQUEST['resuelta'];
 }
-
+*/
 
 $where="";
-  if($_SESSION['usuario']!=""){
-    $where.=" usuario LIKE '%".$_SESSION['usuario']."%' ";
+
+
+
+  if($_SESSION['user']!=""){
+    $where.=" usuario LIKE '%".$_SESSION['user']."%' ";
   }
   if($_SESSION['email']!=""){
     if($where==""){
@@ -176,8 +179,10 @@ $where="";
     }
 
   }
+$resuelta;
 
 if(isset($_SESSION['resuelta'])){
+  $resuelta=1;
   if($where==""){
     $where.=" resuelta = 1 ";
   }else{
@@ -185,13 +190,12 @@ if(isset($_SESSION['resuelta'])){
   }
 
 }else if(empty($_SESSION['resuelta'])){
+  $resuelta=0;
   if($where==""){
     $where.=" resuelta = 0 ";
   }else{
       $where.=" and resuelta = 0 ";
   }
-
-
 
 }
 
@@ -201,8 +205,8 @@ $registros=mysqli_query($conexion,"select codigoDuda, usuario, resuelta, fechaPr
 
 */
 
-$consulta_contactos = "SELECT * FROM contacto where resuelta=1";
-$rs_contactos = mysqli_query($conexion, $consulta_contactos);
+//$consulta_contactos = "SELECT * FROM contacto where resuelta=".$_SESSION['resuelta']."";
+$rs_contactos = mysqli_query($conexion, "select * from contacto where resuelta='".$resuelta."'");
 $num_total_registros = mysqli_num_rows($rs_contactos);
 
 //Limito la busqueda
@@ -275,37 +279,41 @@ $cant++;
 }
 $self="preguntas.php";
 if ($total_paginas > 1) {
-   if ($pagina != 1)
-      echo '<a href="'.$self.'?pagina='.($pagina-1).'"><img src="images/izq.gif" border="0"></a>';
-      ?><ul class="pagination"><?php
+  ?><ul class="pager" style="width: 15%; float:left;"><?php
+   if ($pagina != 1){
+?><li class="previous"><?php   echo '<a href="'.$self.'?pagina='.($pagina-1).'">Anterior</a>'  ?> </li><?php
+}
+?></ul><?php
+
+      ?><ul class="pagination" style="float:left; marging:0 1%"><?php
 
       for ($i=1;$i<=$total_paginas;$i++) {
          if ($pagina == $i){
             //si muestro el índice de la página actual, no coloco enlace
-          ?>  <li><a href="#"><?php echo $pagina; ?></a></li><?php
+          ?>  <li class="active"><a href="#"><?php echo $pagina; ?></a></li><?php
 
         }else{
             //si el índice no corresponde con la página mostrada actualmente,
             //coloco el enlace para ir a esa página
-          ?><li><?php  echo '  <a href="'.$self.'?pagina='.$i.'">'.$i.'</a>  ';?></li><?php
+          ?><li ><?php  echo '  <a href="'.$self.'?pagina='.$i.'">'.$i.'</a>  ';?></li><?php
       }
     }
       ?></ul><?php
-
-      if ($pagina != $total_paginas)
-      ?><ul class="pager"><?php
-    //<li class="previous"><a href="#">Previous</a></li>
-    ?><li class="next"><?php   echo '<a href="'.$self.'?pagina='.($pagina+1).'"><img src="images/der.gif" border="0"></a>'  ?> </li><?php
-         //echo '<a href="'.$self.'?pagina='.($pagina+1).'"><img src="images/der.gif" border="0"></a>';
+?><ul class="pager"  style="width: 15%; float:left;"><?php
+      if ($pagina != $total_paginas){
+    ?><li class="next"><?php   echo '<a href="'.$self.'?pagina='.($pagina+1).'">Siguiente</a>'  ?> </li><?php
+  }
 ?></ul><?php
-}
 
+}
+//<img src="../../biblioteca/anterior.png" border="0" style="max-width: 100%;">
+//<img src="../../biblioteca/siguiente.png" border="0" style="max-width: 100%;">
 
 ?>
 
 </div>
 <?php
-if($cant==0){
+if($num_total_registros==0){
  echo "<div class=container>";
 
 
