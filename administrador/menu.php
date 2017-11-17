@@ -94,7 +94,8 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
       <ul class="dropdown-menu">
            <li><a href="buscar/buscar.php">Buscar usuario</a></li>
            <li><a href="../agregar/registro.html">Agregar usuario</a></li>
-          <li><a href="preguntas/buscarP.php">Preguntas</a></li>
+
+          <li><a href="preguntas/buscarP2.php">Preguntas</a></li>
 
         </ul>
     </li>

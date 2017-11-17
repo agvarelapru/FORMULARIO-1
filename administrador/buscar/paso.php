@@ -26,11 +26,12 @@ session_start();
 // Set session variables
 
 $_SESSION["user"]= $_REQUEST['usuario'];
+$_SESSION["poblacion"] = $_REQUEST['poblacion'];
 $_SESSION["email"] = $_REQUEST['email'];
-$_SESSION["fechaPregunta"] = $_REQUEST['fechaPregunta'];
-$_SESSION["resuelta"] = $_REQUEST['resuelta'];
+$_SESSION["fechaAlta"] = $_REQUEST['fechaAlta'];
+$_SESSION["bloqueado"] = $_REQUEST['bloqueado'];
 
-header('Location: preguntas2.php');
+header('Location: usuarios.php');
 
 ?>
 

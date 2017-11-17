@@ -161,40 +161,48 @@ $where="";
 
 
   if($_SESSION['user']!=""){
-    $where.=" usuario LIKE '%".$_SESSION['user']."%' ";
+    $where.=" Usuario_nick LIKE '%".$_SESSION['user']."%' ";
+  }
+  if($_SESSION['poblacion']!=""){
+    if($where==""){
+        $where.=" Usuario_poblacion LIKE '%".$_SESSION['poblacion']."%' ";
+    }else{
+      $where.=" and Usuario_poblacion LIKE '%".$_SESSION['poblacion']."%' ";
+    }
+
   }
   if($_SESSION['email']!=""){
     if($where==""){
-        $where.=" email LIKE '%".$_SESSION['email']."%' ";
+        $where.=" Usuario_email LIKE '%".$_SESSION['email']."%' ";
     }else{
-      $where.=" and email LIKE '%".$_SESSION['email']."%' ";
+      $where.=" and Usuario_email LIKE '%".$_SESSION['email']."%' ";
     }
 
   }
-  if($_SESSION['fechaPregunta']!=""){
+  if($_SESSION['fechaAlta']!=""){
     if($where==""){
-        $where.="  fechaPregunta= ".$_SESSION['fechaPregunta']." ";
+        $where.="  Usuario_fecha_alta= ".$_SESSION['fechaAlta']." ";
     }else{
-      $where.="  and fechaPregunta= ".$_SESSION['fechaPregunta']." ";
+      $where.="  and Usuario_fecha_alta= ".$_SESSION['fechaAlta']." ";
     }
 
   }
-$resuelta;
+$bloqueado;
 
-if(isset($_SESSION['resuelta'])){
-  $resuelta=1;
+if(isset($_SESSION['bloqueado'])){
+  $bloqueado=1;
   if($where==""){
-    $where.=" resuelta = 1 ";
+    $where.=" Usuario_bloqueado = 1 ";
   }else{
-    $where.=" and resuelta = 1 ";
+    $where.=" and Usuario_bloqueado = 1 ";
   }
 
-}else if(empty($_SESSION['resuelta'])){
-  $resuelta=0;
+}else if(empty($_SESSION['bloqueado'])){
+  $bloqueado=0;
   if($where==""){
-    $where.=" resuelta = 0 ";
+    $where.=" Usuario_bloqueado = 0 ";
   }else{
-      $where.=" and resuelta = 0 ";
+      $where.=" and Usuario_bloqueado = 0 ";
   }
 
 }
@@ -206,7 +214,7 @@ $registros=mysqli_query($conexion,"select codigoDuda, usuario, resuelta, fechaPr
 */
 
 //$consulta_contactos = "SELECT * FROM contacto where resuelta=".$_SESSION['resuelta']."";
-$rs_contactos = mysqli_query($conexion, "select * from contacto where resuelta='".$resuelta."'");
+$rs_contactos = mysqli_query($conexion, "select * from usuarios where Usuario_bloqueado='".$bloqueado."'");
 $num_total_registros = mysqli_num_rows($rs_contactos);
 
 //Limito la busqueda
@@ -230,7 +238,7 @@ else {
 //calculo el total de páginas
 $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA);
 
-$registros=mysqli_query($conexion,"select codigoDuda, usuario, resuelta, fechaPregunta  from contacto where ".$where." order by fechaPregunta  DESC LIMIT ".$inicio."," . $TAMANO_PAGINA) or
+$registros=mysqli_query($conexion,"select Usuario_id, Usuario_nick, Usuario_bloqueado, Usuario_fecha_alta  from usuarios where ".$where." order by Usuario_fecha_alta  DESC LIMIT ".$inicio."," . $TAMANO_PAGINA) or
   die("Problemas en el select:".mysqli_error($conexion));
 
 $cant=0;
@@ -238,13 +246,13 @@ while ($reg = mysqli_fetch_array($registros))
 {
 
 $resuelta="";
-if($reg['resuelta']==1){
-$resuelta=" SI ";
+if($reg['Usuario_bloqueado']==1){
+$bloqueado=" SI ";
 }else{
-  $resuelta=" NO ";
+  $bloqueado=" NO ";
 
 }
-$codigo=$reg['codigoDuda'];
+$codigo=$reg['Usuario_id'];
 
 /*
 <div class="list-group">
@@ -259,11 +267,11 @@ $codigo=$reg['codigoDuda'];
 */
 
 echo "<div class='list-group'>";
-  echo "<a href='mostrarP.php?codigoDuda=".$codigo."' class='list-group-item active'>";
-  echo "<h4 class='list-group-item-heading' style='float:left;'> Codigo: ".$reg['codigoDuda']."</h4>";
-echo "<h4 class='list-group-item-heading' style='float:right;'> Resuelta: ".$resuelta."</h4><br><br>";
-echo    "<p class='list-group-item-text'>Usuario: ".$reg['usuario']."</p>";
-  echo  "<p class='list-group-item-text'>Fecha Pregunta: ".$reg['fechaPregunta']."</p>";
+  echo "<a href='mostrarP.php?Usuario_id=".$codigo."' class='list-group-item active'>";
+  echo "<h4 class='list-group-item-heading' style='float:left;'> Codigo: ".$reg['Usuario_id']."</h4>";
+echo "<h4 class='list-group-item-heading' style='float:right;'> Bloqueado: ".$bloqueado."</h4><br><br>";
+echo    "<p class='list-group-item-text'>Usuario: ".$reg['Usuario_nick']."</p>";
+  echo  "<p class='list-group-item-text'>Fecha alta: ".$reg['Usuario_fecha_alta']."</p>";
 
   echo "</a>";
 echo "</div>";
@@ -277,11 +285,10 @@ echo "</div>";
 
 $cant++;
 }
-$self="preguntas.php";
+$self="usuarios.php";
 if ($total_paginas > 1) {
   ?><ul class="pagination" ><?php
    if ($pagina != 1){
-?><li class="previous"><?php   echo '<a href="'.$self.'?pagina=0">Inicio</a>'  ?> </li><?php
 ?><li class="previous"><?php   echo '<a href="'.$self.'?pagina='.($pagina-1).'">Anterior</a>'  ?> </li><?php
 }
 
@@ -302,7 +309,6 @@ if ($total_paginas > 1) {
 
       if ($pagina != $total_paginas){
     ?><li class="next"><?php   echo '<a href="'.$self.'?pagina='.($pagina+1).'">Siguiente</a>'  ?> </li><?php
-    ?><li class="previous"><?php   echo '<a href="'.$self.'?pagina='.$total_paginas.'">Final</a>'  ?> </li><?php  
   }
 ?></ul><?php
 
@@ -318,7 +324,7 @@ if($num_total_registros==0){
  echo "<div class=container>";
 
 
-echo "<p> No hay preguntas</p>";
+echo "<p> No hay usuarios</p>";
 
 echo "</div>";}
 mysqli_close($conexion);

@@ -259,7 +259,7 @@ $codigo=$reg['codigoDuda'];
 */
 
 echo "<div class='list-group'>";
-  echo "<a href='mostrarP.php?codigoDuda=".$codigo."' class='list-group-item active'>";
+  echo "<a href='mostrarP2.php?codigoDuda=".$codigo."' class='list-group-item active'>";
   echo "<h4 class='list-group-item-heading' style='float:left;'> Codigo: ".$reg['codigoDuda']."</h4>";
 echo "<h4 class='list-group-item-heading' style='float:right;'> Resuelta: ".$resuelta."</h4><br><br>";
 echo    "<p class='list-group-item-text'>Usuario: ".$reg['usuario']."</p>";
@@ -302,7 +302,7 @@ if ($total_paginas > 1) {
 
       if ($pagina != $total_paginas){
     ?><li class="next"><?php   echo '<a href="'.$self.'?pagina='.($pagina+1).'">Siguiente</a>'  ?> </li><?php
-    ?><li class="previous"><?php   echo '<a href="'.$self.'?pagina='.$total_paginas.'">Final</a>'  ?> </li><?php  
+    ?><li class="previous"><?php   echo '<a href="'.$self.'?pagina='.$total_paginas.'">Final</a>'  ?> </li><?php
   }
 ?></ul><?php
 

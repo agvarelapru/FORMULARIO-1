@@ -30,7 +30,10 @@ session_start();
         border: none;
         background-color: black;
     }
+    .btn-primary{
+        margin-left: 30%;
 
+    }
     input[type=checkbox] {
   transform: scale(1.5);
 
@@ -42,8 +45,7 @@ session_start();
 <?php
 $usuarioErr =$passErr = "";
 $usuario = $pass = "";
-$codigoDuda=$fechaPregunta=$usuario=$pregunta=$respuesta=$atendidoPor=$fechaRespuesta="";
-$codigoDudaErr=$fechaPreguntaErr=$usuarioErr=$preguntaErr=$respuestaErr=$atendidoPorErr=$fechaRespuestaErr="";
+
 
 if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
   echo"<div class='container' > ";
@@ -52,32 +54,13 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
 
 }else{
 
-$fecha_actual = date("Y-m-d");
-$usuarioSistema=$_SESSION['usuario'];
 
-if($codigoDudaErr=="" & $fechaPreguntaErr=="" & $usuarioErr=="" & $preguntaErr=="" & $respuestaErr=="" & $atendidoPor =="" & $fechaRespuesta==""){
-  require_once('../../biblioteca/conexion.php');
-
-  $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
-      die("Problemas con la conexión.");
-    mysqli_set_charset($conexion,"utf8");
-
-
-      mysqli_query($conexion, "update contacto
-                                set resuelta=1,atendidoPor='$usuarioSistema',fechaResolucion='$fecha_actual',respuesta='$_POST[respuesta]'
-                              where codigoDuda='$_POST[codigoDuda]'") or
-        die("Problemas en el select:".mysqli_error($conexion));
-
-
-      $fechaactual = getdate();
-
-      mysqli_close($conexion);
-      }
+  ?>
 
 
 
 
-?>
+
   <nav class="navbar navbar-inverse navbar-fixed-top">
 
   <div class="navbar-header">
@@ -116,9 +99,9 @@ if($codigoDudaErr=="" & $fechaPreguntaErr=="" & $usuarioErr=="" & $preguntaErr==
     </li>
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><a href="../buscar/buscar.php">Buscar usuario</a></li>
-        <li><a href="../../agregar/registro.html">Agregar usuario</a></li>
-       <li class="active"><a href="buscarP2.php">Preguntas</a></li>
+        <li><a href="buscar/buscar.php">Buscar usuario</a></li>
+        <li><a href="../agregar/registro.html">Agregar usuario</a></li>
+       <li class="active"><a href="preguntas/buscarP2.php">Preguntas</a></li>
         </ul>
     </li>
     </ul>
@@ -131,40 +114,40 @@ if($codigoDudaErr=="" & $fechaPreguntaErr=="" & $usuarioErr=="" & $preguntaErr==
 
 
 
-<div class="container">
+
+
+   <div class="container" >
+<h2>Buscar Preguntas</h2>
+<hr>
+<form class="form-horizontal"  action="paso.php" method="post">
+
+
 <div class="form-group">
+<label for="usuario" >Ingrese el usuario del usuario:</label>
+<input  class="form-control" type="text" name="usuario" placeholder="Usuario" pattern="[.-_A-Za-z0-9 ñÑ]{1,50}"  title="Introduzca nombre de usuario .-_A-Za-z0-9 ñÑ"/>
+    </div>
+    <div class="form-group">
+<label for="email" >Ingrese Email del usuario:</label>
+<input  class="form-control" type="email" name="email" placeholder="correo@ejemplo.com"  pattern= "[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="Introduzca este formato correo@ejemplo.com"/>
+    </div>
+    <div class="form-group">
+  <label for="fechaPregunta" >Ingrese la fecha de la pregunta:</label>
+  <input  class="form-control" type="date" name="fechaPregunta" placeholder="aaaa/mm/dd" pattern= "[0-9]{4}/(0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Introduzca este formato aaaa/mm/dd"/>
+      </div>
+      <div class="form-group">
+  <label for="resuelta" >Indique si esta resuelta:</label>
+  <input  class="form-control" type="checkbox" name="resuelta" id="resuelta"/>
+      </div>
 
-
-
-<ul>
-<h2 class="envio">RESPUESTA</h2>
-<hr />
-<li style="border-bottom:1px solid #007BFF"><label for="codigoDuda" >Codigo:</label> <?php echo $codigoDuda = $_POST['codigoDuda'];?> <br><span class="error"><?php echo $codigoDudaErr;?></span></li>
-<li style="border-bottom:1px solid #007BFF"><label for="fechaPregunta" >Fecha Pregunta:</label> <?php echo $fechaPregunta = $_POST['fechaPregunta'];?> <br><span class="error"><?php echo $fechaPreguntaErr;?></span></li>
-<li style="border-bottom:1px solid #007BFF"><label for="respuesta" >Respuesta:</label> <?php echo $respuesta = $_POST['respuesta'];?><br><span class="error"><?php echo $respuestaErr;?></span></li>
-<li style="border-bottom:1px solid #007BFF"><label for="respondidoPor" >Respondido por:</label> <?php echo $atendidoPor = $_SESSION['usuario'];?><br><span class="error"><?php echo $atendidoPorErr;?></span></li>
-<li style="border-bottom:1px solid #007BFF"><label for="fechaRespuesta" >Fecha Respuesta:</label><?php echo " $fechaactual[mday] - $fechaactual[mon] - $fechaactual[year]";  ?><br><span class="error"><?php echo $fechaRespuestaErr;?></span></li>
-
-
-<?php
-
-
-
-if($codigoDudaErr=="" & $fechaPreguntaErr=="" & $usuarioErr=="" & $preguntaErr=="" & $respuestaErr==""){
-echo "<h3 class='envio'> Larespuesta fue enviada correctamente. </h3>";
-
-}else{
-echo "<h3 style=color:red> La respuesta NO se envio. </h3>";
-}
-?>
 <br>
 
-</ul>
-</div>
 
-</div>
-<?php } ?>
+<input class="btn btn-primary" type="submit" name="buscar" id="buscar" value="Buscar">
 
-
+</form>
+    </div>
+    <?php
+  }
+      ?>
 </body>
 </html>

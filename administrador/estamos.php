@@ -8,7 +8,7 @@ session_start();
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Formulario</title>
 <!-- CSS de Bootstrap
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -64,8 +64,8 @@ $_SESSION["pass"];
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <div class="navbar-header">
 
-   
-</form> 
+
+</form>
 
     </div>
     <ul class="nav navbar-nav" style="position=fixed">
@@ -77,21 +77,20 @@ $_SESSION["pass"];
           <li><a href="#">Page 1-3</a></li>
         </ul>
       </li>
-      
+
 
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="somos.php">Contacto <span class="caret"></span></a>
       <ul class="dropdown-menu">
           <li ><a href="somos.php">Contacte con nosotros</a></li>
           <li class="active"><a href="estamos.php">Donde estamos</a></li>
-          
+
         </ul>
     </li>
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
       <ul class="dropdown-menu">
-           <li><a href="gestion/buscar.php">Buscar</a></li>
-           <li><a href="gestion/agregar.php">Agregar</a></li>
-          <li><a href="gestion/editar.php">Editar</a></li>
-          <li><a href="gestion/borrar.php">Borrar</a></li>
+        <li><a href="buscar/buscar.php">Buscar usuario</a></li>
+       <li><a href="../agregar/registro.html">Agregar usuario</a></li>
+      <li><a href="preguntas/buscarP2.php">Preguntas</a></li>
         </ul>
     </li>
     </ul>
@@ -103,7 +102,7 @@ $_SESSION["pass"];
 </nav>
 
 
-<div class="container" >   
+<div class="container" >
 <h3>Ven a visitarnos</h3>
 
 <div id="map" style="width:100%;height:500px"></div>
@@ -111,7 +110,7 @@ $_SESSION["pass"];
 <script>
 function myMap() {
   var mapCanvas = document.getElementById("map");
-  var myCenter = new google.maps.LatLng(36.87096819550552,-6.1767686158418655); 
+  var myCenter = new google.maps.LatLng(36.87096819550552,-6.1767686158418655);
   var mapOptions = {center: myCenter, zoom: 15};
   var map = new google.maps.Map(mapCanvas,mapOptions);
   var marker = new google.maps.Marker({

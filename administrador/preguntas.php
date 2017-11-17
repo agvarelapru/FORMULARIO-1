@@ -252,7 +252,7 @@ h2 {
     </header>
 
 <?php
-require_once('../../biblioteca/conexionLocal.php');
+require_once('../../biblioteca/conexion.php');
 
 $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
     die("Problemas con la conexión.");

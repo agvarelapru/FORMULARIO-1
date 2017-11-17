@@ -92,8 +92,8 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
       </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contacto <span class="caret"></span></a>
       <ul class="dropdown-menu">
-           <li><a href="somos.php">Contacte con nosotros</a></li>
-          <li><a href="estamos.php">Donde estamos</a></li>
+           <li><a href="../somos.php">Contacte con nosotros</a></li>
+          <li><a href="../estamos.php">Donde estamos</a></li>
 
         </ul>
     </li>
@@ -101,7 +101,7 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
       <ul class="dropdown-menu">
         <li><a href="buscar/buscar.php">Buscar usuario</a></li>
         <li><a href="../agregar/registro.html">Agregar usuario</a></li>
-       <li class="active"><a href="preguntas/buscarP.php">Preguntas</a></li>
+       <li class="active"><a href="preguntas/buscarP2.php">Preguntas</a></li>
         </ul>
     </li>
     </ul>
@@ -117,27 +117,80 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
 
 
    <div class="container" >
-<h2>Buscar Preguntas</h2>
+<h2>Buscar Usuarios</h2>
+<hr>
+
+<form class="form-inline"  action="usuarios.php" method="post" style="width:100%">
+  <!--
+<div class="form-group" style="width:85%">
+<label for="busqueda" >Busqueda unica:</label>
+<input  class="form-control" type="text" style="width:73%" name="busqueda" placeholder="Busqueda"  title="Indique el contenido a buscar"/>
+    </div>
+<button class="btn btn-default" type="submit" name="buscar" id="buscar" value="Buscar">Buscar</button>
+-->
+<div class="form-group" style="width:100%">
+ <label  for="busqueda" >Busqueda unica</label>
+
+<input  class="form-control" type="text" style="width:90%" name="busqueda" placeholder="Busqueda"  title="Indique el contenido a buscar"/>
+
+<button class="btn btn-default" type="submit" name="buscar" id="buscar"  ><span class="glyphicon glyphicon-search"></span></button>
+</div>
+
+
+</form>
+
 <hr>
 <form class="form-horizontal"  action="paso.php" method="post">
 
 
 <div class="form-group">
-<label for="usuario" >Ingrese el usuario del usuario:</label>
-<input  class="form-control" type="text" name="usuario"/>
+<label for="usuario" >Ingrese el nick del usuario:</label>
+<input  class="form-control" type="text" name="usuario" placeholder="Usuario" pattern="[.-_A-Za-z0-9 ñÑ]{1,50}"  title="Introduzca nombre de usuario .-_A-Za-z0-9 ñÑ"/>
     </div>
-    <div class="form-group">
+
+
+<div class="form-group">
+<label for="localidad" >Ingrese la Localidad del usuario:</label>
+
+  <?php
+  require_once('../../biblioteca/conexion.php');
+  $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
+      die("Problemas con la conexión.");
+    mysqli_set_charset($conexion,"utf8");
+
+$consulta_mysql=mysqli_query($conexion,"select DISTINCT Usuario_poblacion
+             from usuarios;") or
+die("Problemas en el select:".mysqli_error($conexion));
+
+?>
+
+<select class="form-control" name="poblacion"/>
+<?php
+
+while($reg=mysqli_fetch_array($consulta_mysql)){
+echo "<option value='".$reg["Usuario_poblacion"]."'>".$reg["Usuario_poblacion"]." </option>";
+
+}
+?>
+ </select>
+</div>
+
+
+
+  <div class="form-group">
 <label for="email" >Ingrese Email del usuario:</label>
-<input  class="form-control" type="email" name="email"/>
-    </div>
-    <div class="form-group">
-  <label for="fechaPregunta" >Ingrese la fecha de la pregunta:</label>
-  <input  class="form-control" type="date" name="fechaPregunta"/>
-      </div>
-      <div class="form-group">
-  <label for="resuelta" >Indique si esta resuelta:</label>
-  <input  class="form-control" type="checkbox" name="resuelta" id="resuelta"/>
-      </div>
+<input  class="form-control" type="email" name="email" placeholder="correo@ejemplo.com"  pattern= "[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="Introduzca este formato correo@ejemplo.com"/>
+</div>
+
+<div class="form-group">
+<label for="fechaPregunta" >Ingrese la fecha de alta:</label>
+<input  class="form-control" type="date" name="fechaAlta" placeholder="aaaa/mm/dd"  pattern= "[0-9]{4}/(0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Introduzca este formato aaaa/mm/dd"/>
+</div>
+
+  <div class="form-group">
+  <label for="resuelta" >Indique si esta bloqueado:</label>
+  <input  class="form-control" type="checkbox" name="bloqueado" id="bloqueado"/>
+  </div>
 
 <br>
 

@@ -36,7 +36,7 @@ $_SESSION["pass"];
 
 if(!empty($_REQUEST["usuario"]) & !empty($_REQUEST["email"]) & !empty($_REQUEST["comentarios"])){
 
-   require_once('../biblioteca/conexionLocal.php');
+   require_once('../biblioteca/conexion.php');
 	$conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or die("Problemas con la conexión");
 
 
@@ -90,7 +90,7 @@ if(!empty($_REQUEST["usuario"]) & !empty($_REQUEST["email"]) & !empty($_REQUEST[
       <ul class="dropdown-menu">
 				<li><a href="buscar/buscar.php">Buscar usuario</a></li>
 				<li><a href="../agregar/registro.html">Agregar usuario</a></li>
-			 <li><a href="preguntas/buscarP.php">Preguntas</a></li>
+			 <li><a href="preguntas/buscarP2.php">Preguntas</a></li>
         </ul>
     </li>
     </ul>

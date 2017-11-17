@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Formulario</title>
 <!-- CSS de Bootstrap -->
 <link href="biblioteca/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="biblioteca/estilos.css" rel="stylesheet" media="screen">
 <script  type="text/javascript">
 function tiempo(){
-  
+
   setTimeout("redirigir()", 5000);
   alert("Bienvenido " +$_REQUEST['nombre']);
 }
@@ -20,7 +20,7 @@ function redirigir(){
 
 
 </head>
-<body onload="tiempo()"> 
+<body onload="tiempo()">
 
 
 
@@ -33,7 +33,7 @@ $usuario = $pass =  "";
 if (empty($_POST["usuario"])) {
     $usuarioErr = "Usuarioobligatorio";
   } else {
-    $usuario = test_input($_POST["usuario"]);  
+    $usuario = test_input($_POST["usuario"]);
 
     if (!preg_match("/^[a-zA-Z0-9 -.,\/]*$/",$usuario)) {
       $usuarioErr = "Solo letras y espacio en blanco";
@@ -42,14 +42,14 @@ if (empty($_POST["usuario"])) {
   if (empty($_POST["pass"])) {
     $passErr = "contraseña obligatoria";
   } else {
-    $pass = test_input($_POST["pass"]);  
+    $pass = test_input($_POST["pass"]);
 
     if (!preg_match("/^[a-zA-Z0-9 -.,\/]*$/",$pass)) {
       $passErr = "Solo letras y espacio en blanco";
     }
   }*/
 
-  require_once('biblioteca/conexionLocal.php');
+  require_once('biblioteca/conexion.php');
   $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
   die("Problemas con la conexión.");
 
@@ -65,19 +65,19 @@ while ($reg = mysqli_fetch_array($registros))
 {
 
 if(($reg['Usuario_clave']==$contra) & $reg['Usuario_bloqueado']==0){
-  ?> 
+  ?>
 
 
 
 
 
 
-   <div class="container" >   
+   <div class="container" >
 <h1>BIENVENIDO <?php echo $reg['Usuario_nick'] ?></h1>
 <h4>Redirigiendo a pagina principal</h4>
 <div>
-  
- 
+
+
 
 
 
@@ -93,15 +93,15 @@ echo"<div class='container' > ";
                 echo  "La contraseña no es correcta";
                 echo"</div>";
               }
-     
+
     }
-    
+
     if($numero==0){
       echo"<div class='container' > ";
       echo  "No existe el usuario";
       echo"</div>";
     }
-   
+
 ?>
 
 </body>

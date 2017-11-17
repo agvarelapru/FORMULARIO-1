@@ -43,7 +43,7 @@ if(empty($_REQUEST["pass"]) & empty($_REQUEST["usuario"])){
   echo"<div class='container' > ";
   echo  "Inserte usuario y contraseña";
   echo"</div>";
-  
+
   session_unset();
   session_destroy();//Literalmente la destruimos
 }else{
@@ -80,7 +80,7 @@ if (empty($_REQUEST["usuario"])) {
     }
   }*/
 
-  require_once('biblioteca/conexionLocal.php');
+  require_once('biblioteca/conexion.php');
   $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
   die("Problemas con la conexión.");
 
