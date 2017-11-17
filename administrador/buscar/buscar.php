@@ -120,7 +120,7 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
 <h2>Buscar Usuarios</h2>
 <hr>
 
-<form class="form-inline"  action="usuarios.php" method="post" style="width:100%">
+<form class="form-horizontal"   action="usuarios.php" method="post" style="width:100%">
   <!--
 <div class="form-group" style="width:85%">
 <label for="busqueda" >Busqueda unica:</label>
@@ -128,18 +128,31 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
     </div>
 <button class="btn btn-default" type="submit" name="buscar" id="buscar" value="Buscar">Buscar</button>
 -->
-<div class="form-group" style="width:100%">
+
+  <div class="form-group">
  <label  for="busqueda" >Busqueda unica</label>
 
-<input  class="form-control" type="text" style="width:90%" name="busqueda" placeholder="Busqueda"  title="Indique el contenido a buscar"/>
+<input  class="form-control" type="text" name="busqueda"  placeholder="Busqueda"  title="Indique el contenido a buscar"/>
 
-<button class="btn btn-default" type="submit" name="buscar" id="buscar"  ><span class="glyphicon glyphicon-search"></span></button>
+<button class="btn btn-default" type="submit" name="buscar" style="float:left"  id="buscar"><span class="glyphicon glyphicon-search"></span></button>
 </div>
 
 
-</form>
+<div class="row">
+  <div class="col-xs-14">
+    <div class="input-group">
 
+      <input type="text" class="form-control" placeholder="Busqueda ">
+     <span class="input-group-addon" type="button" name="buscar"  id="buscar"><span class="glyphicon glyphicon-search" type="submit"></span></span>
+    </div>
+  </div>
+
+
+
+
+</form>
 <hr>
+
 <form class="form-horizontal"  action="paso.php" method="post">
 
 

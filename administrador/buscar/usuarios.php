@@ -289,7 +289,8 @@ $self="usuarios.php";
 if ($total_paginas > 1) {
   ?><ul class="pagination" ><?php
    if ($pagina != 1){
-?><li class="previous"><?php   echo '<a href="'.$self.'?pagina='.($pagina-1).'">Anterior</a>'  ?> </li><?php
+?><li class="previous"><?php   echo '<a href="'.$self.'?pagina=0">Inicio</a>'  ?> </li><?php
+?><li class="previous"><?php   echo '<a href="'.$self.'?pagina='.($pagina-1).'"><span class="glyphicon glyphicon-arrow-left"></a>'  ?> </li><?php
 }
 
 
@@ -308,7 +309,8 @@ if ($total_paginas > 1) {
     }
 
       if ($pagina != $total_paginas){
-    ?><li class="next"><?php   echo '<a href="'.$self.'?pagina='.($pagina+1).'">Siguiente</a>'  ?> </li><?php
+    ?><li class="next"><?php   echo '<a href="'.$self.'?pagina='.($pagina+1).'"><span class="glyphicon glyphicon-arrow-right"></a>'  ?> </li><?php
+    ?><li class="previous"><?php   echo '<a href="'.$self.'?pagina='.$total_paginas.'">Final</a>'  ?> </li><?php
   }
 ?></ul><?php
 
