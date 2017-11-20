@@ -12,10 +12,10 @@ body{
    border-radius: 25px;
 }
 hr{
-   
-    border: 2px solid #007BFF; 
-    border-radius: 300px /2px; 
-    
+
+    border: 2px solid #007BFF;
+    border-radius: 300px /2px;
+
 }
 h2{
     text-align: center;
@@ -28,28 +28,39 @@ h2{
     text-align: center;
     padding: 3px 0;
 }
-
+.btn-primary2{
+    margin-bottom: 5px;
+    margin-left: 7%;
+    width: 80%;
+    text-align: center;
+    padding: 3px 0;
+}
 .botones{
     width: 100%;
-    
+
     height: 4em;
 }
 .derecha{
     text-align: right;
     width: 50%;
     float: right;
- 
+
 }
 .izquierda{
     text-align: left;
     width: 50%;
     float: left;
-   
-}
 
+}
+.botonera{
+   width: 50%;
+    float:left;
+    border:2px solid black;
+
+}
 .qr{
     width: 40%;
-    height:300px; 
+    height:300px;
     border:2px solid #007BFF;
     margin-left: 30%;
     text-align: center;
@@ -67,7 +78,7 @@ h2{
         margin-top:0px;
        border-radius: 0px;
        width: 100%;
-       
+
     }
 
     .boton{

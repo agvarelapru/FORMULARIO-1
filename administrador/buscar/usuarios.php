@@ -38,6 +38,10 @@ session_start();
    width: 80%;
    border-radius: 0px;
 }
+input[type=checkbox] {
+transform: scale(1.5);
+
+}
 @media screen and (max-width: 725px) {
     .container{
         margin-top:50px;
@@ -50,6 +54,7 @@ session_start();
        width: 100%;
 
     }
+
 }
 </style>
 
@@ -113,7 +118,7 @@ $_SESSION["pass"];
       <ul class="dropdown-menu">
         <li><a href="../buscar/buscar.php">Buscar usuario</a></li>
         <li><a href="../../agregar/registro.html">Agregar usuario</a></li>
-       <li class="active"><a href="buscarP2.php">Preguntas</a></li>
+       <li class="active"><a href="../preguntas/buscarP2.php">Preguntas</a></li>
         </ul>
     </li>
     </ul>
@@ -218,7 +223,7 @@ $rs_contactos = mysqli_query($conexion, "select * from usuarios where Usuario_bl
 $num_total_registros = mysqli_num_rows($rs_contactos);
 
 //Limito la busqueda
-$TAMANO_PAGINA = 2;
+$TAMANO_PAGINA = 4;
 
 //examino la página a mostrar y el inicio del registro a mostrar
 if(isset($_GET["pagina"])){
@@ -245,7 +250,7 @@ $cant=0;
 while ($reg = mysqli_fetch_array($registros))
 {
 
-$resuelta="";
+$bloqueado="";
 if($reg['Usuario_bloqueado']==1){
 $bloqueado=" SI ";
 }else{
@@ -265,15 +270,20 @@ $codigo=$reg['Usuario_id'];
   </a>
 </div>
 */
+echo"<form class='form-horizontal'  action='borrar.php' method='post'>";
+echo "<div style='float:left;margin-top:25px;margin-right:0%; z-index:1'>";
+echo "<input class='form-control' type='checkbox' name='tic[]' id='tic' value='".$reg['Usuario_id']."'>";
+echo "</div>";
+echo "<div class='list-group' style='width:88%; margin-left:6%;'>";
 
-echo "<div class='list-group'>";
-  echo "<a href='mostrarP.php?Usuario_id=".$codigo."' class='list-group-item active'>";
-  echo "<h4 class='list-group-item-heading' style='float:left;'> Codigo: ".$reg['Usuario_id']."</h4>";
-echo "<h4 class='list-group-item-heading' style='float:right;'> Bloqueado: ".$bloqueado."</h4><br><br>";
+  echo "<a href='mostrarU.php?Usuario_id=".$codigo."' class='list-group-item active'>";
+  echo "<h4 class='list-group-item-heading' style='float:left;'>Cod. ".$reg['Usuario_id']."</h4>";
+echo "<h4 class='list-group-item-heading' style='float:right;'>Bloqueado: ".$bloqueado."</h4><br><br>";
 echo    "<p class='list-group-item-text'>Usuario: ".$reg['Usuario_nick']."</p>";
   echo  "<p class='list-group-item-text'>Fecha alta: ".$reg['Usuario_fecha_alta']."</p>";
 
   echo "</a>";
+
 echo "</div>";
 
 
@@ -285,6 +295,9 @@ echo "</div>";
 
 $cant++;
 }
+?><input class="btn btn-primary" type="submit" name="buscar" id="buscar" value="Borrar" style="margin-left:30%;">
+</form>
+<?php
 $self="usuarios.php";
 if ($total_paginas > 1) {
   ?><ul class="pagination" ><?php

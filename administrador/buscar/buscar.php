@@ -143,7 +143,7 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
     <div class="input-group">
 
       <input type="text" class="form-control" placeholder="Busqueda ">
-     <span class="input-group-addon" type="button" name="buscar"  id="buscar"><span class="glyphicon glyphicon-search" type="submit"></span></span>
+    <span class="input-group-addon"  type="submit" name="buscar"  id="buscar"><span class="glyphicon glyphicon-search"></span></span>
     </div>
   </div>
 
