@@ -119,9 +119,9 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
     </li>
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><a href="../buscar.php">Buscar usuario</a></li>
+        <li class="active"><a href="../buscar.php">Buscar usuario</a></li>
         <li><a href="../../../agregar/registro.html">Agregar usuario</a></li>
-       <li class="active"><a href="../../preguntas/buscarP2.php">Preguntas</a></li>
+       <li ><a href="../../preguntas/buscarP2.php">Preguntas</a></li>
         </ul>
     </li>
     </ul>
@@ -158,7 +158,12 @@ $codigo=$reg['Usuario_id'];
 <hr/>
 
 
-<form class="form-horizontal" role="form" id="alta" name="alta" method="post" action="modificarUsuario.php">
+<form class="form-horizontal" role="form" id="editar" name="editar" method="post" action="usuarioModificado.php">
+
+  <div class="form-group">
+    <label for="id">Id</label>
+    <input  class="form-control" type="text" name="id" id="id"  placeholder="id" pattern="[0-9]{1,500}"  title="Introduzca nombre de usuario 0-9" value="<?php echo $reg['Usuario_id'];?>"/>
+  </div>
 
   <div class="form-group">
     <label for="nombre">Nombre</label>
@@ -167,12 +172,12 @@ $codigo=$reg['Usuario_id'];
 
   <div class="form-group">
     <label for="apellido1">Apellido 1</label>
-    <input  class="form-control" type="text" name="apellid1" id="apellid1" placeholder="Apellido 1" pattern="[.-_A-Za-z ñÑ]{1,50}"  title="Introduzca nombre de usuario .-_A-Za-z ñÑ" required value="<?php echo $reg['Usuario_apellido1'];?>"/>
+    <input  class="form-control" type="text" name="apellido1" id="apellido1" placeholder="Apellido 1" pattern="[.-_A-Za-z ñÑ]{1,50}"  title="Introduzca nombre de usuario .-_A-Za-z ñÑ" required value="<?php echo $reg['Usuario_apellido1'];?>"/>
   </div>
 
   <div class="form-group">
     <label for="apellido2">Apellido 2</label>
-    <input  class="form-control" type="text" name="apellid2" id="apellido2" placeholder="Apellido 2" pattern="[.-_A-Za-z ñÑ]{1,50}"  title="Introduzca nombre de usuario .-_A-Za-z ñÑ" required value="<?php echo $reg['Usuario_apellido2'];?>"/>
+    <input  class="form-control" type="text" name="apellido2" id="apellido2" placeholder="Apellido 2" pattern="[.-_A-Za-z ñÑ]{1,50}"  title="Introduzca nombre de usuario .-_A-Za-z ñÑ" required value="<?php echo $reg['Usuario_apellido2'];?>"/>
   </div>
 
 <div class="form-group">
