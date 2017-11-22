@@ -154,7 +154,7 @@ $codigo=$reg['Usuario_id'];
 <div class="container">
 
 
-<h2 class="envio">USUARIO</h2>
+<h2 class="envio">USUARIO <?php echo $reg['Usuario_nick'];?> </h2>
 <hr/>
 
 <li style="border-bottom:1px solid #007BFF"><label for="id" >Id: </label> <?php echo $id = $reg['Usuario_id'];?><br><span class="error"><?php echo $idErr;?></span></li>
@@ -185,15 +185,15 @@ $codigo=$reg['Usuario_id'];
 ?>
 
 <div style="width:50%;float:left;margin-top:10px;">
-<form class="form-horizontal"  action="modficar/modificarU.php"  method="post">
-<input type="hidden" name="id" value="<?php echo $reg['Usuario_id'];?>"/>
+<form class="form-horizontal"  action="modificar/modificarU.php"  method="post">
+<input type="hidden" name="id" value="<?php echo $id;?>"/>
 <button class="btn btn-primary" type="submit" >MODIFICAR</button>
 </form>
 </div>
 
 <div style="width:50%;float:left;margin-top:10px;">
 <form class="form-horizontal" action="borrar/confirmarborrado.php"  method="post">
-<input type="hidden" name="id" value="<?php echo $reg['Usuario_id'];?>"/>
+<input type="hidden" name="id" value="<?php echo $id;?>"/>
 <button class="btn btn-primary" type="submit">BORRAR</button>
 </form>
 </div>

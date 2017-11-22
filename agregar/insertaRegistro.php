@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	
+
 	<title>Alta nueva</title>
 	<link href="../biblioteca/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<script src="../biblioteca/jquery/jquery.min.js"></script>
@@ -12,16 +12,16 @@
 
 
 </head>
-<body> 
-  
+<body>
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
-        
+
          <div class="navbar-header">
-              
+
               <a class="navbar-brand" href="#">La Pagina de Angel</a>
             </div>
-     
-    
+
+
         </nav>
 
 
@@ -38,9 +38,9 @@ $nick=$_REQUEST['nick'];
 include '../biblioteca/qr-code/phpqrcode/qrlib.php';
 
 // El nombre del fichero que se generará (una imagen PNG).
-$file ='qr_'.$_REQUEST['nick'].'.png'; 
+$file ='qr_'.$_REQUEST['nick'].'.png';
 // La data que llevará.
-$data = 'http://www.agvarelapru.esy.es/FORMULARIO-1/menu.php?usuario='.$nick.'&pass='.$contra; 
+$data = 'http://www.agvarelapru.esy.es/FORMULARIO-1/user/u_menu.php?usuario='.$nick.'&pass='.$contra; 
 
 // Y generamos la imagen.
 QRcode::png($data, $file);
@@ -54,10 +54,10 @@ QRcode::png($data, $file);
 if($nickErr=="" & $passErr=="" & $nombreErr=="" & $apellido1Err=="" & $apellido2Err=="" & $emailErr=="" & $fecha_nacimientoErr==""){
 	require_once('../biblioteca/conexion.php');
 	$conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or die("Problemas con la conexión");
-	
 
 
-	mysqli_query($conexion,"insert into usuarios(Usuario_nick,Usuario_clave,Usuario_nombre,Usuario_apellido1,Usuario_apellido2,Usuario_email,Usuario_fecha_nacimiento,Usuario_bloqueado,Usuario_numero_intentos) values 
+
+	mysqli_query($conexion,"insert into usuarios(Usuario_nick,Usuario_clave,Usuario_nombre,Usuario_apellido1,Usuario_apellido2,Usuario_email,Usuario_fecha_nacimiento,Usuario_bloqueado,Usuario_numero_intentos) values
                        ('$_REQUEST[nick]','$contra','$_REQUEST[nombre]','$_REQUEST[apellido1]','$_REQUEST[apellido2]','$_REQUEST[email]','$_REQUEST[fecha_nacimiento]','1','0')")
   or die("Problemas en el select".mysqli_error($conexion));
 
@@ -75,38 +75,38 @@ $mensaje=
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Confiramacion de registro</title>
-    
+
 </head>
 
 
 <body Style="background-color: lightgray; font-family:Calibri;">
-    
+
         <div Style=" background-color: lightgray;margin-top:20px;padding-top: 10px; padding-bottom: 10px; padding-right: 2.5%; padding-left: 2.5%; width: 90%;  border-radius: 25px;  margin-left:2.5%; margin-right:2.5%;">
-        
+
                 <h2 style="text-align: center;font-weight: BOLD;">Confirmacion de registro</h2>
                 <hr Style="border: 2px solid #007BFF;  border-radius: 300px /2px;">
                 <h4 Style="text-align:center">Hola gracias por acceder a nuestra paguina pulse el boton que esta a continuacion para confirmar el alta.</h4>
-                
+
                        <a Style="background-color: #007BFF; border: none;  color: white; text-align: center;  text-decoration: none;  display: inline-block; font-size: 16px; margin-left: 35%; cursor: pointer;  width: 30%;  padding-top: 5px; padding-bottom: 5px;  margin-right: 35%; "  href="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra.'" >Confirmar registro</a>
                         <hr Style="border: 2px solid #007BFF;  border-radius: 300px /2px;">
                         <h4 Style="text-align:center">Una vez confirmada la cuenta puedes acceder con el siguiente codigo QR:</h4>
                       <div Style="  height:320px;  border:2px solid #007BFF;  margin-left: auto; text-align: center;">
-                            
+
                            <div Style=" background-color: rgb(53, 51, 51); height:40px; text-align:left; font-size:1.5em;color:white;padding:3px 10px;"><a Style="background-color: rgb(53, 51, 51); border: none;  color: white; text-align: left;  text-decoration: none;  display: inline-block; font-size: 1em; margin-left: 1%; cursor: pointer;  width: 100%;  padding-top: 4px; padding-bottom: 3px; "  href="http://www.agvarelapru.esy.es/FORMULARIO-1" >La pagina de Angel</a></div><br>
                                <div Style="width:80%;margin-left:10%;"><img src="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/'.$file.'" alt="Codigo QR"></div>
                                <h4><u>Usuario</u></h4>
                                <h4>'.$nick.'</h4>
                             </div>
 
-                     
-                           
+
+
     </div>
     <div Style="width:90%; margin-left:5%">
     <hr Style="border: 2px solid #007BFF; border-radius: 0px /0px;">
     <p Style="text-align:justify; color:rgb(94, 91, 91); "> Este correo electrónico contiene información confidencial. Cualquier reproducción, distribución o divulgación de su contenido están estrictamente prohibidos.Si no eres el destinatario indicado en el mismo y recibes este correo electrónico, te ruego me lo notifiques de inmediato a la dirección agvarelapru@gmail.com y destruyas el mensaje recibido sin obtener copia del mismo, ni distribuirlo, ni revelar su contenido. Angel Varela Pruaño no se hace responsable del mal uso de esta información.
-      </p> 
-       
-      
+      </p>
+
+
     <p Style="text-align:justify; color:rgb(94, 91, 91);" >  Information in this message is confidential and may be legally privileged. It is intended solely for the person to whom it is addressed. If you are not the intended recipient, please notify the sender agvarelapru@gmail.com and please delete the message from your system immediately.
       </p>
     </div>
@@ -144,7 +144,7 @@ $cabeceras .= 'From: info@lapaginadeangel.com';
 //$mensaje .=$file;
 //$cabeceras = 'From: info@lapaginadeangel.com' . "\r\n";
 /*
-'<form  action="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra.'"  method="post"> 
+'<form  action="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra.'"  method="post">
 	<input type="hidden" name="qr"/>
 	<button class="btn btn-primary" Style="margin-bottom: 5px;
 	margin-left: 30%;
@@ -162,13 +162,13 @@ mail($para,$titulo,$mensaje,$cabeceras);
 // include phpmailer class
 require_once '../biblioteca/PHPMailer/_lib/class.phpmailer.php';
 // creates object
-$mail = new PHPMailer(true); 
+$mail = new PHPMailer(true);
 
 
 $full_name  =$nick;
 $email      = strip_tags($_REQUEST['email']);
 $subject    = "Sending HTML eMail using PHPMailer.";
-$text_message    = "Hello $full_name, <br /><br /> This is HTML eMail Sent using PHPMailer. isn't it cool to send HTML email rather than plain text, it helps to improve your email marketing.";  
+$text_message    = "Hello $full_name, <br /><br /> This is HTML eMail Sent using PHPMailer. isn't it cool to send HTML email rather than plain text, it helps to improve your email marketing.";
 
 $mensaje='<html>'.
 '<head><meta charset="UTF-8">
@@ -191,16 +191,16 @@ $mensaje='<html>'.
 
 try
 {
- $mail->IsSMTP(); 
+ $mail->IsSMTP();
  $mail->isHTML(true);
- $mail->SMTPDebug  = 0;                     
- $mail->SMTPAuth   = true;                  
- $mail->SMTPSecure = "ssl";                 
- $mail->Host       = "smtp.gmail.com";      
- $mail->Port       = 465;             
+ $mail->SMTPDebug  = 0;
+ $mail->SMTPAuth   = true;
+ $mail->SMTPSecure = "ssl";
+ $mail->Host       = "smtp.gmail.com";
+ $mail->Port       = 465;
  $mail->AddAddress($email);
- $mail->Username   ="agvarelapru@gmail.com";  
-					  $mail->Password   ="24del5del05";            
+ $mail->Username   ="agvarelapru@gmail.com";
+					  $mail->Password   ="24del5del05";
 					 // $mail->SetFrom('agvarelapru@gmail.com','Pagina de angel');
 					  $mail->AddReplyTo("agvarelapru@gmail.com","Pagina de angel");
  $mail->Subject    = $subject;
@@ -215,7 +215,7 @@ try
 
 
 mysqli_close($conexion);
-}	
+}
 	?>
 <div class="container">
 <div class="form-group">
@@ -238,7 +238,7 @@ mysqli_close($conexion);
 
 <?php echo "<img src='qr_".$_REQUEST['nick'].".png'>";?>
 <br>
-<?php 
+<?php
 
 
 
@@ -256,5 +256,3 @@ echo "<h3 style=color:red> El Usuario NO se agrego. </h3>";
 
 </body>
 </html>
-
-
