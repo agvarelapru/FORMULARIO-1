@@ -99,9 +99,9 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
     </li>
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><a href="buscar/buscar.php">Buscar usuario</a></li>
+        <li class="active"><a href="buscar/buscar.php">Buscar usuario</a></li>
         <li><a href="../agregar/registro.html">Agregar usuario</a></li>
-       <li class="active"><a href="preguntas/buscarP2.php">Preguntas</a></li>
+       <li ><a href="preguntas/buscarP2.php">Preguntas</a></li>
         </ul>
     </li>
     </ul>
@@ -120,34 +120,15 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
 <h2>Buscar Usuarios</h2>
 <hr>
 
-<form class="form-horizontal"   action="usuarios.php" method="post" style="width:100%">
-  <!--
-<div class="form-group" style="width:85%">
-<label for="busqueda" >Busqueda unica:</label>
-<input  class="form-control" type="text" style="width:73%" name="busqueda" placeholder="Busqueda"  title="Indique el contenido a buscar"/>
-    </div>
-<button class="btn btn-default" type="submit" name="buscar" id="buscar" value="Buscar">Buscar</button>
--->
+<form class="form-horizontal"   action="paso2.php" method="post" style="width:100%">
 
   <div class="form-group">
  <label  for="busqueda" >Busqueda unica</label>
 
-<input  class="form-control" type="text" name="busqueda"  placeholder="Busqueda"  title="Indique el contenido a buscar"/>
+<input  class="form-control" type="text" name="busqueda"  placeholder="Busqueda" style="display:inline;width:85%;"  title="Indique el contenido a buscar"/>
 
-<button class="btn btn-default" type="submit" name="buscar" style="float:left"  id="buscar"><span class="glyphicon glyphicon-search"></span></button>
+<button class="btn btn-default" type="submit" name="buscar" style=" float:right; width:15%;"  id="buscar"><span class="glyphicon glyphicon-search" ></span></button>
 </div>
-
-
-<div class="row">
-  <div class="col-xs-14">
-    <div class="input-group">
-
-      <input type="text" class="form-control" placeholder="Busqueda ">
-    <span class="input-group-addon"  type="submit" name="buscar"  id="buscar"><span class="glyphicon glyphicon-search"></span></span>
-    </div>
-  </div>
-
-
 
 
 </form>

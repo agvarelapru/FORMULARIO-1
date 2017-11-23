@@ -119,9 +119,9 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
     </li>
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><a href="buscar.php">Buscar usuario</a></li>
+        <li class="active"><a href="buscar.php">Buscar usuario</a></li>
         <li><a href="../../agregar/registro.html">Agregar usuario</a></li>
-       <li class="active"><a href="../preguntas/buscarP2.php">Preguntas</a></li>
+       <li ><a href="../preguntas/buscarP2.php">Preguntas</a></li>
         </ul>
     </li>
     </ul>
@@ -192,14 +192,51 @@ $codigo=$reg['Usuario_id'];
 </div>
 
 <div style="width:50%;float:left;margin-top:10px;">
-<form class="form-horizontal" action="borrar/confirmarborrado.php"  method="post">
-<input type="hidden" name="id" value="<?php echo $id;?>"/>
-<button class="btn btn-primary" type="submit">BORRAR</button>
-</form>
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" type="submit">BORRAR</button>
 </div>
 
 
  </div>
+
+
+
+   <!-- Trigger the modal with a button -->
+
+
+   <!-- Modal -->
+   <div class="modal fade" id="myModal" role="dialog">
+     <div class="modal-dialog">
+
+       <!-- Modal content-->
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           <h4 class="modal-title">¡Atencion!</h4>
+         </div>
+         <div class="modal-body">
+           <p>¿Esta seguro de borrar al usuario <?php echo $id;?>?</p>
+         </div>
+         <div class="modal-footer" >
+           <div style="width:50%;float:left;margin-top:10px;">
+           <form class="form-horizontal" action="borrar/usuarioBorrado.php"  method="post">
+           <input type="hidden" name="id" value="<?php echo $id;?>"/>
+           <button type="submit" class="btn btn-primary" style="float:left;">Borrar</button>
+           </form>
+           </div>
+                <div style="width:50%;float:left;margin-top:10px;">
+           <button type="button" class="btn btn-primary" data-dismiss="modal" style="float:left;">Cancelar</button>
+          </div>
+
+         </div>
+       </div>
+
+     </div>
+   </div>
+
+
+
+
+
  <?php
 }
 ?>

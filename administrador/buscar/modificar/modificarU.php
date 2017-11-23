@@ -35,14 +35,7 @@ session_start();
   transform: scale(1.5);
 
 }
-.btn-primary{
-    margin-bottom: 5px;
-    margin-left: 10%;
-    width: 80%;
-    text-align: center;
-    padding: 3px 0;
-    flot:left;
-}
+
 li{
   list-style-type:none;
 }
@@ -311,19 +304,51 @@ if(pass!=pass2){
 
 
 
-  <input class="btn btn-primary" type="reset" name="limpiar" value="Borrar" />
-  <input  class="btn btn-primary" type="submit" name="enviar" id="enviar" value="Modificar"/>
+  <input class="btn btn-primary" type="reset" name="limpiar" value="Limpiar" />
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" type="button">Modificar</button>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">¡Atencion!</h4>
+      </div>
+      <div class="modal-body">
+        <p>¿Esta seguro de modificar al usuario <?php echo $id;?>?</p>
+      </div>
+      <div class="modal-footer" >
+
+        <form class="form-horizontal" action="usuarioModificado.php"  method="post">
+        <input type="hidden" name="id" value="<?php echo $id;?>"/>
+        <button type="submit" class="btn btn-primary" style="float:left;">Modificar</button>
+        </form>
+
+
+        <button type="button" class="btn btn-primary" data-dismiss="modal" style="float:left;margin-left:7%;">Cancelar</button>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
 
 </form>
+<br>
+
+ </div>
 
 
 <?php
 }
-?>
 
- </div>
- <?php
 }
 ?>
 

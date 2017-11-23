@@ -137,61 +137,9 @@ require_once('../../biblioteca/conexion.php');
 $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
     die("Problemas con la conexión.");
   mysqli_set_charset($conexion,"utf8");
-/*  $where[]="";
-  if($_POST['usuario']!=""){
-    $where[]="usuario LIKE '%".$_POST['usuario']."%' ";
-  }
-  if($_POST['email']!=""){
-    $where[]="email LIKE '%".$_POST['email']."%' ";
-  }
-  if($_POST['fechaPregunta']!=""){
-    $where[]="fechaPregunta= ".$_POST['fechaPregunta']." ";
-  }
 
-if(isset($_POST['resuelta'])){
-    $where[]="resuelta = 1 ";
-}else if(empty($_POST['resuelta'])){
-    $where[]="resuelta = 0 ";
-}*/
+
 /*
-if(isset($_REQUEST['email']) || isset($_REQUEST['fechaPregunta']) || isset($_REQUEST['resuelta'])){
-  $_SESSION["email"] = $_REQUEST['email'];
-  $_SESSION["fechaPregunta"] = $_REQUEST['fechaPregunta'];
-  $_SESSION["resuelta"] = $_REQUEST['resuelta'];
-}
-*/
-
-$where="";
-
-
-
-  if($_SESSION['user']!=""){
-    $where.=" Usuario_nick LIKE '%".$_SESSION['user']."%' ";
-  }
-  if($_SESSION['poblacion']!=""){
-    if($where==""){
-        $where.=" Usuario_poblacion LIKE '%".$_SESSION['poblacion']."%' ";
-    }else{
-      $where.=" and Usuario_poblacion LIKE '%".$_SESSION['poblacion']."%' ";
-    }
-
-  }
-  if($_SESSION['email']!=""){
-    if($where==""){
-        $where.=" Usuario_email LIKE '%".$_SESSION['email']."%' ";
-    }else{
-      $where.=" and Usuario_email LIKE '%".$_SESSION['email']."%' ";
-    }
-
-  }
-  if($_SESSION['fechaAlta']!=""){
-    if($where==""){
-        $where.="  Usuario_fecha_alta= ".$_SESSION['fechaAlta']." ";
-    }else{
-      $where.="  and Usuario_fecha_alta= ".$_SESSION['fechaAlta']." ";
-    }
-
-  }
 $bloqueado;
 
 if(isset($_SESSION['bloqueado'])){
@@ -211,15 +159,9 @@ if(isset($_SESSION['bloqueado'])){
   }
 
 }
-
-/*
-$registros=mysqli_query($conexion,"select codigoDuda, usuario, resuelta, fechaPregunta  from contacto where ".implode(' AND ',$where)." order by fechaPregunta") or
-  die("Problemas en el select:".mysqli_error($conexion));
-
 */
 
-//$consulta_contactos = "SELECT * FROM contacto where resuelta=".$_SESSION['resuelta']."";
-$rs_contactos = mysqli_query($conexion, "select * from usuarios where Usuario_bloqueado='".$bloqueado."'");
+$rs_contactos = mysqli_query($conexion, "select * from usuarios where Usuario_nick LIKE '%".$_SESSION['busqueda']."%' || Usuario_poblacion LIKE '%".$_SESSION['busqueda']."%' || Usuario_email LIKE '%".$_SESSION['busqueda']."%' || Usuario_fecha_alta= '".$_SESSION['busqueda']."'");
 $num_total_registros = mysqli_num_rows($rs_contactos);
 
 //Limito la busqueda
@@ -244,9 +186,9 @@ else {
 $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA);
 
 
-
-$registros=mysqli_query($conexion,"select Usuario_id, Usuario_nick, Usuario_bloqueado, Usuario_fecha_alta  from usuarios where ".$where." order by Usuario_fecha_alta  DESC LIMIT ".$inicio."," . $TAMANO_PAGINA) or
+$registros=mysqli_query($conexion,"select Usuario_id, Usuario_nick, Usuario_bloqueado, Usuario_fecha_alta  from usuarios where Usuario_nick LIKE '%".$_SESSION['busqueda']."%' || Usuario_poblacion LIKE '%".$_SESSION['busqueda']."%' || Usuario_email LIKE '%".$_SESSION['busqueda']."%' || Usuario_fecha_alta= '".$_SESSION['busqueda']."' order by Usuario_fecha_alta  DESC LIMIT ".$inicio."," . $TAMANO_PAGINA) or
   die("Problemas en el select:".mysqli_error($conexion));
+
 
 $cant=0;
 while ($reg = mysqli_fetch_array($registros))
@@ -300,7 +242,7 @@ $cant++;
 ?><input class="btn btn-primary" type="submit" name="buscar" id="buscar" value="Borrar" style="margin-left:30%;">
 </form>
 <?php
-$self="usuarios.php";
+$self="usuarios2.php";
 if ($total_paginas > 1) {
   ?><ul class="pagination" ><?php
    if ($pagina != 1){

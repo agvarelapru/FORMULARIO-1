@@ -111,7 +111,7 @@ or die("Problemas en el select".mysqli_error($conexion));
 
 <h2 class="envio">Borrado</h2>
 <hr />
-<h4 class="envio" style="text-align:center">Usuarios Borrados</h4>
+<h4 class="envio" style="text-align:center"><?php echo $numero ?> Usuarios Borrados</h4>
 <hr />
 
 <?php
