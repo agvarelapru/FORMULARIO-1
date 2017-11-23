@@ -223,7 +223,17 @@ $rs_contactos = mysqli_query($conexion, "select * from usuarios where ".$where);
 $num_total_registros = mysqli_num_rows($rs_contactos);
 
 //Limito la busqueda
-$TAMANO_PAGINA = 4;
+if(isset($_REQUEST['numero'])){
+  $_SESSION['numero']=$_REQUEST['numero'];
+  $TAMANO_PAGINA = $_SESSION['numero'];
+}else{
+    if(isset($_SESSION['numero'])){
+        $TAMANO_PAGINA =$_SESSION['numero'];
+    }else{
+        $TAMANO_PAGINA =2;
+        }
+  }
+
 
 //examino la página a mostrar y el inicio del registro a mostrar
 if(isset($_GET["pagina"])){
@@ -327,14 +337,24 @@ if ($total_paginas > 1) {
     ?><li class="next"><?php   echo '<a href="'.$self.'?pagina='.($pagina+1).'"><span class="glyphicon glyphicon-arrow-right"></a>'  ?> </li><?php
     ?><li class="previous"><?php   echo '<a href="'.$self.'?pagina='.$total_paginas.'">Final</a>'  ?> </li><?php
   }
-?></ul><?php
+
+?>
+
+</ul><?php
 
 }
 //<img src="../../biblioteca/anterior.png" border="0" style="max-width: 100%;">
 //<img src="../../biblioteca/siguiente.png" border="0" style="max-width: 100%;">
 
 ?>
-
+<form class='form-horizontal'  action='usuarios.php' method='post'>
+<select class="form-control" type="submit" name="numero" style="float:right; width:7%;" onchange = "this.form.submit()"/>
+<option>2</option>
+<option>5</option>
+<option>10</option>
+</select>
+<label style="float:right;">Numero de registros: </label>
+</form>
 </div>
 <?php
 if($num_total_registros==0){
