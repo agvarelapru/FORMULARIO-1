@@ -116,9 +116,9 @@ $_SESSION["pass"];
     </li>
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><a href="../buscar/buscar.php">Buscar usuario</a></li>
+        <li class="active"><a href="../buscar/buscar.php">Buscar usuario</a></li>
         <li><a href="../../agregar/registro.html">Agregar usuario</a></li>
-       <li class="active"><a href="../preguntas/buscarP2.php">Preguntas</a></li>
+       <li ><a href="../preguntas/buscarP2.php">Preguntas</a></li>
         </ul>
     </li>
     </ul>
@@ -219,7 +219,7 @@ $registros=mysqli_query($conexion,"select codigoDuda, usuario, resuelta, fechaPr
 */
 
 //$consulta_contactos = "SELECT * FROM contacto where resuelta=".$_SESSION['resuelta']."";
-$rs_contactos = mysqli_query($conexion, "select * from usuarios where Usuario_bloqueado='".$bloqueado."'");
+$rs_contactos = mysqli_query($conexion, "select * from usuarios where ".$where);
 $num_total_registros = mysqli_num_rows($rs_contactos);
 
 //Limito la busqueda
