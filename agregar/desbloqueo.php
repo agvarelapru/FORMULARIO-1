@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	
+
 	<title>Desbloqueo de usuario</title>
 	<link href="../biblioteca/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <script src="../biblioteca/jquery/jquery.min.js" rel="stylesheet" media="screen"></script>
@@ -11,9 +11,9 @@
 
 <script  type="text/javascript">
 function tiempo(){
-  
+
   setTimeout("redirigir()", 5000);
-  
+
 }
 function redirigir(){
   window.location="../index.html";
@@ -22,13 +22,13 @@ function redirigir(){
 
 
 </head>
-<body onload="tiempo()"> 
-	
+<body onload="tiempo()">
+
   <?php
 
 	require_once('../biblioteca/conexion.php');
 	$conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or die("Problemas con la conexión");
-  
+
 $nick= $_GET['nick'];
 $pass= $_GET['pass'];
 

@@ -1,4 +1,11 @@
-﻿<!doctype html>
+<?php
+
+
+// Start the session
+session_start();
+
+?>
+<!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -18,7 +25,7 @@
 
          <div class="navbar-header">
 
-              <a class="navbar-brand" href="#">La Pagina de Angel</a>
+              <a class="navbar-brand" href="../salir.php">La Pagina de Angel</a>
             </div>
 
 
@@ -29,25 +36,201 @@
 
 
 	<?php
-$nick=$nombre=$pass=$apellido1=$apellido2=$email=$fecha_nacimiento="";
-$nickErr=$nombreErr=$passErr=$apellido1Err=$apellido2Err=$emailErr=$fecha_nacimientoErr="";
+$nick=$nombre=$pass=$pass2=$apellido1=$apellido2=$email=$fecha_nacimiento="";
+$nickErr=$nombreErr=$passErr=$passErr2=$apellido1Err=$apellido2Err=$emailErr=$fecha_nacimientoErr="";
 
 $contra=md5($_REQUEST["pass"]);
 $nick=$_REQUEST['nick'];
 
-include '../biblioteca/qr-code/phpqrcode/qrlib.php';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-// El nombre del fichero que se generará (una imagen PNG).
-$file ='qr_'.$_REQUEST['nick'].'.png';
-// La data que llevará.
-$data = 'http://www.agvarelapru.esy.es/FORMULARIO-1/user/u_menu.php?usuario='.$nick.'&pass='.$contra; 
+ if (empty($_POST["nick"])) {
+    $nickErr = "Nick obligatorio";
+  } else {
+    $nick = test_input($_POST["nick"]);
+    if (!preg_match("/^[a-zñA-ZÑ0-9-._]*$/",$nick)) {
+      $nickErr = "Solo letras numeros y .-_";
+    }
+  }
+if (empty($_POST["nombre"])) {
+    $nombreErr = "Nombre obligatorio";
+  } else {
+    $nombre = test_input($_POST["nombre"]);
+    if (!preg_match("/^[a-zñA-ZÑ -]*$/",$nombre)) {
+      $nombreErr = "Solo letras y espacio en blanco";
+    }
+  }
+	if (empty($_POST["pass"]) || empty($_POST["pass2"])) {
+     $passErr = "Contraseña obligatoria";
+		 $passErr2 = "Contraseña obligatoria";
+   } else if($_POST["pass"]!=$_POST["pass2"]){
+		 $passErr = "Las contraseña deben de ser iguales";
+		 $passErr2 = "Las contraseña deben de ser iguales";
+	 }else {
+     $pass = test_input($_POST["pass"]);
+     if (!preg_match("/^[a-zñA-ZÑ0-9-._]*$/",$pass)) {
+       $passErr = "Solo letras numeros y .-_";
+     }
+   }
+	 if (empty($_POST["apellido1"])) {
+	     $apellido1Err = "Apellido 1 obligatorio";
+	   } else {
+	     $apellido1 = test_input($_POST["apellido1"]);
+	     if (!preg_match("/^[a-zñA-ZÑ -]*$/",$apellido1)) {
+	       $apellido1Err = "Solo letras y espacio en blanco";
+	     }
+	   }
+		 if (empty($_POST["apellido2"])) {
+		     $apellido2Err = "Apellido 2 obligatorio";
+		   } else {
+		     $apellido2 = test_input($_POST["apellido2"]);
+		     if (!preg_match("/^[a-zñA-ZÑ -]*$/",$apellido2)) {
+		       $apellido1Err = "Solo letras y espacio en blanco";
+		     }
+		   }
 
-// Y generamos la imagen.
-QRcode::png($data, $file);
+			 if (empty($_POST["email"])) {
+			 	$emailErr = "Email obligatorio";
+			 } else {
+			 	$email = test_input($_POST["email"]);
+			 	// check if e-mail address is well-formed
+			 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			 		$emailErr = "Formato invalido de email";
+			 	}
+			 }
+
+			 $fecha_nacimiento=$_POST['fecha_nacimiento'];
+			if (empty($_POST["fecha_nacimiento"])) {
+			    $fecha_nacimientoErr = "Fecha obligatoria";
+			     echo "<h3> Fecha es obligatoria. </h3>";
+			  } else {
+
+			function validateDate($date){
+			$d = DateTime::createFromFormat('Y-m-d', $date);
+			return $d && $d->format('Y-m-d')==$date;
+			}
+			if(validateDate($fecha_nacimiento)){
+			    $fecha_nacimientoErr="";
+			}else{
+			    $fecha_nacimientoErr="la fecha es incorrecta";
+			}
+
+			  }
+
+
+
+/*
+if (empty($_POST["cargoContacto"])) {
+    $cargoContactoErr = "cargo Contacto obligatorio";
+  } else {
+    $cargoContacto = test_input($_POST["cargoContacto"]);
+    if (!preg_match("/^[a-zñA-ZÑ -]*$/",$cargoContacto)) {
+      $cargoContactoErr = "Solo letras y espacio en blanco";
+    }
+  }
+
+
+  if (empty($_POST["direccion"])) {
+    $direccionErr = "Direccion obligatoria";
+  } else {
+    $direccion = test_input($_POST["direccion"]);
+    if (!preg_match("/^[a-zñA-ZÑ0-9 -.,\/]*$/",$direccion)) {
+      $direccionErr = "Solo letras y espacio en blanco";
+    }
+  }
+  if (empty($_POST["mail"])) {
+    $mailErr = "Email obligatorio";
+  } else {
+    $mail = test_input($_POST["mail"]);
+    // check if e-mail address is well-formed
+    if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+      $mailErr = "Formato invalido de email";
+    }
+  }
+
+  if (empty($_POST["web"])) {
+    $web = "";
+  } else {
+    $web= test_input($_POST["web"]);
+
+    if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$web)) {
+      $webErr = "URL Invalida";
+    }
+  }
+
+if (empty($_POST["codigoPostal"])) {
+    $codigoPostalErr = "Codigo postal obligatorio";
+  } else {
+    $codigoPostal = test_input($_POST["codigoPostal"]);
+    if (!preg_match("/^[0-9]{5,5}$/",$codigoPostal)) {
+      $codigoPostalErr = "Solo 5 numeros";
+    }
+  }
+
+     if (empty($_POST["telefono"])) {
+    $telefonoErr = "Telefono obligatorio";
+  } else {
+    $telefono= test_input($_POST["telefono"]);
+    if (!preg_match("/^[0-9]{9,9}$/",$telefono)) {
+      $telefonoErr = "Solo 9 numeros";
+    }
+  }
+
+
+ $fechaAlta=$_POST['fechaAlta'];
+if (empty($_POST["fechaAlta"])) {
+    $fechaAltaErr = "Fecha obligatoria";
+     echo "<h3> Fecha es obligatoria. </h3>";
+  } else {
+
+function validateDate($date){
+$d = DateTime::createFromFormat('Y-m-d', $date);
+return $d && $d->format('Y-m-d')==$date;
+}
+if(validateDate($fechaAlta)){
+    $fechaAltaErr="";
+}else{
+    $fechaAltaErr="la fecha es incorrecta";
+}
+
+  }
+
+*/
 
 
 
 
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+
+
+
+
+
+$_SESSION["nick"] = $_REQUEST['nick'];
+$_SESSION["pass"] = $_REQUEST['pass'];
+$_SESSION["pass2"] = $_REQUEST['pass2'];
+$_SESSION["nombre"] = $_REQUEST['nombre'];
+$_SESSION["apellido1"] = $_REQUEST['apellido1'];
+$_SESSION["apellido2"] = $_REQUEST['apellido2'];
+$_SESSION["email"] = $_REQUEST['email'];
+$_SESSION["fecha_nacimiento"] = $_REQUEST['fecha_nacimiento'];
+
+$_SESSION["nickErr"] = $nickErr;
+$_SESSION["passErr"] =$passErr;
+$_SESSION["pass2Err"] = $passErr2;
+$_SESSION["nombreErr"] = $nombreErr;
+$_SESSION["apellido1Err"] = $apellido1Err;
+$_SESSION["apellido2Err"] = $apellido2Err;
+$_SESSION["emailErr"] = $emailErr;
+$_SESSION["fecha_nacimientoErr"] = $fecha_nacimientoErr=="";
 
 
 
@@ -62,6 +245,15 @@ if($nickErr=="" & $passErr=="" & $nombreErr=="" & $apellido1Err=="" & $apellido2
   or die("Problemas en el select".mysqli_error($conexion));
 
 
+
+	include '../biblioteca/qr-code/phpqrcode/qrlib.php';
+	// El nombre del fichero que se generará (una imagen PNG).
+	$file ='qr_'.$_REQUEST['nick'].'.png';
+	// La data que llevará.
+	$data = 'http://www.agvarelapru.esy.es/FORMULARIO-1/user/u_menu.php?usuario='.$nick.'&pass='.$contra;
+
+	// Y generamos la imagen.
+	QRcode::png($data, $file);
 
 
 
@@ -116,102 +308,14 @@ $mensaje=
 </html>';
 
 
-
-
-
-
-
-/*'<html>'.
-'<head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Confiramacion de registroL</title>
-<link rel="stylesheet" href="http://www.agvarelapru.esy.es/FORMULARIO-1/css/bootstrap.min.css">
-<script src="http://www.agvarelapru.esy.es/FORMULARIO-1/jquery/jquery.min.js"></script>
-<script src="http://www.agvarelapru.esy.es/FORMULARIO-1/js/bootstrap.min.js"></script>
-<script src="http://www.agvarelapru.esy.es/FORMULARIO-1/estilos.css"></script></head>'.
-'<body><div class="container" Style="background-color: lightgray;margin-top:20px;padding-top: 10px;padding-bottom: 10px;padding-right: 5%;padding-left: 5%;width: 80%;border-radius: 25px;"><h2 style="text-align: center;font-weight: BOLD;">Confirmacion de registro</h2><hr Style="border: 2px solid #007BFF; border-radius: 300px /2px;">'.
-'<h4 style="text-align: center;">Hola gracias por acceder a nuestra paguina pulse el boton que esta a continuacion para confirmar el alta<h4> '.
-'<a href="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra.'" class="btn btn-primary">Confirmar registro</a>'.
-'<hr Style="border: 2px solid #007BFF; border-radius: 300px /2px;">'.
-'<h4 style="text-align: center;">Una vez confirmada la cuenta puedes acceder con el siguiente codigo QR<h4>'.
-'<img src="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/'.$file.'" alt="Codigo QR">'.
-'</div></body>'.
-'</html>';*/
 $cabeceras = 'MIME-Version: 1.0' . "\r\n";
 $cabeceras .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 $cabeceras .= 'From: info@lapaginadeangel.com';
-//$mensaje .='http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra." "."\r\n";
-//$mensaje .=$file;
-//$cabeceras = 'From: info@lapaginadeangel.com' . "\r\n";
-/*
-'<form  action="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra.'"  method="post">
-	<input type="hidden" name="qr"/>
-	<button class="btn btn-primary" Style="margin-bottom: 5px;
-	margin-left: 30%;
-	width: 40%;
-	background-color: solid #007BFF;
-	text-align: center;
-	padding: 3px 0;" type="submit">Confirmar registro</button></form>'.
 
-*/
 
 mail($para,$titulo,$mensaje,$cabeceras);
 
 
-/*
-// include phpmailer class
-require_once '../biblioteca/PHPMailer/_lib/class.phpmailer.php';
-// creates object
-$mail = new PHPMailer(true);
-
-
-$full_name  =$nick;
-$email      = strip_tags($_REQUEST['email']);
-$subject    = "Sending HTML eMail using PHPMailer.";
-$text_message    = "Hello $full_name, <br /><br /> This is HTML eMail Sent using PHPMailer. isn't it cool to send HTML email rather than plain text, it helps to improve your email marketing.";
-
-$mensaje='<html>'.
-'<head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Confiramacion de registroL</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="http://www.agvarelapru.esy.es/FORMULARIO-1/estilos.css"></script></head>'.
-'<body><div class="container" Style="background-color: lightgray;margin-top:20px;padding-top: 10px;padding-bottom: 10px;padding-right: 5%;padding-left: 5%;width: 80%;border-radius: 25px;"><h2 style="text-align: center;font-weight: BOLD;">Confirmacion de registro</h2><hr Style="border: 2px solid #007BFF; border-radius: 300px /2px;">'.
-'<h4 style="text-align: center;">Hola gracias por acceder a nuestra paguina pulse el boton que esta a continuacion para confirmar el alta<h4> '.
-'<a href="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/desbloqueo.php?nick='.$nick.'&pass='.$contra.'" class="btn btn-primary">Confirmar registro</a>'.
-'<hr Style="border: 2px solid #007BFF; border-radius: 300px /2px;">'.
-'<h4 style="text-align: center;">Una vez confirmada la cuenta puedes acceder con el siguiente codigo QR<h4>'.
-'<img src="http://www.agvarelapru.esy.es/FORMULARIO-1/agregar/'.$file.'" alt="Codigo QR">'.
-'</div></body>'.
-'</html>';
-
-
-
-try
-{
- $mail->IsSMTP();
- $mail->isHTML(true);
- $mail->SMTPDebug  = 0;
- $mail->SMTPAuth   = true;
- $mail->SMTPSecure = "ssl";
- $mail->Host       = "smtp.gmail.com";
- $mail->Port       = 465;
- $mail->AddAddress($email);
- $mail->Username   ="agvarelapru@gmail.com";
-					  $mail->Password   ="24del5del05";
-					 // $mail->SetFrom('agvarelapru@gmail.com','Pagina de angel');
-					  $mail->AddReplyTo("agvarelapru@gmail.com","Pagina de angel");
- $mail->Subject    = $subject;
- $mail->Body    = $mensaje;
- $mail->AltBody    = $mensaje;
-}
- catch(phpmailerException $ex)
- {
-  $msg = "<div class='alert alert-warning'>".$ex->errorMessage()."</div>";
- }
-*/
 
 
 mysqli_close($conexion);
@@ -236,17 +340,33 @@ mysqli_close($conexion);
 
 
 
-<?php echo "<img src='qr_".$_REQUEST['nick'].".png'>";?>
+
 <br>
 <?php
 
 
 
 if($nickErr=="" & $passErr=="" & $nombreErr=="" & $apellido1Err=="" & $apellido2Err=="" & $emailErr=="" & $fecha_nacimientoErr==""){
+echo "<img style='margin-left:32%' src='qr_".$_REQUEST['nick'].".png'>";
 echo "<h3 class='envio'> El usuario fue dado de alta correctamente. </h3>";
 echo "<h4 class='envio'> Compruebe su cuenta de correo para confirmar la cuenta. </h4>";
+session_unset();
+session_destroy();
 }else{
 echo "<h3 style=color:red> El Usuario NO se agrego. </h3>";
+?>
+<script  type="text/javascript">
+
+
+  setTimeout("redirigir()", 2000);
+
+
+function redirigir(){
+  window.location="registro.php";
+}
+</script>
+
+<?php
 }
 ?>
 <br>

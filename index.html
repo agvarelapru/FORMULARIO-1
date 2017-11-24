@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Formulario</title>
 <!-- CSS de Bootstrap -->
 <link href="biblioteca/css/bootstrap.css" rel="stylesheet" media="screen">
@@ -35,10 +35,10 @@
   </div>
 
   <div class="botones">
-    <div class="izquierda"><a href="agregar/registro.html">Recuperar contraseña</a></div>
-    <div class="derecha"><a href="agregar/registro.html">Alta nueva</a></div>
+    <div class="izquierda"><a href="agregar/registro.php">Recuperar contraseña</a></div>
+    <div class="derecha"><a href="agregar/registro.php">Alta nueva</a></div>
 </div>
- 
+
   <input class="btn btn-primary" type="reset" name="limpiar" value="Borrar" />
   <input  class="btn btn-primary" type="submit" name="enviar" id="enviar" value="Validar" />
 
@@ -46,10 +46,10 @@
 </form>
 <hr/>
 <p>Acceso mediante codigo QR , etiquetas NFC, huella dactilar o detector facial</p>
-<form  action="menu.php"  method="post"> 
+<form  action="menu.php"  method="post">
     <input type="hidden" name="qr" value="<?php echo $reg['IdProveedor'];?>"/>
     <button class="btn btn-primary" type="submit" >QR</button>
-    <form  action="menu.php"  method="post"> 
+    <form  action="menu.php"  method="post">
     <input type="hidden" name="nfc" value="<?php echo $reg['IdProveedor'];?>"/>
     <button class="btn btn-primary" type="submit" >NFC</button>
     <input type="hidden" name="huella" value="<?php echo $reg['IdProveedor'];?>"/>
@@ -60,7 +60,7 @@
 </div>
 
 
- 
-   
+
+
 </body>
 </html>

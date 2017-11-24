@@ -117,7 +117,7 @@ $_SESSION["pass"];
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
       <ul class="dropdown-menu">
         <li class="active"><a href="../buscar/buscar.php">Buscar usuario</a></li>
-        <li><a href="../../agregar/registro.html">Agregar usuario</a></li>
+        <li><a href="../../agregar/registro.php">Agregar usuario</a></li>
        <li ><a href="../preguntas/buscarP2.php">Preguntas</a></li>
         </ul>
     </li>
@@ -227,11 +227,9 @@ if(isset($_REQUEST['numero'])){
   $_SESSION['numero']=$_REQUEST['numero'];
   $TAMANO_PAGINA = $_SESSION['numero'];
 }else{
-    if(isset($_SESSION['numero'])){
-        $TAMANO_PAGINA =$_SESSION['numero'];
-    }else{
-        $TAMANO_PAGINA =2;
-        }
+
+    $TAMANO_PAGINA =$_SESSION['numero'];
+
   }
 
 
@@ -307,7 +305,35 @@ echo "</div>";
 
 $cant++;
 }
-?><input class="btn btn-primary" type="submit" name="buscar" id="buscar" value="Borrar" style="margin-left:30%;">
+?><Button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#myModal" style="margin-left:30%;">Borrar</button>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">¡Atencion!</h4>
+      </div>
+      <div class="modal-body">
+        <p>¿Esta seguro de borrar a los usuarios?</p>
+      </div>
+      <div class="modal-footer" >
+        <div style="width:50%;float:left;margin-top:10px;">
+        <button type="submit" class="btn btn-primary" style="float:left; margin-left:25%">Borrar</button>
+        </div>
+             <div style="width:50%;float:left;margin-top:10px;">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" style="float:left;margin-left:25%">Cancelar</button>
+       </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
 </form>
 <?php
 $self="usuarios.php";
@@ -347,14 +373,31 @@ if ($total_paginas > 1) {
 //<img src="../../biblioteca/siguiente.png" border="0" style="max-width: 100%;">
 
 ?>
+
 <form class='form-horizontal'  action='usuarios.php' method='post'>
-<select class="form-control" type="submit" name="numero" style="float:right; width:7%;" onchange = "this.form.submit()"/>
+<label style="float:left;">Numero de registros: </label><br><br>
+<select class="form-control" type="submit" name="numero" style="float:left; width:16%;" onchange = "this.form.submit()"/>
+<?php
+if($TAMANO_PAGINA==2){
+  ?><option selected>2</option>
+  <option>5</option>
+  <option>10</option><?php
+}else if($TAMANO_PAGINA==5){
+  ?><option>2</option>
+  <option selected>5</option>
+  <option>10</option><?php
+}else if($TAMANO_PAGINA==10){
+?>
 <option>2</option>
 <option>5</option>
-<option>10</option>
+  <option selected>10</option><?php
+}
+?>
+
 </select>
-<label style="float:right;">Numero de registros: </label>
+
 </form>
+
 </div>
 <?php
 if($num_total_registros==0){

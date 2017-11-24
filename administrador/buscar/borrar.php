@@ -71,15 +71,15 @@ $_SESSION["pass"];
       </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Contacto <span class="caret"></span></a>
       <ul class="dropdown-menu">
-           <li class="active"><a href="../somos.php">Contacte con nosotros</a></li>
+           <li ><a href="../somos.php">Contacte con nosotros</a></li>
           <li><a href="../estamos.php">Donde estamos</a></li>
 
         </ul>
     </li>
     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrador <span class="caret"></span></a>
       <ul class="dropdown-menu">
-				<li><a href="buscar.php">Buscar usuario</a></li>
-				<li><a href="../../agregar/registro.html">Agregar usuario</a></li>
+				<li class="active"><a href="buscar.php">Buscar usuario</a></li>
+				<li><a href="../../agregar/registro.php">Agregar usuario</a></li>
 			 <li><a href="../preguntas/buscarP2.php">Preguntas</a></li>
         </ul>
     </li>
