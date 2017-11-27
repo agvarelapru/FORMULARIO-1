@@ -147,6 +147,21 @@ $bloqueado=" SI ";
 }
 $codigo=$reg['Usuario_id'];
 
+
+$consulta_mysql2=mysqli_query($conexion,"select *
+                      from provincias") or
+die("Problemas en el select:".mysqli_error($conexion));
+
+while($reg2=mysqli_fetch_array($consulta_mysql2)){
+
+ if($reg["Usuario_provincia"]==$reg2["Codigo_provincia"]){
+$provincia=$reg2["Nombre_provincia"];
+ }
+}
+
+
+
+
 ?>
 
 
@@ -170,7 +185,7 @@ $codigo=$reg['Usuario_id'];
 <li style="border-bottom:1px solid #007BFF"><label for="fechaUltimaConexion" >Fecha Ultima conexion: </label> <?php echo $fechaUltimaConexion= $reg['Usuario_fecha_ultima_conexion'];?><br><span class="error"><?php echo $fechaUltimaConexionErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="domicilio" >Domicilio: </label> <?php echo $domicilio = $reg['Usuario_domicilio'];?><br> <span class="error"><?php echo $domicilioErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="poblacion" >Poblacion: </label> <?php echo $poblacion = $reg['Usuario_poblacion'];?> <br><span class="error"><?php echo $poblacionErr;?></span></li>
-<li style="border-bottom:1px solid #007BFF"><label for="provincia" >Provincia: </label> <?php echo $provincia = $reg['Usuario_provincia'];?><br><span class="error"><?php echo $provinciaErr;?></span></li>
+<li style="border-bottom:1px solid #007BFF"><label for="provincia" >Provincia: </label> <?php echo $provincia; ?><br><span class="error"><?php echo $provinciaErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="perfil" >Perfil: </label> <?php echo $perfil = $reg['Usuario_perfil'];?><br><span class="error"><?php echo $perfilErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="nif" >Nif: </label> <?php echo $nif = $reg['Usuario_nif'];?><br><span class="error"><?php echo $nifErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="telefono" >Numero telefono </label> <?php echo $numeroTelefono= $reg['Usuario_numero_telefono'];?><br><span class="error"><?php echo $numeroTelefonoErr;?></span></li>

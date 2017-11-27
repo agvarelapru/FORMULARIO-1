@@ -153,7 +153,7 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
     mysqli_set_charset($conexion,"utf8");
 
 $consulta_mysql=mysqli_query($conexion,"select DISTINCT Usuario_poblacion
-             from usuarios;") or
+             from usuarios order by Usuario_poblacion;") or
 die("Problemas en el select:".mysqli_error($conexion));
 
 ?>
@@ -162,8 +162,12 @@ die("Problemas en el select:".mysqli_error($conexion));
 <?php
 
 while($reg=mysqli_fetch_array($consulta_mysql)){
-echo "<option value='".$reg["Usuario_poblacion"]."'>".$reg["Usuario_poblacion"]." </option>";
+if($reg["Usuario_poblacion"]==""){
+  echo "<option value='".$reg["Usuario_poblacion"]."' selected>".$reg["Usuario_poblacion"]." </option>";
+}else{
 
+echo "<option value='".$reg["Usuario_poblacion"]."'>".$reg["Usuario_poblacion"]." </option>";
+}
 }
 ?>
  </select>

@@ -247,9 +247,31 @@ if(pass!=pass2){
 
   <div class="form-group">
     <label for="provincia">Provincia</label>
+<!--
     <input  class="form-control" type="text" name="provincia" id="provincia" placeholder="Provincia" pattern="[A-Za-z ñÑ]{1,50}"  title="Introduzca poblacion A-Za-z ñÑ"  value="<?php echo $reg['Usuario_provincia'];?>"/>
-  </div>
+-->
 
+
+<select class="form-control" name="provincia" />
+<?php
+
+$consulta_mysql2=mysqli_query($conexion,"select *
+                      from provincias") or
+die("Problemas en el select:".mysqli_error($conexion));
+
+while($reg2=mysqli_fetch_array($consulta_mysql2)){
+
+ if($reg["Usuario_provincia"]==$reg2["Codigo_provincia"]){
+echo "<option value='".$reg2["Codigo_provincia"]."'selected>".$reg2["Nombre_provincia"]."</option>";
+ }else{
+
+echo "<option value='".$reg2["Codigo_provincia"]."'>".$reg2["Nombre_provincia"]."</option>";
+}
+}
+?>
+          </select>
+
+  </div>
 
   <div class="form-group">
     <label for="perfil">Perfil</label>
@@ -323,8 +345,7 @@ if(pass!=pass2){
       </div>
       <div class="modal-footer" >
 
-        <form class="form-horizontal" action="usuarioModificado.php"  method="post">
-        <input type="hidden" name="id" value="<?php echo $id;?>"/>
+
         <button type="submit" class="btn btn-primary" style="float:left;">Modificar</button>
         </form>
 
