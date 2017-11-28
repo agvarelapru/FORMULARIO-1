@@ -140,7 +140,7 @@ $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
 $filas_afectadas=0;
 
   mysqli_query($conexion, "update usuarios
-                            set Usuario_id='$_REQUEST[id]', Usuario_nombre='$_REQUEST[nombre]', Usuario_apellido1='$_REQUEST[apellido1]', Usuario_apellido2='$_REQUEST[apellido2]',Usuario_nick='$_REQUEST[nick]',Usuario_email='$_REQUEST[email]',Usuario_bloqueado='$bloqueado',Usuario_fecha_bloqueo='$_REQUEST[fecha_bloqueo]',Usuario_numero_Intentos='$_REQUEST[numero_intentos]',Usuario_fecha_ultima_conexion='$_REQUEST[fecha_ultima_conexion]',Usuario_domicilio='$_REQUEST[domicilio]', Usuario_poblacion='$_REQUEST[poblacion]',Usuario_provincia='$_REQUEST[provincia]',Usuario_perfil='$_REQUEST[perfil]', Usuario_nif='$_REQUEST[nif]',Usuario_numero_telefono='$_REQUEST[numero_telefono]',Usuario_fotografia='$_REQUEST[fotografia]',Usuario_fecha_contratacion='$_REQUEST[fecha_contratacion]',Usuario_fecha_nacimiento='$_REQUEST[fecha_nacimiento]'
+                            set Usuario_id='$_REQUEST[id]', Usuario_nombre='$_REQUEST[nombre]', Usuario_apellido1='$_REQUEST[apellido1]', Usuario_apellido2='$_REQUEST[apellido2]',Usuario_nick='$_REQUEST[nick]',Usuario_email='$_REQUEST[email]',Usuario_bloqueado='$bloqueado',Usuario_numero_Intentos='$_REQUEST[numero_intentos]',Usuario_domicilio='$_REQUEST[domicilio]', Usuario_poblacion='$_REQUEST[poblacion]',Usuario_provincia='$_REQUEST[provincia]',Usuario_perfil='$_REQUEST[perfil]', Usuario_nif='$_REQUEST[nif]',Usuario_numero_telefono='$_REQUEST[numero_telefono]',Usuario_fotografia='$_REQUEST[fotografia]',Usuario_fecha_contratacion='$_REQUEST[fecha_contratacion]',Usuario_fecha_nacimiento='$_REQUEST[fecha_nacimiento]'
                           where Usuario_id='$_REQUEST[id]'") or
     die("Problemas en el select:".mysqli_error($conexion));
 
@@ -176,9 +176,9 @@ $bloqueado=" SI ";
 
 <li style="border-bottom:1px solid #007BFF"><label for="email" >E-mail: </label> <?php echo $email = $_REQUEST['email'];?><br><span class="error"><?php echo $emailErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="bloqueado" >Bloqueado: </label> <?php echo $bloqueado;?><br><span class="error"><?php echo $bloqueadoErr;?></span></li>
-<li style="border-bottom:1px solid #007BFF"><label for="fecha_bloqueo" >Fecha Bloqueo: </label> <?php echo $fechaBloqueo = $_REQUEST['fecha_bloqueo'];?><br><span class="error"><?php echo $fechaBloqueoErr;?></span></li>
+
 <li style="border-bottom:1px solid #007BFF"><label for="numero_intentos" >Numero de intentos: </label> <?php echo $inumeroIntentos = $_REQUEST['numero_intentos'];?><br><span class="error"><?php echo $numeroIntentosErr;?></span></li>
-<li style="border-bottom:1px solid #007BFF"><label for="fechaUltimaConexion" >Fecha Ultima conexion: </label> <?php echo $fechaUltimaConexion= $_REQUEST['fecha_ultima_conexion'];?><br><span class="error"><?php echo $fechaUltimaConexionErr;?></span></li>
+
 <li style="border-bottom:1px solid #007BFF"><label for="domicilio" >Domicilio: </label> <?php echo $domicilio = $_REQUEST['domicilio'];?><br> <span class="error"><?php echo $domicilioErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="poblacion" >Poblacion: </label> <?php echo $poblacion = $_REQUEST['poblacion'];?> <br><span class="error"><?php echo $poblacionErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="provincia" >Provincia: </label> <?php echo $provincia = $_REQUEST['provincia'];?><br><span class="error"><?php echo $provinciaErr;?></span></li>

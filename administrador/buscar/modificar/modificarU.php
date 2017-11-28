@@ -220,20 +220,14 @@ if(pass!=pass2){
      ?>
   </div>
 
-  <div class="form-group">
-    <label for="fecha_bloqueo">Fecha de bloqueo</label>
-    <input  class="form-control" type="date" name="fecha_bloqueo" id="fecha_bloqueo" placeholder="aaaa/mm/dd"  pattern= "[0-9]{4}/(0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Introduzca este formato aaaa/mm/dd" value="<?php echo $reg['Usuario_fecha_bloqueo'];?>"/>
-  </div>
+
 
   <div class="form-group">
     <label for="numero_intentos">Numero intentos</label>
     <input  class="form-control" type="number" name="numero_intentos" id="numero_intentos" placeholder="Numero intentos" pattern="[0-9]{1,3}"  title="Introduzca numero 0-3"  value="<?php echo $reg['Usuario_numero_intentos'];?>"/>
   </div>
 
-  <div class="form-group">
-    <label for="fecha_ultima_conexion">Fecha de ultima conexion</label>
-    <input  class="form-control" type="date" name="fecha_ultima_conexion" id="fecha_ultima_conexion" placeholder="aaaa/mm/dd"  pattern= "[0-9]{4}/(0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Introduzca este formato aaaa/mm/dd" value="<?php echo $reg['Usuario_fecha_ultima_conexion'];?>"/>
-  </div>
+
 
   <div class="form-group">
     <label for="domicilio">Domicilio</label>
@@ -321,7 +315,7 @@ echo "<option value='".$reg2["Codigo_provincia"]."'>".$reg2["Nombre_provincia"].
 
   <div class="form-group">
     <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-    <input  class="form-control" type="date" name="fecha_nacimiento" id="fecha_nacimiento" placeholder="aaaa/mm/dd" required pattern= "[0-9]{4}/(0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Introduzca este formato aaaa/mm/dd" value="<?php echo $reg['Usuario_fecha_nacimiento'];?>"/>
+    <input  class="form-control" type="date" name="fecha_nacimiento" id="fecha_nacimiento" placeholder="aaaa/mm/dd"  pattern= "[0-9]{4}/(0[1-9]|1[012])/(0[1-9]|1[0-9]|2[0-9]|3[01])" title="Introduzca este formato aaaa/mm/dd" value="<?php echo $reg['Usuario_fecha_nacimiento'];?>"/>
   </div><br><br>
 
 
