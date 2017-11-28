@@ -98,7 +98,7 @@ if(pass!=pass2){
 
   <div class="form-group">
     <label for="nombre">Nombre</label>
-    <input  class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" pattern="[ A-Za-z ñÑ]{1,50}"  title="Introduzca nombre"  value="<?php echo $_SESSION['nombre'];?>" required />
+    <input  class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" pattern="[ A-Za-z ñÑ]{1,50}"  title="Introduzca nombre"  required />
   </div>
   <div class="form-group">
     <label for="apellido1">Apellido 1</label>
