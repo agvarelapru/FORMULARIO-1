@@ -132,6 +132,55 @@ if(isset($_REQUEST['bloqueado'])){
 }
 
 
+
+$target_dir = "imagenes/";
+$target_file = $target_dir . basename($_FILES["fotografia"]["name"]);
+$uploadOk = 1;
+$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["fotografia"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+}
+// Check if file already exists
+if (file_exists($target_file)) {
+    echo "Lo siente, el archivo ya existe.";
+    $uploadOk = 0;
+}
+// Check file size
+if ($_FILES["fotografia"]["size"] > 5000000) {
+    echo "Lo siente, el archivo es demasiado grande.";
+    $uploadOk = 0;
+}
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+    echo "Lo siento, sol JPG, JPEG, PNG & GIF.";
+    $uploadOk = 0;
+}
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+    echo "lo siento, tu archivo no a sido cargado.";
+// if everything is ok, try to upload file
+} else {
+    if (move_uploaded_file($_FILES["fotografia"]["tmp_name"], $target_file)) {
+        echo "El archivo ". basename( $_FILES["fotografia"]["name"]). " ha sido cargado.";
+    } else {
+        echo "lo siento, a ocurrido un error en la carga del archivo.";
+    }
+}
+
+
+
+
+
+
 require_once('../../../biblioteca/conexion.php');
 
 $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
@@ -140,7 +189,7 @@ $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
 $filas_afectadas=0;
 
   mysqli_query($conexion, "update usuarios
-                            set Usuario_id='$_REQUEST[id]', Usuario_nombre='$_REQUEST[nombre]', Usuario_apellido1='$_REQUEST[apellido1]', Usuario_apellido2='$_REQUEST[apellido2]',Usuario_nick='$_REQUEST[nick]',Usuario_email='$_REQUEST[email]',Usuario_bloqueado='$bloqueado',Usuario_numero_Intentos='$_REQUEST[numero_intentos]',Usuario_domicilio='$_REQUEST[domicilio]', Usuario_poblacion='$_REQUEST[poblacion]',Usuario_provincia='$_REQUEST[provincia]',Usuario_perfil='$_REQUEST[perfil]', Usuario_nif='$_REQUEST[nif]',Usuario_numero_telefono='$_REQUEST[numero_telefono]',Usuario_fotografia='$_REQUEST[fotografia]',Usuario_fecha_contratacion='$_REQUEST[fecha_contratacion]',Usuario_fecha_nacimiento='$_REQUEST[fecha_nacimiento]'
+                            set Usuario_id='$_REQUEST[id]', Usuario_nombre='$_REQUEST[nombre]', Usuario_apellido1='$_REQUEST[apellido1]', Usuario_apellido2='$_REQUEST[apellido2]',Usuario_nick='$_REQUEST[nick]',Usuario_email='$_REQUEST[email]',Usuario_bloqueado='$bloqueado',Usuario_numero_Intentos='$_REQUEST[numero_intentos]',Usuario_domicilio='$_REQUEST[domicilio]', Usuario_poblacion='$_REQUEST[poblacion]',Usuario_provincia='$_REQUEST[provincia]',Usuario_perfil='$_REQUEST[perfil]', Usuario_nif='$_REQUEST[nif]',Usuario_numero_telefono='$_REQUEST[numero_telefono]',Usuario_fotografia='$target_file',Usuario_fecha_contratacion='$_REQUEST[fecha_contratacion]',Usuario_fecha_nacimiento='$_REQUEST[fecha_nacimiento]'
                           where Usuario_id='$_REQUEST[id]'") or
     die("Problemas en el select:".mysqli_error($conexion));
 
@@ -185,7 +234,7 @@ $bloqueado=" SI ";
 <li style="border-bottom:1px solid #007BFF"><label for="perfil" >Perfil: </label> <?php echo $perfil = $_REQUEST['perfil'];?><br><span class="error"><?php echo $perfilErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="nif" >Nif: </label> <?php echo $nif = $_REQUEST['nif'];?><br><span class="error"><?php echo $nifErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="telefono" >Numero telefono </label> <?php echo $numeroTelefono= $_REQUEST['numero_telefono'];?><br><span class="error"><?php echo $numeroTelefonoErr;?></span></li>
-<li style="border-bottom:1px solid #007BFF"><label for="fotografia" >Fotografia: </label> <?php echo $fotografia = $_REQUEST['fotografia'];?><br> <span class="error"><?php echo $fotografiaErr;?></span></li>
+<li style="border-bottom:1px solid #007BFF"><label for="fotografia" >Fotografia: </label> <?php echo $fotografia = $target_file;?><br> <span class="error"><?php echo $fotografiaErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="contratacion" >Fecha ontratacion: </label> <?php echo $fechaContratacion = $_REQUEST['fecha_contratacion'];?> <br><span class="error"><?php echo $fechaContratacionErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="fecha_nacimiento" >Fecha de Nacimiento: </label> <?php echo $fechaNacimiento = $_REQUEST['fecha_nacimiento'];?><br><span class="error"><?php echo $fechaNacimientoErr;?></span></li>
 

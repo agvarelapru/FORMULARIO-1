@@ -250,7 +250,7 @@ if($nickErr=="" & $passErr=="" & $nombreErr=="" & $apellido1Err=="" & $apellido2
 	// El nombre del fichero que se generará (una imagen PNG).
 	$file ='qr_'.$_REQUEST['nick'].'.png';
 	// La data que llevará.
-	$data = 'http://www.agvarelapru.esy.es/FORMULARIO-1/user/u_menu.php?usuario='.$nick.'&pass='.$contra;
+	$data = 'http://www.agvarelapru.esy.es/FORMULARIO-1/logeo.php?usuario='.$nick.'&pass='.$contra;
 
 	// Y generamos la imagen.
 	QRcode::png($data, $file);

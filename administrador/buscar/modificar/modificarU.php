@@ -151,7 +151,7 @@ $codigo=$reg['Usuario_id'];
 <hr/>
 
 
-<form class="form-horizontal" role="form" id="editar" name="editar" method="post" action="usuarioModificado.php">
+<form class="form-horizontal" role="form" id="editar" name="editar" method="post" action="usuarioModificado.php" enctype="multipart/form-data">
 
   <div class="form-group">
     <label for="id">Id</label>
@@ -304,8 +304,8 @@ echo "<option value='".$reg2["Codigo_provincia"]."'>".$reg2["Nombre_provincia"].
   </div>
 
   <div class="form-group">
-    <label for="fotografia">fotografia</label>
-    <input  class="form-control" type="text" name="fotografia" id="fotografia" placeholder="fotografia" pattern="[.-/,º:_A-Za-z0-9]{1,50}"  title="Introduzca fotografia"  value="<?php echo $reg['Usuario_fotografia'];?>"/>
+    <label for="fotografia">Fotografia</label>
+    <input   type="file" name="fotografia" id="fotografia" placeholder="fotografia" pattern="[.-/,º:_A-Za-z0-9]{1,50}"  title="Introduzca fotografia"  value="<?php echo $reg['Usuario_fotografia'];?>"/>
   </div>
 
   <div class="form-group">

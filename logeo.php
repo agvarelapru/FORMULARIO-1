@@ -37,52 +37,9 @@ session_start();
 <?php
 $usuarioErr =$passErr = "";
 $usuario = $pass = "";
-
-
-if(empty($_REQUEST["pass"]) & empty($_REQUEST["usuario"])){
-  echo"<div class='container' > ";
-  echo  "Inserte usuario y contraseña";
-  echo"</div>";
-
-  session_unset();
-  session_destroy();//Literalmente la destruimos
-}else{
-
-
-
-
-// Set session variables
-
-$_SESSION["usuario"] = $_REQUEST['usuario'];
-$_SESSION["pass"] = $_REQUEST['pass'];
-
-
-
-
-
-/*
-if (empty($_REQUEST["usuario"])) {
-    $usuarioErr = "Usuarioobligatorio";
-  } else {
-    $usuario = test_input($_REQUEST["usuario"]);
-
-    if (!preg_match("/^[a-zñA-ZÑ0-9 -.,\/]*$/",$usuario)) {
-      $usuarioErr = "Solo letras y espacio en blanco";
-    }
-  }
-  if (empty($_REQUEST["pass"])) {
-    $passErr = "contraseña obligatoria";
-  } else {
-    $pass = test_input($_REQUEST["pass"]);
-
-    if (!preg_match("/^[a-zñA-ZÑ0-9 -.,\/]*$/",$pass)) {
-      $passErr = "Solo letras y espacio en blanco";
-    }
-  }*/
-
-  require_once('biblioteca/conexion.php');
-  $conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
-  die("Problemas con la conexión.");
+require_once('biblioteca/conexion.php');
+$conexion=mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME) or
+die("Problemas con la conexión.");
 
 $admin="admin";
 $work="work";
@@ -96,18 +53,15 @@ if(!empty($_GET['usuario']) & !empty($_GET['pass'])){
   die("Problemas en el select:".mysqli_error($conexion));
   $numero=mysqli_affected_rows($conexion);//cuenta el numero de lineas del array
 
-
+  $_SESSION["usuario"] = $_GET['usuario'];
+  $_SESSION["pass"] = $_GET['pass'];
 
     $contra=$_GET["pass"];
 
+}else if(!empty($_REQUEST['usuario']) & !empty($_REQUEST['pass'])){
 
-
-
-
-
-}else{
-
-
+  $_SESSION["usuario"] = $_REQUEST['usuario'];
+  $_SESSION["pass"] = $_REQUEST['pass'];
 
 mysqli_set_charset($conexion,"utf8");
 $registros=mysqli_query($conexion,"select Usuario_nick,Usuario_clave,Usuario_bloqueado,Usuario_perfil
@@ -119,9 +73,59 @@ $numero=mysqli_affected_rows($conexion);//cuenta el numero de lineas del array
 $contra=md5($_REQUEST["pass"]);
 
 
+}else {
 
+  echo"<div class='container' > ";
+  echo  "Inserte usuario y contraseña";
+  echo"</div>";
+
+  session_unset();
+  session_destroy();//Literalmente la destruimos
 
 }
+
+
+/*
+if(empty($_REQUEST["pass"]) & empty($_REQUEST["usuario"])){
+  echo"<div class='container' > ";
+  echo  "Inserte usuario y contraseña";
+  echo"</div>";
+
+  session_unset();
+  session_destroy();//Literalmente la destruimos
+}else{
+*/
+
+
+
+
+
+
+/*
+if(!empty($_GET['usuario']) & !empty($_GET['pass'])){
+
+  mysqli_set_charset($conexion,"utf8");
+  $registros=mysqli_query($conexion,"select Usuario_nick,Usuario_clave,Usuario_bloqueado,Usuario_perfil
+                        from usuarios where (Usuario_nick like '$_GET[usuario]' or Usuario_email like '$_GET[usuario]')") or
+  die("Problemas en el select:".mysqli_error($conexion));
+  $numero=mysqli_affected_rows($conexion);//cuenta el numero de lineas del array
+
+
+
+    $contra=$_GET["pass"];
+
+}else{
+
+mysqli_set_charset($conexion,"utf8");
+$registros=mysqli_query($conexion,"select Usuario_nick,Usuario_clave,Usuario_bloqueado,Usuario_perfil
+                      from usuarios where (Usuario_nick like '$_REQUEST[usuario]' or Usuario_email like '$_REQUEST[usuario]')") or
+die("Problemas en el select:".mysqli_error($conexion));
+$numero=mysqli_affected_rows($conexion);//cuenta el numero de lineas del array
+
+
+$contra=md5($_REQUEST["pass"]);
+
+}*/
 while ($reg = mysqli_fetch_array($registros))
 {
 
@@ -164,7 +168,7 @@ echo"<div class='container' > ";
 
     }
 
-  }
+
 ?>
 
 </body>

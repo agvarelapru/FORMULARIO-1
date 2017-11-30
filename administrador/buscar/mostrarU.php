@@ -159,7 +159,7 @@ $provincia=$reg2["Nombre_provincia"];
  }
 }
 
-
+$fotografia=$reg['Usuario_fotografia'];
 
 
 ?>
@@ -189,7 +189,7 @@ $provincia=$reg2["Nombre_provincia"];
 <li style="border-bottom:1px solid #007BFF"><label for="perfil" >Perfil: </label> <?php echo $perfil = $reg['Usuario_perfil'];?><br><span class="error"><?php echo $perfilErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="nif" >Nif: </label> <?php echo $nif = $reg['Usuario_nif'];?><br><span class="error"><?php echo $nifErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="telefono" >Numero telefono </label> <?php echo $numeroTelefono= $reg['Usuario_numero_telefono'];?><br><span class="error"><?php echo $numeroTelefonoErr;?></span></li>
-<li style="border-bottom:1px solid #007BFF"><label for="fotografia" >Fotografia: </label> <?php echo $fotografia = $reg['Usuario_fotografia'];?><br> <span class="error"><?php echo $fotografiaErr;?></span></li>
+<li style="border-bottom:1px solid #007BFF"><label for="fotografia" >Fotografia: </label><?php echo "<img src='modificar/".$fotografia."'style='width:10%;'>";?><br> <span class="error"><?php echo $fotografiaErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="contratacion" >Fecha ontratacion: </label> <?php echo $fechaContratacion = $reg['Usuario_fecha_contratacion'];?> <br><span class="error"><?php echo $fechaContratacionErr;?></span></li>
 <li style="border-bottom:1px solid #007BFF"><label for="fecha_nacimiento" >Fecha de Nacimiento: </label> <?php echo $fechaNacimiento = $reg['Usuario_fecha_nacimiento'];?><br><span class="error"><?php echo $fechaNacimientoErr;?></span></li>
 </ul>
