@@ -10,7 +10,7 @@ session_start();
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Formulario</title>
 <!-- CSS de Bootstrap -->
 <link href="../biblioteca/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -22,6 +22,15 @@ session_start();
 
 </script>
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111179481-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111179481-1');
+</script>
 
 </head>
 <style>
@@ -46,9 +55,9 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
   echo"</div>";
 
 }else{
-    
 
-  ?> 
+
+  ?>
 
 
 
@@ -87,7 +96,7 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
       <ul class="dropdown-menu">
            <li><a href="u_somos.php">Contacte con nosotros</a></li>
           <li><a href="u_estamos.php">Donde estamos</a></li>
-          
+
         </ul>
     </li>
     </ul>
@@ -102,16 +111,16 @@ if(empty($_SESSION["pass"]) & empty($_SESSION["usuario"])){
 
 
 
-   <div class="container" >   
+   <div class="container" >
 <h1>HOLA</h1>
 
 <?php
 include '../biblioteca/qr-code/phpqrcode/qrlib.php';
 
 // El nombre del fichero que se generará (una imagen PNG).
-$file = 'jr-qrcode.png'; 
+$file = 'jr-qrcode.png';
 // La data que llevará.
-$data = 'http://agvarelapru.esy.es/FORMULARIO-1/'; 
+$data = 'http://agvarelapru.esy.es/FORMULARIO-1/';
 
 // Y generamos la imagen.
 QRcode::png($data, $file);
@@ -121,17 +130,17 @@ QRcode::png($data, $file);
 <img src="jr-qrcode.png">
 
 
-  
- 
+
+
 
 
 
 
 
    <?php
-      
-  
-  } 
+
+
+  }
 ?>
 
 </body>
